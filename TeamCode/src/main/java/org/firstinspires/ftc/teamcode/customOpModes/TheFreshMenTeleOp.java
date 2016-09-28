@@ -1,6 +1,5 @@
 package com.qualcomm.ftcrobotcontroller.opmodes.customOpModes;
 
-import com.qualcomm.ftcrobotcontroller.opmodes.FreshClasses.FreshMethods;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.PWMOutput;
