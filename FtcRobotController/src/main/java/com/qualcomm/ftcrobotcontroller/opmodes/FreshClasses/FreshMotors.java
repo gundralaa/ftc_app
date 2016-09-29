@@ -1,4 +1,4 @@
-package com.qualcomm.ftcrobotcontroller.opmodes.FreshClasses;
+package org.firstinspires.ftc.teamcode.FreshClasses;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 /**

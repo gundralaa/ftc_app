@@ -1,4 +1,4 @@
-package com.qualcomm.ftcrobotcontroller.opmodes.FreshClasses;
+package org.firstinspires.ftc.teamcode.FreshClasses;
 
 import android.graphics.Color;
 
@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.PWMOutput;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.ftcrobotcontroller.opmodes.FreshClasses.FreshMotors;
+import org.firstinspires.ftc.teamcode.FreshClasses.FreshMotors;
 
 
 import java.lang.reflect.Array;
@@ -45,9 +45,9 @@ public class FreshMethods {
         return TankValues;
     }
 
-    public static void approach_ir_signal(com.qualcomm.ftcrobotcontroller.opmodes.FreshClasses.FreshMotors motors,
-                                          com.qualcomm.ftcrobotcontroller.opmodes.FreshClasses.FreshSensors sensors,
-                                          com.qualcomm.ftcrobotcontroller.opmodes.FreshClasses.FreshServos servos,
+    public static void approach_ir_signal(org.firstinspires.ftc.teamcode.FreshClasses.FreshMotors motors,
+                                          org.firstinspires.ftc.teamcode.FreshClasses.FreshSensors sensors,
+                                          org.firstinspires.ftc.teamcode.FreshClasses.FreshServos servos,
                                           double end_signal_strength) { //this method will be called only if an ir signal is detected
         double angle = sensors.irSensor.getAngle();
         double signal_strength = sensors.irSensor.getStrength();
@@ -170,10 +170,10 @@ public class FreshMethods {
         final double WHEEL_CIRCUMFERENCE = 9.42;
         double rotations_to_destination = distance / WHEEL_CIRCUMFERENCE;
         double counts_to_destination = rotations_to_destination * ENCODER_CPR;
-        motors.M_backLeft.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        motors.M_backRight.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        motors.M_frontLeft.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        motors.M_frontRight.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        //motors.M_backLeft.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        //motors.M_backRight.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        //motors.M_frontLeft.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        //motors.M_frontRight.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
         motors.M_backLeft.setTargetPosition((int) counts_to_destination);
         motors.M_backRight.setTargetPosition((int) counts_to_destination);
         motors.M_frontLeft.setTargetPosition((int) counts_to_destination);

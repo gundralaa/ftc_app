@@ -1,8 +1,8 @@
-package com.qualcomm.ftcrobotcontroller.opmodes.customOpModes;
-import com.qualcomm.ftcrobotcontroller.opmodes.FreshClasses.FreshMethods;
-import com.qualcomm.ftcrobotcontroller.opmodes.FreshClasses.FreshMotors;
-import com.qualcomm.ftcrobotcontroller.opmodes.FreshClasses.FreshServos;
-import com.qualcomm.ftcrobotcontroller.opmodes.FreshClasses.FreshSensors;
+package org.firstinspires.ftc.teamcode.customOpModes;
+import org.firstinspires.ftc.teamcode.FreshClasses.FreshMethods;
+import org.firstinspires.ftc.teamcode.FreshClasses.FreshMotors;
+import org.firstinspires.ftc.teamcode.FreshClasses.FreshServos;
+import org.firstinspires.ftc.teamcode.FreshClasses.FreshSensors;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
