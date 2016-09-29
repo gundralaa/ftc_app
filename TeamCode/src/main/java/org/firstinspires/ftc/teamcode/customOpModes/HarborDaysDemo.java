@@ -1,4 +1,4 @@
-package com.qualcomm.ftcrobotcontroller.opmodes.customOpModes;
+package org.firstinspires.ftc.teamcode.customOpModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;

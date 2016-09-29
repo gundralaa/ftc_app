@@ -1,9 +1,9 @@
-package com.qualcomm.ftcrobotcontroller.opmodes.Abhi_Library;
+package org.firstinspires.ftc.teamcode.Abhi_Library;
 
 import android.hardware.Sensor;
 import android.hardware.SensorEventListener;
 
-import com.qualcomm.ftcrobotcontroller.opmodes.Abhi_Library.Bno055;
+import org.firstinspires.ftc.teamcode.Abhi_Library.Bno055;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.I2cDevice;

@@ -1,4 +1,4 @@
-package com.qualcomm.ftcrobotcontroller.opmodes.customOpModes;
+package org.firstinspires.ftc.teamcode.customOpModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.hardware.PWMOutput;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.Range;
+
+import org.firstinspires.ftc.teamcode.FreshClasses.FreshMethods;
 
 import java.util.Hashtable;
 
@@ -17,6 +19,8 @@ import java.util.Hashtable;
 public class TheFreshMenTeleOp extends OpMode {
 
     Hashtable<String, Float> valuesTable = new Hashtable<String, Float>();
+
+    FreshMethods MethodCall = new FreshMethods();
 
     final float OFF = 0.0f,
                 LIFT_POWER = 1.0f,
@@ -67,7 +71,7 @@ public class TheFreshMenTeleOp extends OpMode {
     public void loop() {
 
         //Getting power values
-        valuesTable = FreshMethods.Square(gamepad1.left_stick_x, -gamepad1.left_stick_y, gamepad1.right_stick_x);
+        valuesTable = MethodCall.Square(gamepad1.left_stick_x, -gamepad1.left_stick_y, gamepad1.right_stick_x);
         float xvalue = valuesTable.get("XValue");
         float yvalue = valuesTable.get("YValue");
         float turnValue = valuesTable.get("TurnValue");
