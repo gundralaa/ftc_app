@@ -27,8 +27,8 @@ public class TestingOpMode extends OpMode {
 
         public void loop() {
             // Get Joystick values
-            double leftValue = -gamepad1.left_stick_y;
-            double rightValue = -gamepad1.right_stick_y;
+            float leftValue = -gamepad1.left_stick_y;
+            float rightValue = -gamepad1.right_stick_y;
 
             //Set power of Drive Motors
             TestBot.FrontRight.setPower(rightValue);
