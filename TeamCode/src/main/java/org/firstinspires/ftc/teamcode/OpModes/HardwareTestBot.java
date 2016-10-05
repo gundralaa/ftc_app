@@ -29,12 +29,16 @@ public class HardwareTestBot {
         FrontLeft = lhmap.dcMotor.get("FrontLeft");
         BackLeft = lhmap.dcMotor.get("BackLeft");
         BackRight = lhmap.dcMotor.get("BackRight");
+        MotorA = lhmap.dcMotor.get("MotorA");
+        MotorB = lhmap.dcMotor.get("MotorB");
 
         //Set Direction (Might be the other side based on orientation)
         FrontLeft.setDirection(DcMotor.Direction.REVERSE);
         BackLeft.setDirection(DcMotor.Direction.REVERSE);
         FrontRight.setDirection(DcMotor.Direction.FORWARD);
         BackRight.setDirection(DcMotor.Direction.FORWARD);
+        MotorA.setDirection(DcMotor.Direction.FORWARD);
+        MotorB.setDirection(DcMotor.Direction.FORWARD);
 
 
         //Initialize Power
@@ -42,12 +46,16 @@ public class HardwareTestBot {
         BackLeft.setPower(0);
         FrontLeft.setPower(0);
         FrontRight.setPower(0);
+        MotorA.setPower(0);
+        MotorB.setPower(0);
 
         //Set Run Mode (Change for Encoder Fucntion)
         BackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         BackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         FrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         FrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        MotorA.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        MotorB.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
     }
 

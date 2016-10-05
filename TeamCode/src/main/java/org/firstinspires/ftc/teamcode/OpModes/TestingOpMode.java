@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.OpModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -16,7 +16,7 @@ import com.qualcomm.robotcore.util.Range;
 
 public class TestingOpMode extends OpMode {
         //Create Hardware Object
-        org.firstinspires.ftc.teamcode.HardwareTestBot TestBot = new org.firstinspires.ftc.teamcode.HardwareTestBot();
+        org.firstinspires.ftc.teamcode.OpModes.HardwareTestBot TestBot = new org.firstinspires.ftc.teamcode.OpModes.HardwareTestBot();
 
 
         public void init() {
