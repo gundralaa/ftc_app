@@ -10,15 +10,10 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class HardwareTestBot {
 
     //Define all motors set to null
-    public DcMotor FrontRight = null;
-    public DcMotor FrontLeft = null;
-    public DcMotor BackRight = null;
-    public DcMotor BackLeft = null;
-    public DcMotor MotorA = null;
-    public DcMotor MotorB = null;
+    public DcMotor FrontRight, FrontLeft, BackRight, BackLeft, MotorA, MotorB;
 
     //Define local hmap
-    HardwareMap lhmap = null;
+    HardwareMap lhmap;
 
 
     public HardwareTestBot() {
