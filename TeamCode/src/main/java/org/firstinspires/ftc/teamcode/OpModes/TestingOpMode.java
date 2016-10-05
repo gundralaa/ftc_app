@@ -16,7 +16,7 @@ import com.qualcomm.robotcore.util.Range;
 
 public class TestingOpMode extends OpMode {
         //Create Hardware Object
-        HardwareTestBot TestBot = new HardwareTestBot();
+        org.firstinspires.ftc.teamcode.HardwareTestBot TestBot = new org.firstinspires.ftc.teamcode.HardwareTestBot();
 
 
         public void init() {
