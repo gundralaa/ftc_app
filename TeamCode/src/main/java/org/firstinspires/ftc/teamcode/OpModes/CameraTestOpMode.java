@@ -13,6 +13,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
+import org.firstinspires.ftc.teamcode.R;
 
 /**
  * Created by abhin on 9/30/2016.
@@ -60,6 +61,7 @@ public class CameraTestOpMode extends LinearOpMode {
                 }
             }
             telemetry.update();
+            idle();
         }
     }
 }
