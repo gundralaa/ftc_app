@@ -37,17 +37,20 @@ public class TestingOpMode extends OpMode {
             TestBot.BackLeft.setPower(leftValue);
 
             //Set Power of Peripherals
-            if(gamepad1.a) {
+            if (gamepad1.y) {
                 TestBot.MotorA.setPower(1.0);
-            }
-            if(gamepad1.x){
+            } else if(gamepad1.x) {
                 TestBot.MotorA.setPower(-1.0);
+            } else {
+                TestBot.MotorA.setPower(0);
             }
-            if (gamepad1.y){
+
+            if(gamepad1.a) {
                 TestBot.MotorB.setPower(1.0);
-            }
-            if(gamepad1.b) {
+            } else if(gamepad1.b) {
                 TestBot.MotorB.setPower(-1.0);
+            } else {
+                TestBot.MotorB.setPower(0);
             }
         }
 

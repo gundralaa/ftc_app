@@ -33,8 +33,8 @@ public class HardwareTestBot {
         MotorB = lhmap.dcMotor.get("MotorB");
 
         //Set Direction (Might be the other side based on orientation)
-        FrontLeft.setDirection(DcMotor.Direction.REVERSE);
-        BackLeft.setDirection(DcMotor.Direction.REVERSE);
+        FrontLeft.setDirection(DcMotor.Direction.FORWARD);
+        BackLeft.setDirection(DcMotor.Direction.FORWARD);
         FrontRight.setDirection(DcMotor.Direction.FORWARD);
         BackRight.setDirection(DcMotor.Direction.FORWARD);
         MotorA.setDirection(DcMotor.Direction.FORWARD);
