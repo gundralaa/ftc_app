@@ -95,10 +95,10 @@ public class FreshMethods {
             if ((rightHsvValues[0] >= (lineHsvValues[0] - 5) && rightHsvValues[0] <= (lineHsvValues[0] + 5)) &&
                     (rightHsvValues[1] >= (lineHsvValues[1] - 5) && rightHsvValues[1] <= (lineHsvValues[1] + 5)) &&
                     (rightHsvValues[2] >= (lineHsvValues[2] - 5) && rightHsvValues[2] <= (lineHsvValues[0] + 5))) { //if the right color sensor sees the line, turn to the right
-                motors.M_backLeft.setPower(-1);
-                motors.M_backRight.setPower(0.75);
-                motors.M_frontLeft.setPower(-0.75);
-                motors.M_frontRight.setPower(1);
+                motors.M_backLeft.setPower(1);
+                motors.M_backRight.setPower(0.5);
+                motors.M_frontLeft.setPower(1);
+                motors.M_frontRight.setPower(0.5);
                 Color.RGBToHSV(sensors.colorSensorLeft.red() * 8, sensors.colorSensorLeft.green() * 8, sensors.colorSensorLeft.blue() * 8, leftHsvValues);
                 Color.RGBToHSV(sensors.colorSensorRight.red() * 8, sensors.colorSensorRight.green() * 8, sensors.colorSensorRight.blue() * 8, rightHsvValues);
             } else if ((leftHsvValues[0] >= (lineHsvValues[0] - 5) && leftHsvValues[0] <= (lineHsvValues[0] + 5)) &&
