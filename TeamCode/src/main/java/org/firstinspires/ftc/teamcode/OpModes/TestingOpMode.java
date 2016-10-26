@@ -27,6 +27,7 @@ public class TestingOpMode extends OpMode {
             //Initialize all hardware through method
             TestBot.init(hardwareMap);
 
+
         }
 
         public void loop() {
@@ -83,7 +84,6 @@ public class TestingOpMode extends OpMode {
             if(gamepad1.right_trigger > 0.0) {
                 TestBot.rightPusher.setPosition(0.0);
             }
-
             telemetry.addData("Clear", TestBot.beaconSensor.alpha());
             telemetry.addData("Red  ", TestBot.beaconSensor.red());
             telemetry.addData("Green", TestBot.beaconSensor.green());

@@ -39,8 +39,6 @@ public class HardwareTestBot {
         MotorA = lhmap.dcMotor.get("MotorA");
         MotorB = lhmap.dcMotor.get("MotorB");
 
-        leftClaw = lhmap.servo.get("LeftClaw");
-        rightClaw = lhmap.servo.get("RightClaw");
         leftPusher = lhmap.servo.get("PusherLeft");
         rightPusher = lhmap.servo.get("PusherRight");
 
@@ -53,8 +51,6 @@ public class HardwareTestBot {
         BackRight.setDirection(DcMotor.Direction.FORWARD);
         MotorA.setDirection(DcMotor.Direction.FORWARD);
         MotorB.setDirection(DcMotor.Direction.FORWARD);
-        leftClaw.setDirection(Servo.Direction.FORWARD);
-        rightClaw.setDirection(Servo.Direction.FORWARD);
         leftPusher.setDirection(Servo.Direction.FORWARD);
         rightPusher.setDirection(Servo.Direction.FORWARD);
 
@@ -67,8 +63,6 @@ public class HardwareTestBot {
         MotorB.setPower(0);
 
         // Define and initialize ALL installed servos.
-        leftClaw.setPosition(0.0);
-        rightClaw.setPosition(0.0);
         leftPusher.setPosition(0.0);
         rightPusher.setPosition(0.0);
 
@@ -79,6 +73,8 @@ public class HardwareTestBot {
         FrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         MotorA.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         MotorB.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        beaconSensor.enableLed(false);
 
     }
 
