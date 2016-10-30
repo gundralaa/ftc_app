@@ -41,7 +41,7 @@ public class FreshMethods {
         return valuesTable;
     }
     public static HashMap<String,Float> TankDrive(float leftY, float rightY){
-        HashMap<String, Float> TankValues = new HashMap<String, Float>();
+        HashMap<String, Float> TankValues = new Hash<>();
         return TankValues;
     }
 

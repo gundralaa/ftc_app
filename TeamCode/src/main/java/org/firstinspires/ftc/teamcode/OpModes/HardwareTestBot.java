@@ -1,23 +1,23 @@
 package org.firstinspires.ftc.teamcode.OpModes;
-import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
+
+import org.firstinspires.ftc.teamcode.Hardware.Motors;
 
 /**
  * Created by abhin on 9/28/2016.
  */
 public class HardwareTestBot {
 
-    //Define all motors set to null
-    public DcMotor FrontRight, FrontLeft, BackRight, BackLeft, MotorA, MotorB;
-    public Servo leftClaw, rightClaw, leftPusher, rightPusher;
-    public ColorSensor beaconSensor;
-    public OpticalDistanceSensor lineLeft,lineRight;
+    //Define motors
 
-    //Define local hmap
+    DcMotor backLeft, backRight, frontLeft, frontRight, catapult, sweeper;
+
+    //Create a Motors object
+    Motors motors = new Motors(backLeft, backRight, frontLeft, frontRight, catapult, sweeper);
+
+    //Create a HardwareMap object
     HardwareMap lhmap;
 
 
@@ -30,18 +30,20 @@ public class HardwareTestBot {
         //Reference the local version of hardware map to argument
         lhmap = hmap;
 
-        //Define Motors
-        FrontRight = lhmap.dcMotor.get("FrontRight");
-        FrontLeft = lhmap.dcMotor.get("FrontLeft");
-        BackLeft = lhmap.dcMotor.get("BackLeft");
-        BackRight = lhmap.dcMotor.get("BackRight");
+        //Map the motor objects to the hardware map
+        frontRight = lhmap.dcMotor.get("FrontRight");
+        frontLeft = lhmap.dcMotor.get("FrontLeft");
+        backLeft = lhmap.dcMotor.get("BackLeft");
+        backRight = lhmap.dcMotor.get("BackRight");
 
-        MotorA = lhmap.dcMotor.get("MotorA");
-        MotorB = lhmap.dcMotor.get("MotorB");
+        catapult = lhmap.dcMotor.get("Catapult");
+        sweeper = lhmap.dcMotor.get("Sweeper");
 
+        //Map the servo objects to the servo map
         leftPusher = lhmap.servo.get("PusherLeft");
         rightPusher = lhmap.servo.get("PusherRight");
 
+        //Map the sensor objects to the sensor map
         beaconSensor = lhmap.colorSensor.get("BeaconSensor");
 
         //Set Direction (Might be the other side base// d on orientation)
