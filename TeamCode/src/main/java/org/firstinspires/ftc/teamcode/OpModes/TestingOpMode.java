@@ -72,18 +72,18 @@ public class TestingOpMode extends OpMode {
                 motorPowerA = 1.0f;
             }
 
-            if(gamepad1.left_bumper) {
-                TestBot.leftPusher.setPosition(1.0);
-            }
             if(gamepad1.left_trigger > 0.0) {
                 TestBot.leftPusher.setPosition(0.0);
+            }
+            else {
+                TestBot.leftPusher.setPosition(0.5);
             }
 
             if(gamepad1.right_bumper) {
                 TestBot.rightPusher.setPosition(1.0);
             }
-            if(gamepad1.right_trigger > 0.0) {
-                TestBot.rightPusher.setPosition(0.0);
+            else {
+                TestBot.rightPusher.setPosition(0.5);
             }
             telemetry.addData("Clear", TestBot.beaconSensor.alpha());
             telemetry.addData("Red  ", TestBot.beaconSensor.red());

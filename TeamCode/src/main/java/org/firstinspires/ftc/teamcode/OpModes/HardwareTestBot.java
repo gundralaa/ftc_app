@@ -39,8 +39,8 @@ public class HardwareTestBot {
         MotorA = lhmap.dcMotor.get("MotorA");
         MotorB = lhmap.dcMotor.get("MotorB");
 
-        leftPusher = lhmap.servo.get("PusherLeft");
-        rightPusher = lhmap.servo.get("PusherRight");
+        leftPusher = lhmap.servo.get("leftPusher");
+        rightPusher = lhmap.servo.get("rightPusher");
 
         beaconSensor = lhmap.colorSensor.get("BeaconSensor");
 
@@ -63,8 +63,8 @@ public class HardwareTestBot {
         MotorB.setPower(0);
 
         // Define and initialize ALL installed servos.
-        leftPusher.setPosition(0.0);
-        rightPusher.setPosition(0.0);
+        leftPusher.setPosition(0.5);
+        rightPusher.setPosition(0.5);
 
         //Set Run Mode (Change for Encoder Function)
         BackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
