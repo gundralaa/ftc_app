@@ -1,13 +1,10 @@
 package org.firstinspires.ftc.teamcode.OpModes;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.robot.Robot;
-import com.qualcomm.robotcore.util.Range;
+
+import org.firstinspires.ftc.teamcode.Hardware.HardwareTestBot;
 
 /**
  * Created by abhin on 9/28/2016.
@@ -26,7 +23,6 @@ public class TestingOpMode extends OpMode {
         public void init() {
             //Initialize all hardware through method
             TestBot.init(hardwareMap);
-
 
         }
 
