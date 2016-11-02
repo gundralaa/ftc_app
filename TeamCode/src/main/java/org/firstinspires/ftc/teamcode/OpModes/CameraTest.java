@@ -19,7 +19,7 @@ import org.firstinspires.ftc.teamcode.R;
  * Created by abhin on 9/30/2016.
  */
 @Autonomous(name = "CameraTest", group = "Testing")
-public class CameraTestOpMode extends LinearOpMode {
+public class CameraTest extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
