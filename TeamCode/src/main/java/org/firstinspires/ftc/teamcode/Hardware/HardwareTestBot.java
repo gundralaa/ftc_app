@@ -3,6 +3,10 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.I2cAddr;
+import com.qualcomm.robotcore.hardware.I2cDevice;
+import com.qualcomm.robotcore.hardware.I2cDeviceSynch;
+import com.qualcomm.robotcore.hardware.I2cDeviceSynchImpl;
 import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -10,11 +14,12 @@ import com.qualcomm.robotcore.hardware.Servo;
  * Created by abhin on 9/28/2016.
  */
 public class HardwareTestBot {
-
+    private final int COLOR_SENSOR_ADDRESS = 0x3c;
     //Define all motors set to null
     public DcMotor FrontRight, FrontLeft, BackRight, BackLeft, MotorA, MotorB;
     public Servo leftClaw, rightClaw, leftPusher, rightPusher;
-    public ColorSensor beaconSensor;
+    public I2cDevice beaconSensor;
+    public I2cDeviceSynch beaconSensorReader;
     public OpticalDistanceSensor lineLeft,lineRight;
 
     //Define local hmap
@@ -42,7 +47,9 @@ public class HardwareTestBot {
         leftPusher = lhmap.servo.get("leftPusher");
         rightPusher = lhmap.servo.get("rightPusher");
 
-        beaconSensor = lhmap.colorSensor.get("BeaconSensor");
+        beaconSensor = lhmap.i2cDevice.get("BeaconSensor");
+        beaconSensorReader = new I2cDeviceSynchImpl(beaconSensor, I2cAddr.create8bit(COLOR_SENSOR_ADDRESS),false);
+        beaconSensorReader.engage();
 
         //Set Direction (Might be the other side base// d on orientation)
         FrontLeft.setDirection(DcMotor.Direction.FORWARD);
@@ -74,7 +81,6 @@ public class HardwareTestBot {
         MotorA.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         MotorB.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        beaconSensor.enableLed(false);
 
     }
 

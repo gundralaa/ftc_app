@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Hardware.HardwareTestBot;
+import org.firstinspires.ftc.teamcode.Libs.ColorSensing;
 
 /**
  * Created by abhin on 9/28/2016.
@@ -17,7 +18,8 @@ public class TestingOpMode extends OpMode {
         float motorPowerB = 0.0f;
         //Create Hardware Object
         HardwareTestBot TestBot = new HardwareTestBot();
-
+        ColorSensing colorS = new ColorSensing();
+        int colorNumber;
 
 
         public void init() {
@@ -81,10 +83,12 @@ public class TestingOpMode extends OpMode {
             else {
                 TestBot.rightPusher.setPosition(0.5);
             }
-            telemetry.addData("Clear", TestBot.beaconSensor.alpha());
-            telemetry.addData("Red  ", TestBot.beaconSensor.red());
-            telemetry.addData("Green", TestBot.beaconSensor.green());
-            telemetry.addData("Blue ", TestBot.beaconSensor.blue());
+            colorNumber = colorS.getColorNumber(false);
+
+            telemetry.addData("Color Number", colorNumber);
+            telemetry.addData("Red:", colorS.colorDecisionRed(false));
+            telemetry.addData("Blue:", colorS.colorDecisionBlue(false));
+
 
         }
 
