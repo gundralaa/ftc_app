@@ -18,7 +18,7 @@ public class TestingOpMode extends OpMode {
         float motorPowerB = 0.0f;
         //Create Hardware Object
         HardwareTestBot TestBot = new HardwareTestBot();
-        ColorSensing colorS = new ColorSensing();
+        ColorSensing colorS = new ColorSensing(TestBot);
         int colorNumber;
 
 
@@ -83,11 +83,14 @@ public class TestingOpMode extends OpMode {
             else {
                 TestBot.rightPusher.setPosition(0.5);
             }
-            colorNumber = colorS.getColorNumber(false);
+            colorS.enableLed(false);
+            colorNumber = colorS.getColorNumber();
 
             telemetry.addData("Color Number", colorNumber);
-            telemetry.addData("Red:", colorS.colorDecisionRed(false));
-            telemetry.addData("Blue:", colorS.colorDecisionBlue(false));
+            telemetry.addData("Red:", colorS.colorDecisionRed());
+            telemetry.addData("Blue:", colorS.colorDecisionBlue());
+            telemetry.addData("LeftODS",(int)TestBot.lineLeft.getLightDetected());
+            telemetry.addData("RightODS",(int)TestBot.lineRight.getLightDetected());
 
 
         }
