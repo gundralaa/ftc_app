@@ -15,8 +15,8 @@ import org.firstinspires.ftc.teamcode.Libs.EncoderDrive;
 public class LinearTestingOpMode extends LinearOpMode {
 
     HardwareTestBot testBot = new HardwareTestBot();
-    EncoderDrive Drive = new EncoderDrive();
-    ColorSensing ColorS = new ColorSensing();
+    EncoderDrive Drive = new EncoderDrive(testBot);
+    ColorSensing ColorS = new ColorSensing(testBot);
 
     int colorNumber;
 
@@ -44,7 +44,7 @@ public class LinearTestingOpMode extends LinearOpMode {
 
         waitForStart();
 
-         colorNumber = ColorS.getColorNumber(false);
+         colorNumber = ColorS.getColorNumber();
 
         //Drive.encoderDrive(3,3,0.5);
         //sleep(3000);

@@ -13,18 +13,15 @@ public class ColorSensing {
     private final int LED_DISABLE = 0x01;
     private final int COMMAND_ADDRESS = 0x03;
 
+    public ColorSensing (HardwareTestBot bot) {
+        this.bot = bot;
+    }
 
-    public boolean colorDecisionRed(boolean ledEnable){
+
+    public boolean colorDecisionRed(){
         boolean decision =  false;
         int colorNumber;
         byte [] sensorCache;
-
-        if(ledEnable){
-            bot.beaconSensorReader.write8(COMMAND_ADDRESS,LED_ENABLE);
-        }
-        else {
-            bot.beaconSensorReader.write8(COMMAND_ADDRESS, LED_ENABLE);
-        }
         sensorCache = bot.beaconSensorReader.read(COLOR_NUMBER_ADDRESS,1);
         colorNumber = (sensorCache[0] & 0xff);
         if(colorNumber == 10 || colorNumber == 11) {
@@ -36,17 +33,10 @@ public class ColorSensing {
         return decision;
     }
 
-    public boolean colorDecisionBlue(boolean ledEnable){
+    public boolean colorDecisionBlue(){
         boolean decision =  false;
         int colorNumber;
         byte [] sensorCache;
-
-        if(ledEnable){
-            bot.beaconSensorReader.write8(COMMAND_ADDRESS,LED_ENABLE);
-        }
-        else {
-            bot.beaconSensorReader.write8(COMMAND_ADDRESS, LED_ENABLE);
-        }
         sensorCache = bot.beaconSensorReader.read(COLOR_NUMBER_ADDRESS,1);
         colorNumber = (sensorCache[0] & 0xff);
         if(colorNumber == 2 || colorNumber == 3) {
@@ -58,16 +48,20 @@ public class ColorSensing {
         return decision;
     }
 
-    public int getColorNumber (boolean ledEnable){
+    public int getColorNumber (){
         byte [] sensorCache;
+        sensorCache = bot.beaconSensorReader.read(COLOR_NUMBER_ADDRESS,1);
+        return (sensorCache[0] & 0xff);
+    }
+
+    public void enableLed(boolean ledEnable){
         if(ledEnable){
             bot.beaconSensorReader.write8(COMMAND_ADDRESS,LED_ENABLE);
         }
         else {
-            bot.beaconSensorReader.write8(COMMAND_ADDRESS, LED_ENABLE);
+            bot.beaconSensorReader.write8(COMMAND_ADDRESS, LED_DISABLE);
         }
-        sensorCache = bot.beaconSensorReader.read(COLOR_NUMBER_ADDRESS,1);
-        return (sensorCache[0] & 0xff);
     }
+
 
 }
