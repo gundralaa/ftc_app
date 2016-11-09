@@ -22,22 +22,22 @@ public class LineFollow {
                 while (breakCondition){
                     double reflectedLight = bot.lineRight.getRawLightDetected();
                     if (reflectedLight > midValue){
-                        bot.FrontLeft.setPower(power);
-                        bot.BackLeft.setPower(power);
+                        bot.FrontLeft.setPower(-power);
+                        bot.BackLeft.setPower(-power);
                         bot.FrontRight.setPower(0);
                         bot.BackRight.setPower(0);
                     }
                     if (reflectedLight < midValue){
                         bot.FrontLeft.setPower(0);
                         bot.BackLeft.setPower(0);
-                        bot.FrontRight.setPower(power);
-                        bot.BackRight.setPower(power);
+                        bot.FrontRight.setPower(-power);
+                        bot.BackRight.setPower(-power);
                     }
                     if (reflectedLight == midValue){
-                        bot.FrontLeft.setPower(power);
-                        bot.BackLeft.setPower(power);
-                        bot.FrontRight.setPower(power);
-                        bot.BackRight.setPower(power);
+                        bot.FrontLeft.setPower(-power);
+                        bot.BackLeft.setPower(-power);
+                        bot.FrontRight.setPower(-power);
+                        bot.BackRight.setPower(-power);
                     }
                 }
                 break;
@@ -70,6 +70,23 @@ public class LineFollow {
         }
     }
     public void pidFollow(){
+
+    }
+    public void driveTillLine(double power, double threshold){
+
+        bot.FrontLeft.setPower(power);
+        bot.BackLeft.setPower(power);
+        bot.FrontRight.setPower(power);
+        bot.BackRight.setPower(power);
+
+        while (bot.lineRight.getRawLightDetected() > threshold){
+        }
+
+        bot.FrontLeft.setPower(0);
+        bot.BackLeft.setPower(0);
+        bot.FrontRight.setPower(0);
+        bot.BackRight.setPower(0);
+
 
     }
 }

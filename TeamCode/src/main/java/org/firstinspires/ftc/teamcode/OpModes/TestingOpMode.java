@@ -56,32 +56,41 @@ public class TestingOpMode extends OpMode {
                 motorPowerA = 1.0f;
             }
             if(gamepad1.y) {
+                /*
                 if(motorPowerB != 1.0f) {
                     motorPowerB = motorPowerB + INCREMENT;
                     TestBot.MotorB.setPower(motorPowerB);
                 }
                 motorPowerB = 0.0f;
+                */
+                TestBot.MotorB.setPower(1.0);
+
             }
             else if (gamepad1.b){
-                if(motorPowerB != 0.0f) {
+                /*if(motorPowerB != 0.0f) {
                     motorPowerB = motorPowerB - INCREMENT;
                     TestBot.MotorB.setPower(motorPowerB);
                 }
                 motorPowerA = 1.0f;
+                */
+                TestBot.MotorB.setPower(-1.0);
+            }
+            else{
+                TestBot.MotorB.setPower(0.0);
             }
 
             if(gamepad1.left_trigger > 0.0) {
                 TestBot.leftPusher.setPosition(0.0);
             }
             else {
-                TestBot.leftPusher.setPosition(0.5);
+                TestBot.leftPusher.setPosition(1.0);
             }
 
             if(gamepad1.right_trigger > 0.0) {
                 TestBot.rightPusher.setPosition(1.0);
             }
             else {
-                TestBot.rightPusher.setPosition(0.5);
+                TestBot.rightPusher.setPosition(0.0);
             }
             colorS.enableLed(false);
             colorNumber = colorS.getColorNumber();
@@ -89,8 +98,8 @@ public class TestingOpMode extends OpMode {
             telemetry.addData("Color Number", colorNumber);
             telemetry.addData("Red:", colorS.colorDecisionRed());
             telemetry.addData("Blue:", colorS.colorDecisionBlue());
-            telemetry.addData("LeftODS",(int)TestBot.lineLeft.getLightDetected());
-            telemetry.addData("RightODS",(int)TestBot.lineRight.getLightDetected());
+            telemetry.addData("LeftODS",(int)TestBot.lineLeft.getRawLightDetected());
+            telemetry.addData("RightODS",(int)TestBot.lineRight.getRawLightDetected());
 
 
         }

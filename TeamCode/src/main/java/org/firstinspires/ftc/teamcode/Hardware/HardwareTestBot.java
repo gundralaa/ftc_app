@@ -20,7 +20,7 @@ public class HardwareTestBot {
     public Servo leftClaw, rightClaw, leftPusher, rightPusher;
     public I2cDevice beaconSensor;
     public I2cDeviceSynch beaconSensorReader;
-    public OpticalDistanceSensor lineLeft,lineRight;
+    public OpticalDistanceSensor lineLeft,lineRight,wallDist;
 
     //Define local hmap
     HardwareMap lhmap;
@@ -51,6 +51,10 @@ public class HardwareTestBot {
         beaconSensorReader = new I2cDeviceSynchImpl(beaconSensor, I2cAddr.create8bit(COLOR_SENSOR_ADDRESS),false);
         beaconSensorReader.engage();
 
+        lineLeft = lhmap.opticalDistanceSensor.get("lineLeft");
+        lineRight = lhmap.opticalDistanceSensor.get("lineRight");
+        wallDist = lhmap.opticalDistanceSensor.get("wallDist");
+
         //Set Direction (Might be the other side base// d on orientation)
         FrontLeft.setDirection(DcMotor.Direction.FORWARD);
         BackLeft.setDirection(DcMotor.Direction.FORWARD);
@@ -70,8 +74,8 @@ public class HardwareTestBot {
         MotorB.setPower(0);
 
         // Define and initialize ALL installed servos.
-        leftPusher.setPosition(0.5);
-        rightPusher.setPosition(0.5);
+        leftPusher.setPosition(1.0);
+        rightPusher.setPosition(0.0);
 
         //Set Run Mode (Change for Encoder Function)
         BackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);

@@ -13,17 +13,22 @@ For more information, visit modernroboticsedu.com.
 Support is available by emailing support@modernroboticsinc.com.
 */
 
-package org.firstinspires.ftc.robotcontroller.external.samples;
+package org.firstinspires.ftc.teamcode.Calibration;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
+
+import org.firstinspires.ftc.teamcode.Hardware.HardwareTestBot;
+import org.firstinspires.ftc.teamcode.Libs.DistanceSensing;
 
 
 public class MRI_ODS extends LinearOpMode {
 
     //Instance of OpticalDistanceSensor
-    OpticalDistanceSensor ODS;
+    HardwareTestBot bot = new HardwareTestBot();
+    DistanceSensing distS = new DistanceSensing(bot);
 
     //rawValue reading when sensor is 2cm from object
     //this value can be set by pressing A on the Logitech controller
@@ -48,7 +53,7 @@ public class MRI_ODS extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
 
         //identify the port of the ODS in the configuration file
-        ODS = hardwareMap.opticalDistanceSensor.get("ods");
+        bot.init(hardwareMap);
 
         telemetry.addData("0 Status", "Waiting for Start");
         waitForStart();
@@ -57,7 +62,7 @@ public class MRI_ODS extends LinearOpMode {
 
             if (gamepad1.a) { //if a is pressed, update 2cm and recalculate m and b
                 telemetry.addData("0 Status", "Updating 2 cm");
-                reading2cm = (int)ODS.getLightDetected();
+                reading2cm = (int)bot.wallDist.getRawLightDetected();
                 calculateMB();
                 while (gamepad1.a) {
                 }
@@ -65,13 +70,13 @@ public class MRI_ODS extends LinearOpMode {
             }
             if (gamepad1.b) { //if b is pressed, update 10cm and recalculate m and b
                 telemetry.addData("0 Status", "Updating 10 cm");
-                reading10cm = (int)ODS.getLightDetected();
+                reading10cm = (int)bot.wallDist.getRawLightDetected();
                 calculateMB();
                 while (gamepad1.b) {
                 }
             }
 
-            odsReadngRaw = (int)ODS.getLightDetected();                       //update raw value
+            odsReadngRaw = (int)bot.wallDist.getRawLightDetected();                       //update raw value
             odsReadingLinear = Math.pow(odsReadngRaw, -0.5);                //calculate linear value
             odsEstimatedDistance = (int) ((m * odsReadingLinear) + b);      //estimate distance
 
@@ -80,6 +85,8 @@ public class MRI_ODS extends LinearOpMode {
             telemetry.addData("3 Distance", odsEstimatedDistance);
             telemetry.addData("4 m", m);
             telemetry.addData("5 b", b);
+            distS.setCValue(b);
+            distS.setMValue(m);
 
             waitOneFullHardwareCycle();
         }
@@ -89,5 +96,6 @@ public class MRI_ODS extends LinearOpMode {
         m = 8 / (Math.pow((double)reading10cm, -0.5) - Math.pow((double)reading2cm, -0.5));
         b = 2 - Math.pow(reading2cm, -0.5) * m;
     }
+
 
 }//end class
