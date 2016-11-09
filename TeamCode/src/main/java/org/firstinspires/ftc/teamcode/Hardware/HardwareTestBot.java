@@ -46,6 +46,8 @@ public class HardwareTestBot {
 
         leftPusher = lhmap.servo.get("leftPusher");
         rightPusher = lhmap.servo.get("rightPusher");
+        leftClaw = lhmap.servo.get("leftClaw");
+        rightClaw = lhmap.servo.get("rightClaw");
 
         beaconSensor = lhmap.i2cDevice.get("BeaconSensor");
         beaconSensorReader = new I2cDeviceSynchImpl(beaconSensor, I2cAddr.create8bit(COLOR_SENSOR_ADDRESS),false);
@@ -64,6 +66,7 @@ public class HardwareTestBot {
         MotorB.setDirection(DcMotor.Direction.FORWARD);
         leftPusher.setDirection(Servo.Direction.FORWARD);
         rightPusher.setDirection(Servo.Direction.FORWARD);
+
 
         //Initialize Power
         BackRight.setPower(0);
