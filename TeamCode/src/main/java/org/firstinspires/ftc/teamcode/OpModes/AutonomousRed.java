@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.OpModes;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.teamcode.Hardware.HardwareTestBot;
+import org.firstinspires.ftc.teamcode.OpModes.HardwareTestBot;
 import org.firstinspires.ftc.teamcode.Libs.ColorSensing;
 import org.firstinspires.ftc.teamcode.Libs.DistanceSensing;
 import org.firstinspires.ftc.teamcode.Libs.EncoderDrive;

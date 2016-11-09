@@ -1,11 +1,12 @@
 package org.firstinspires.ftc.teamcode.Methods;
 
 import android.graphics.Color;
-import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
+import org.firstinspires.ftc.teamcode.OpModes.HardwareTestBot;
 
 /**
  * Created by naisan on 10/30/16.
  */
+/*
 public class SensorMethods {
 
     final static int RADIUS = 2;
@@ -86,3 +87,4 @@ public class SensorMethods {
             hardwareBot.frontRight.setPower(power);
         }
 }
+*/

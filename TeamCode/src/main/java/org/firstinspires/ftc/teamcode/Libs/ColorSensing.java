@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.Libs;
 
-import org.firstinspires.ftc.teamcode.Hardware.HardwareTestBot;
+import org.firstinspires.ftc.teamcode.OpModes.HardwareTestBot;
 
 /**
  * Created by abhin on 11/1/2016.
