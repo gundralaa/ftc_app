@@ -34,7 +34,6 @@ public class HardwareBot {
     //Define local hmap
     HardwareMap lhmap;
 
-
     public HardwareBot() {
 
     }
@@ -75,6 +74,8 @@ public class HardwareBot {
         MotorB.setDirection(DcMotor.Direction.FORWARD);
         leftPusher.setDirection(Servo.Direction.FORWARD);
         rightPusher.setDirection(Servo.Direction.FORWARD);
+        leftClaw.setDirection(Servo.Direction.FORWARD);
+        rightClaw.setDirection(Servo.Direction.FORWARD);
 
 
         //Initialize Power
@@ -88,6 +89,9 @@ public class HardwareBot {
         // Define and initialize ALL installed servos.
         leftPusher.setPosition(1.0);
         rightPusher.setPosition(0.0);
+
+        leftClaw.setPosition(0.0);
+        rightClaw.setPosition(0.0);
 
         //Set Run Mode (Change for Encoder Function)
         BackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);

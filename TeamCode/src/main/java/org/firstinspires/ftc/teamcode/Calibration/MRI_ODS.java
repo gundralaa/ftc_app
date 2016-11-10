@@ -89,7 +89,7 @@ public class MRI_ODS extends LinearOpMode {
             distS.setCValue(b);
             distS.setMValue(m);
 
-            waitOneFullHardwareCycle();
+            idle();
         }
     }
 

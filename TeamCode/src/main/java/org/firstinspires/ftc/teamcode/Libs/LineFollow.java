@@ -10,8 +10,8 @@ import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
  */
 public class LineFollow {
     HardwareBot bot = new HardwareBot();
-    static double highValue;
-    static double lowValue;
+    public static double highValue;
+    public static double lowValue;
     public LineFollow (HardwareBot bot){
         this.bot = bot;
     }

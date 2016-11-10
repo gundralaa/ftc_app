@@ -72,6 +72,16 @@ public class DriverControl extends OpMode {
             } else {
                 TestBot.rightPusher.setPosition(0.0);
             }
+            if (gamepad1.left_bumper){
+                TestBot.leftClaw.setPosition(0.0);
+            } else {
+                TestBot.rightClaw.setPosition(0.5);
+            }
+            if (gamepad1.right_bumper){
+                TestBot.rightClaw.setPosition(0.0);
+            } else {
+                TestBot.rightClaw.setPosition(0.5);
+            }
 
             colorS.enableLed(false);
             colorNumber = colorS.getColorNumber();
