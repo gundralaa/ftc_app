@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.OpModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
@@ -9,9 +10,8 @@ import org.firstinspires.ftc.teamcode.Libs.ColorSensing;
 /**
  * Created by abhin on 9/28/2016.
  */
-@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "TestBotOpMode", group = "Testing")
-
-public class TeleOp extends OpMode {
+@TeleOp(name = "DriverControl", group = "Competition")
+public class DriverControl extends OpMode {
         final float INCREMENT = 0.1f;
         float motorPowerA = 0.0f;
         float motorPowerB = 0.0f;
