@@ -3,15 +3,15 @@ package org.firstinspires.ftc.teamcode.Libs;
 import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.hardware.UltrasonicSensor;
 
-import org.firstinspires.ftc.teamcode.Hardware.HardwareTestBot;
+import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
 
 /**
  * Created by abhin on 11/2/2016.
  */
 public class LineFollow {
-    HardwareTestBot bot = new HardwareTestBot();
+    HardwareBot bot = new HardwareBot();
 
-    public LineFollow (HardwareTestBot bot){
+    public LineFollow (HardwareBot bot){
         this.bot = bot;
     }
 

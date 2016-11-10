@@ -1,19 +1,19 @@
 package org.firstinspires.ftc.teamcode.Methods;
 
 import android.graphics.Color;
-import org.firstinspires.ftc.teamcode.OpModes.HardwareTestBot;
+import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
 
 /**
  * Created by naisan on 10/30/16.
  */
-/*
+
 public class SensorMethods {
 
     final static int RADIUS = 2;
     final static int CPR = 1120;
     final static double CIRCUMFERENCE = Math.PI * RADIUS * 2;
 
-
+    /*
     public static void followColoredLine(HardwareBot hardwareBot, float lineHsvValues[], double distanceToRun) {
         //This may not work in which case I will adjust it to use encoders directly in this method
         distanceWithEncoders(hardwareBot, distanceToRun, 0);
@@ -73,6 +73,7 @@ public class SensorMethods {
         }
     }
 
+
         public static void distanceWithEncoders(HardwareBot hardwareBot, double distanceInInches, double power) {
             int encoder_counts = (int)(distanceInInches / CIRCUMFERENCE) * CPR;
 
@@ -86,5 +87,5 @@ public class SensorMethods {
             hardwareBot.frontLeft.setPower(power);
             hardwareBot.frontRight.setPower(power);
         }
+        */
 }
-*/

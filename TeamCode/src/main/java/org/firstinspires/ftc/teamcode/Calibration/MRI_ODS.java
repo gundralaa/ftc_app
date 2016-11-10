@@ -20,14 +20,14 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 
-import org.firstinspires.ftc.teamcode.Hardware.HardwareTestBot;
+import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
 import org.firstinspires.ftc.teamcode.Libs.DistanceSensing;
 
 
 public class MRI_ODS extends LinearOpMode {
 
     //Instance of OpticalDistanceSensor
-    HardwareTestBot bot = new HardwareTestBot();
+    HardwareBot bot = new HardwareBot();
     DistanceSensing distS = new DistanceSensing(bot);
 
     //rawValue reading when sensor is 2cm from object

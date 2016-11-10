@@ -13,7 +13,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 /**
  * Created by abhin on 9/28/2016.
  */
-public class HardwareTestBot {
+public class HardwareBot {
     private final int COLOR_SENSOR_ADDRESS = 0x3c;
     //Define all motors set to null
     public DcMotor FrontRight, FrontLeft, BackRight, BackLeft, MotorA, MotorB;
@@ -26,7 +26,7 @@ public class HardwareTestBot {
     HardwareMap lhmap;
 
 
-    public HardwareTestBot() {
+    public HardwareBot() {
 
     }
 

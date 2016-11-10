@@ -3,19 +3,19 @@ package org.firstinspires.ftc.teamcode.Libs;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.Hardware.HardwareTestBot;
+import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
 
 /**
  * Created by abhin on 10/31/2016.
  */
 public class EncoderDrive {
-    HardwareTestBot bot = new HardwareTestBot();
+    HardwareBot bot = new HardwareBot();
 
     static final double     COUNTS_PER_MOTOR_REV    = 1120 ;    // Andymark Encoder CPR
     static final double     DRIVE_GEAR_REDUCTION    = 1.0 ;     // This is < 1.0 if geared UP
     static final double     WHEEL_DIAMETER_INCHES   = 4.0 ;     // For figuring circumference
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /(WHEEL_DIAMETER_INCHES * 3.1415);
-    public EncoderDrive(HardwareTestBot bot){ this.bot = bot; }
+    public EncoderDrive(HardwareBot bot){ this.bot = bot; }
 
     public void encoderDrive(double rightInches, double leftInches, double speed){
         int newLeftTarget;

@@ -1,19 +1,19 @@
 package org.firstinspires.ftc.teamcode.Libs;
 
-import org.firstinspires.ftc.teamcode.OpModes.HardwareTestBot;
+import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
 
 /**
  * Created by abhin on 11/1/2016.
  */
 public class ColorSensing {
-    HardwareTestBot bot = new HardwareTestBot();
+    HardwareBot bot = new HardwareBot();
 
     private final int COLOR_NUMBER_ADDRESS = 0x04;
     private final int LED_ENABLE = 0x00;
     private final int LED_DISABLE = 0x01;
     private final int COMMAND_ADDRESS = 0x03;
 
-    public ColorSensing (HardwareTestBot bot) {
+    public ColorSensing (HardwareBot bot) {
         this.bot = bot;
     }
 

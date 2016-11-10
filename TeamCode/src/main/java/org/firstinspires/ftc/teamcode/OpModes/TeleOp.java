@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.OpModes;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.teamcode.Hardware.HardwareTestBot;
+import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
 import org.firstinspires.ftc.teamcode.Libs.ColorSensing;
 
 /**
@@ -17,7 +17,7 @@ public class TeleOp extends OpMode {
         float motorPowerB = 0.0f;
         //Create Hardware Object
 
-        HardwareTestBot TestBot = new HardwareTestBot();
+        HardwareBot TestBot = new HardwareBot();
         ColorSensing colorS = new ColorSensing(TestBot);
         int colorNumber;
 
@@ -30,18 +30,17 @@ public class TeleOp extends OpMode {
 
         public void loop() {
             // Get Joystick values
-            float leftValue = -gamepad1.left_stick_y;
-            float rightValue = -gamepad1.right_stick_y;
+            float leftValue = gamepad1.left_stick_y;
+            float rightValue = gamepad1.right_stick_y;
 
             //Set power of Drive Motors
-            TestBot.frontRight.setPower(rightValue);
-            TestBot.backRight.setPower(rightValue);
-            TestBot.frontLeft.setPower(leftValue);
-            TestBot.backLeft.setPower(leftValue);
+            TestBot.FrontRight.setPower(rightValue);
+            TestBot.BackLeft.setPower(rightValue);
+            TestBot.FrontLeft.setPower(leftValue);
+            TestBot.BackLeft.setPower(leftValue);
 
             //Set Power of Peripherals
-//TODO: Decide how we want the sweeper and catapult to function
-  /*          if(gamepad1.a) {
+            if(gamepad1.a) {
                 if(motorPowerA != 1.0f) {
                     motorPowerA = motorPowerA + INCREMENT;
                     TestBot.MotorA.setPower(motorPowerA);
@@ -55,22 +54,8 @@ public class TeleOp extends OpMode {
                 motorPowerA = 1.0f;
             }
             if(gamepad1.y) {
-                /*
-                if(motorPowerB != 1.0f) {
-                    motorPowerB = motorPowerB + INCREMENT;
-                    TestBot.MotorB.setPower(motorPowerB);
-                }
-                motorPowerB = 0.0f;
-                */
                 TestBot.MotorB.setPower(1.0);
-
             } else if (gamepad1.b){
-                /*if(motorPowerB != 0.0f) {
-                    motorPowerB = motorPowerB - INCREMENT;
-                    TestBot.MotorB.setPower(motorPowerB);
-                }
-                motorPowerA = 1.0f;
-                */
                 TestBot.MotorB.setPower(-1.0);
             } else {
                 TestBot.MotorB.setPower(0.0);

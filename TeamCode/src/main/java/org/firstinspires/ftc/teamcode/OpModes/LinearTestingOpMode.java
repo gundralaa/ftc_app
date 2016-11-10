@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.Hardware.HardwareTestBot;
+import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
 import org.firstinspires.ftc.teamcode.Libs.ColorSensing;
 import org.firstinspires.ftc.teamcode.Libs.EncoderDrive;
 
@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.Libs.EncoderDrive;
  */
 public class LinearTestingOpMode extends LinearOpMode {
 
-    HardwareTestBot testBot = new HardwareTestBot();
+    HardwareBot testBot = new HardwareBot();
     EncoderDrive Drive = new EncoderDrive(testBot);
     ColorSensing ColorS = new ColorSensing(testBot);
 

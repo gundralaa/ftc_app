@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.OpModes;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.teamcode.OpModes.HardwareTestBot;
+import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
 import org.firstinspires.ftc.teamcode.Libs.ColorSensing;
 import org.firstinspires.ftc.teamcode.Libs.DistanceSensing;
 import org.firstinspires.ftc.teamcode.Libs.EncoderDrive;
@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.Libs.LineFollow;
  */
 public class AutonomousRed extends LinearOpMode {
 
-    HardwareTestBot bot = new HardwareTestBot();
+    HardwareBot bot = new HardwareBot();
     ColorSensing colorS = new ColorSensing(bot);
     LineFollow follow = new LineFollow(bot);
     EncoderDrive drive = new EncoderDrive(bot);

@@ -2,13 +2,13 @@ package org.firstinspires.ftc.teamcode.Libs;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-import org.firstinspires.ftc.teamcode.Hardware.HardwareTestBot;
+import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
 
 /**
  * Created by abhin on 11/8/2016.
  */
 public class DistanceSensing {
-    HardwareTestBot bot = new HardwareTestBot();
+    HardwareBot bot = new HardwareBot();
 
     static double mvalue = 56 ;
     static double cvalue = -0.756;
@@ -16,7 +16,7 @@ public class DistanceSensing {
     private double linearLValue;
     private double distanceValue;
     private double convertedValue;
-    public DistanceSensing (HardwareTestBot bot) {
+    public DistanceSensing (HardwareBot bot) {
         this.bot = bot;
     }
 
