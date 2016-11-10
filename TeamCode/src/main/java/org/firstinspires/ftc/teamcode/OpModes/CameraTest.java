@@ -54,7 +54,8 @@ public class CameraTest extends LinearOpMode {
                 if(pose != null){
                     VectorF translation = pose.getTranslation();
 
-                    telemetry.addData(beac.getName() + "-Translation",translation);
+                    telemetry.addData(beac.getName() + "-X Translation",translation.get(1));
+                    telemetry.addData(beac.getName() + "-Y Translation",translation.get(2));
 
                     double degreesToTurn = Math.toDegrees(Math.atan2(translation.get(1), translation.get(2)));
                     telemetry.addData(beac.getName() + "-Degrees", degreesToTurn);

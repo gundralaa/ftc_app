@@ -10,12 +10,20 @@ import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
  */
 public class LineFollow {
     HardwareBot bot = new HardwareBot();
-
+    static double highValue;
+    static double lowValue;
     public LineFollow (HardwareBot bot){
         this.bot = bot;
     }
 
-    public void simpleFollow(int numberOfSensors, double highValue, double lowValue, boolean breakCondition, double power){
+    public void setHighValue(double highValue){
+        this.highValue = highValue;
+    }
+    public void setLowValue(double lowValue){
+        this.lowValue = lowValue;
+    }
+
+    public void simpleFollow(int numberOfSensors, boolean breakCondition, double power){
         double midValue = (highValue + lowValue)/2;
         switch (numberOfSensors){
             case 1:
@@ -69,7 +77,14 @@ public class LineFollow {
                 break;
         }
     }
-    public void pidFollow(){
+    public void proportionalFollow(boolean breakCondition, double gain){
+        double error;
+        double midValue = (highValue + lowValue)/2;
+        double lighValue = bot.lineRight.getRawLightDetected();
+        error = midValue - lighValue;
+
+
+
 
     }
     public void driveTillLine(double power, double threshold){
@@ -88,5 +103,20 @@ public class LineFollow {
         bot.BackRight.setPower(0);
 
 
+    }
+    public void driveTillLine(double power){
+        double threshold = (highValue + lowValue)/2;
+        bot.FrontLeft.setPower(power);
+        bot.BackLeft.setPower(power);
+        bot.FrontRight.setPower(power);
+        bot.BackRight.setPower(power);
+
+        while (bot.lineRight.getRawLightDetected() > threshold){
+        }
+
+        bot.FrontLeft.setPower(0);
+        bot.BackLeft.setPower(0);
+        bot.FrontRight.setPower(0);
+        bot.BackRight.setPower(0);
     }
 }

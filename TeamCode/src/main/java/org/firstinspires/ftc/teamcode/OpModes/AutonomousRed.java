@@ -49,17 +49,17 @@ public class AutonomousRed extends LinearOpMode {
 
         waitForStart();
 
-        follow.driveTillLine(-0.5,whiteLineRaw);
+        follow.driveTillLine(-0.5);
         sleep(500);
-        follow.simpleFollow(1, whiteLineRaw, blackRaw, distS.getDistance() > toLine, -0.3);
+        follow.simpleFollow(1, distS.getDistance() > toLine, -0.3);
+        //drive.encoderDrive();
         sleep(500);
         teamColor = colorS.colorDecisionRed();
         sleep(500);
 
         if (teamColor){
             bot.leftPusher.setPosition(0.0);
-        }
-        else {
+        } else {
             bot.rightPusher.setPosition(1.0);
         }
         sleep(1000);
@@ -71,17 +71,18 @@ public class AutonomousRed extends LinearOpMode {
         sleep(500);
         drive.encoderDrive(-3.0,3.0,0.5);//Calculate this
 
-        follow.driveTillLine(-0.5,whiteLineRaw);
+        follow.driveTillLine(-0.5);
         sleep(500);
-        follow.simpleFollow(1, whiteLineRaw, blackRaw, distS.getDistance() > toLine, -0.3);
+        //
+        follow.simpleFollow(1, distS.getDistance() > toLine, -0.3);
+        //drive.encoderDrive();
         sleep(500);
         teamColor = colorS.colorDecisionRed();
         sleep(500);
 
         if (teamColor){
             bot.leftPusher.setPosition(0.0);
-        }
-        else {
+        } else {
             bot.rightPusher.setPosition(1.0);
         }
         sleep(1000);

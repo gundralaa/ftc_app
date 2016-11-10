@@ -53,4 +53,13 @@ public class EncoderDrive {
         bot.BackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     }
+
+    public void pivotTurn(double angle, double power, double width){ // r in inches
+        double rightDistance = ((angle/360)*(3.14 * width));
+        double leftDistance = (-(angle/360)*(3.14 * width ));
+
+        encoderDrive(rightDistance, leftDistance, power);
+
+
+    }
 }
