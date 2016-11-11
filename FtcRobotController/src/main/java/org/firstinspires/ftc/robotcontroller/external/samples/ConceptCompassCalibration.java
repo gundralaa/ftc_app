@@ -71,7 +71,9 @@ public class ConceptCompassCalibration extends LinearOpMode {
     static final double     CAL_TIME_SEC  = 20;
 
     @Override
-    public void runOpMode() throws InterruptedException {
+
+    public void runOpMode() {
+
 
         /* Initialize the drive system variables.
          * The init() method of the hardware class does all the work here
@@ -105,7 +107,8 @@ public class ConceptCompassCalibration extends LinearOpMode {
         runtime.reset();
         while (opModeIsActive() && (runtime.time() < CAL_TIME_SEC)) {
 
-            idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
+            idle();
+
         }
 
         // Stop all motors and turn off claibration
@@ -123,6 +126,5 @@ public class ConceptCompassCalibration extends LinearOpMode {
         else
             telemetry.addData("Compass", "Calibrate Passed.");
         telemetry.update();
-
     }
 }
