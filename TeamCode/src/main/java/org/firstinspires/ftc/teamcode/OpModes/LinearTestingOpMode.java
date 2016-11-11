@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.OpModes;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -13,7 +14,7 @@ import org.firstinspires.ftc.teamcode.Libs.EncoderDrive;
 /**
  * Created by abhin on 11/1/2016.
  */
-
+@Autonomous(name = "TestingAuton",group = "Testing")
 public class LinearTestingOpMode extends LinearOpMode {
 
     HardwareBot testBot = new HardwareBot();
@@ -48,9 +49,10 @@ public class LinearTestingOpMode extends LinearOpMode {
 
          colorNumber = ColorS.getColorNumber();
 
-        //Drive.encoderDrive(3,3,0.5);
-        //sleep(3000);
-        //Drive.encoderDrive(4,4,0.5);
+
+        Drive.encoderDrive(3,3,0.5);
+        sleep(3000);
+        Drive.encoderDrive(4,4,0.2);
 
 
 

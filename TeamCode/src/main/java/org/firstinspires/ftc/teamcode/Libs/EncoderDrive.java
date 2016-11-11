@@ -39,7 +39,7 @@ public class EncoderDrive {
         bot.FrontRight.setPower(Math.abs(speed));
         bot.BackRight.setPower(Math.abs(speed));
 
-        while (bot.BackRight.isBusy() && bot.BackLeft.isBusy()){
+        while (bot.BackRight.isBusy() || bot.BackLeft.isBusy()){
         }
 
         bot.FrontLeft.setPower(0.0);

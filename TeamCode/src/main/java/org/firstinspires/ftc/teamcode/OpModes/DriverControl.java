@@ -35,7 +35,7 @@ public class DriverControl extends OpMode {
 
             //Set power of Drive Motors
             TestBot.FrontRight.setPower(rightValue);
-            TestBot.BackLeft.setPower(rightValue);
+            TestBot.BackRight.setPower(rightValue);
             TestBot.FrontLeft.setPower(leftValue);
             TestBot.BackLeft.setPower(leftValue);
 
