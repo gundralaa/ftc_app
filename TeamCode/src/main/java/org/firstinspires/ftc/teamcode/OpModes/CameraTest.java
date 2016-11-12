@@ -62,7 +62,7 @@ public class CameraTest extends LinearOpMode {
                 }
             }
             telemetry.update();
-            idle();
+            //idle();
         }
     }
 }
