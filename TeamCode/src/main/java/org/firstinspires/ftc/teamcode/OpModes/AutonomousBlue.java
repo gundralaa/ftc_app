@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import org.firstinspires.ftc.teamcode.Libs.CameraFunction;
 import org.firstinspires.ftc.teamcode.Libs.ColorSensing;
 import org.firstinspires.ftc.teamcode.Libs.DistanceSensing;
 import org.firstinspires.ftc.teamcode.Libs.EncoderDrive;
@@ -21,9 +22,14 @@ class AutonomousBlue extends LinearOpMode {
     LineFollow follow = new LineFollow(bot);
     EncoderDrive drive = new EncoderDrive(bot);
     DistanceSensing distS = new DistanceSensing(bot);
+    CameraFunction cameraF =  new CameraFunction(bot);
+    int cameraTarg1 = 1;
+    int cameraTarg2 = 2;
     double whiteLineRaw;//Find this
     double blackRaw;//Find this
-    double toLine; //in inches also find
+    double toLineIn; //in inches also find
+    double toLineMm; //
+    int speed = 500; //counts per second
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -50,10 +56,21 @@ class AutonomousBlue extends LinearOpMode {
         telemetry.update();
 
         waitForStart();
-
+        drive.setMaxSpeedAll(speed);
         follow.driveTillLine(-0.5);
         sleep(500);
-        follow.simpleFollow(1, distS.getDistance() > toLine, -0.3);
+        /*
+         * We have many options here
+         * 1. We can follow the line until a condition is met
+         *      a.Distance
+         *      b.Camera
+         * 2. We can use the camera to line up with the target and drive until
+         *      a.Distance
+         *      b.Camera
+         *      c.Encoders
+         */
+        follow.simpleFollow(1, distS.getDistance() > toLineIn, -0.3);
+        //follow.simpleFollow(1,cameraF.getTraslationY(cameraTarg1) < toLineMm,-0.3);
         //drive.encoderDrive();
         sleep(500);
         teamColor = colorS.colorDecisionBlue();
@@ -75,7 +92,7 @@ class AutonomousBlue extends LinearOpMode {
 
         follow.driveTillLine(-0.5);
         sleep(500);
-        follow.simpleFollow(1, distS.getDistance() > toLine, -0.3);
+        follow.simpleFollow(1, distS.getDistance() > toLineIn, -0.3);
         //drive.encoderDrive();
         sleep(500);
         teamColor = colorS.colorDecisionBlue();

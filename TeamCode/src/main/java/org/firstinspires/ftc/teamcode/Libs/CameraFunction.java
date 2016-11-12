@@ -14,6 +14,7 @@ public class CameraFunction {
     HardwareBot bot = new HardwareBot();
     VuforiaTrackables beacons = bot.beacons;
     double initialTranslationY;
+    EncoderDrive drive = new EncoderDrive(bot);
     /*
         Wheels: 0
         Tools: 1
@@ -53,6 +54,17 @@ public class CameraFunction {
         }
 
     }
+    public double getTraslationY(int i){
+        double current = 0;
+        VuforiaTrackable targ = beacons.get(i) ;
+        OpenGLMatrix pose = ((VuforiaTrackableDefaultListener) targ.getListener()).getPose();
+
+        if(pose != null){
+            VectorF translation = pose.getTranslation();
+            current = translation.get(2);
+        }
+        return Math.abs(current);
+    }
     public double diffTranslationY(int i){
         double difference = 0;
         double current;
@@ -67,7 +79,7 @@ public class CameraFunction {
         }
         return difference;
     }
-    public boolean getIsVisible(int i){
+    public boolean getIsVisible(int i) {
         boolean isVisible = false;
         VuforiaTrackable targ = beacons.get(i);
         isVisible = ((VuforiaTrackableDefaultListener) targ.getListener()).isVisible();

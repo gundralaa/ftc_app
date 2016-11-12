@@ -17,7 +17,7 @@ public class EncoderDrive {
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /(WHEEL_DIAMETER_INCHES * 3.1415);
     public EncoderDrive(HardwareBot bot){ this.bot = bot; }
 
-    public void encoderDrive(double rightInches, double leftInches, double speed){
+    public void encoderDrive(double rightInches, double leftInches, double power){
         int newLeftTarget;
         int newRightTarget;
 
@@ -34,10 +34,10 @@ public class EncoderDrive {
         bot.FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         bot.BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        bot.FrontLeft.setPower(Math.abs(speed));
-        bot.BackLeft.setPower(Math.abs(speed));
-        bot.FrontRight.setPower(Math.abs(speed));
-        bot.BackRight.setPower(Math.abs(speed));
+        bot.FrontLeft.setPower(Math.abs(power));
+        bot.BackLeft.setPower(Math.abs(power));
+        bot.FrontRight.setPower(Math.abs(power));
+        bot.BackRight.setPower(Math.abs(power));
 
         while (bot.BackRight.isBusy() || bot.BackLeft.isBusy()){
         }
@@ -60,6 +60,41 @@ public class EncoderDrive {
 
         encoderDrive(rightDistance, leftDistance, power);
 
-
+    }
+    public void setMaxSpeedAll(int speed){
+        bot.FrontLeft.setMaxSpeed(speed);
+        bot.BackLeft.setMaxSpeed(speed);
+        bot.FrontRight.setMaxSpeed(speed);
+        bot.BackRight.setMaxSpeed(speed);
+    }
+    public void straightF(double power){
+        bot.FrontLeft.setPower(power);
+        bot.BackLeft.setPower(power);
+        bot.FrontRight.setPower(power);
+        bot.BackRight.setPower(power);
+    }
+    public void straightB(double power){
+        bot.FrontLeft.setPower(-power);
+        bot.BackLeft.setPower(-power);
+        bot.FrontRight.setPower(-power);
+        bot.BackRight.setPower(-power);
+    }
+    public void stop(){
+        bot.FrontLeft.setPower(0.0);
+        bot.BackLeft.setPower(0.0);
+        bot.FrontRight.setPower(0.0);
+        bot.BackRight.setPower(0.0);
+    }
+    public void turnClock(double power){
+        bot.FrontLeft.setPower(power);
+        bot.BackLeft.setPower(power);
+        bot.FrontRight.setPower(-power);
+        bot.BackRight.setPower(-power);
+    }
+    public void turnCClock(double power){
+        bot.FrontLeft.setPower(-power);
+        bot.BackLeft.setPower(-power);
+        bot.FrontRight.setPower(power);
+        bot.BackRight.setPower(power);
     }
 }

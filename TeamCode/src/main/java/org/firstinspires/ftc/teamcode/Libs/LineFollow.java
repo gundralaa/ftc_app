@@ -15,6 +15,7 @@ public class LineFollow {
     public LineFollow (HardwareBot bot){
         this.bot = bot;
     }
+    EncoderDrive drive = new EncoderDrive(bot);
 
     public void setHighValue(double highValue){
         this.highValue = highValue;
@@ -77,46 +78,40 @@ public class LineFollow {
                 break;
         }
     }
-    public void proportionalFollow(boolean breakCondition, double gain){
+    public void proportionalFollow(boolean breakCondition, double gain, double diffConstant){
         double error;
         double midValue = (highValue + lowValue)/2;
+        double powerValue;
         double lighValue = bot.lineRight.getRawLightDetected();
+        /*
+         * If the error is negative that means
+         *     The robot is over the line
+         * If the error is positive
+         *     The robot is over the ground
+         * The error can only be between -0.5 and 0.5
+         * When over the line the right is negative and left is positive
+         * When over the ground the right is positive the left is negative
+         */
         error = midValue - lighValue;
-
-
-
-
+        powerValue = error * gain;
+        // The diff constant is the speed we want when robot is going forward
+        bot.FrontLeft.setPower(-powerValue + diffConstant);
+        bot.BackLeft.setPower(-powerValue + diffConstant);
+        bot.FrontRight.setPower(powerValue + diffConstant);
+        bot.BackRight.setPower(powerValue + diffConstant);
     }
     public void driveTillLine(double power, double threshold){
 
-        bot.FrontLeft.setPower(power);
-        bot.BackLeft.setPower(power);
-        bot.FrontRight.setPower(power);
-        bot.BackRight.setPower(power);
-
-        while (bot.lineRight.getRawLightDetected() > threshold){
-        }
-
-        bot.FrontLeft.setPower(0);
-        bot.BackLeft.setPower(0);
-        bot.FrontRight.setPower(0);
-        bot.BackRight.setPower(0);
+        drive.straightF(power);
+        while (bot.lineRight.getRawLightDetected() > threshold){}
+        drive.stop();
 
 
     }
     public void driveTillLine(double power){
         double threshold = (highValue + lowValue)/2;
-        bot.FrontLeft.setPower(power);
-        bot.BackLeft.setPower(power);
-        bot.FrontRight.setPower(power);
-        bot.BackRight.setPower(power);
-
-        while (bot.lineRight.getRawLightDetected() > threshold){
-        }
-
-        bot.FrontLeft.setPower(0);
-        bot.BackLeft.setPower(0);
-        bot.FrontRight.setPower(0);
-        bot.BackRight.setPower(0);
+        drive.straightF(power);
+        while (bot.lineRight.getRawLightDetected() > threshold){}
+        drive.stop();
     }
 }
