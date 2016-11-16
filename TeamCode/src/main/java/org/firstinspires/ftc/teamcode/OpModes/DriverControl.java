@@ -85,12 +85,13 @@ public class DriverControl extends OpMode {
 
             colorS.enableLed(false);
             colorNumber = colorS.getColorNumber();
-
+            /*
             telemetry.addData("Color Number", colorNumber);
             telemetry.addData("Red:", colorS.colorDecisionRed());
             telemetry.addData("Blue:", colorS.colorDecisionBlue());
-            telemetry.addData("LeftODS",(int)TestBot.lineLeft.getRawLightDetected());
-            telemetry.addData("RightODS",(int)TestBot.lineRight.getRawLightDetected());
+            telemetry.addData("LeftODS",TestBot.lineRight.getLightDetected());
+            */
+            telemetry.addData("Range Sensor", TestBot.rangeSensor.cmUltrasonic());
         }
 
 }

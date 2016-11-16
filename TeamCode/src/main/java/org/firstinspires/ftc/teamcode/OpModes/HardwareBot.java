@@ -3,6 +3,7 @@ import com.qualcomm.hardware.adafruit.AdafruitBNO055IMU;
 import com.qualcomm.hardware.adafruit.BNO055IMU;
 import com.qualcomm.hardware.adafruit.JustLoggingAccelerationIntegrator;
 import com.qualcomm.hardware.adafruit.NaiveAccelerationIntegrator;
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -36,6 +37,7 @@ public class HardwareBot {
     public VuforiaLocalizer vuforia;
     public VuforiaTrackables beacons;
     public BNO055IMU imu;
+    public ModernRoboticsI2cRangeSensor rangeSensor;
 
     //Define local hmap
     HardwareMap lhmap;
@@ -49,12 +51,14 @@ public class HardwareBot {
         //Reference the local version of hardware map to argument
         lhmap = hmap;
         //BNO055IMU
+        /*
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
         parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
         parameters.loggingEnabled      = true;
         parameters.loggingTag          = "IMU";
         parameters.accelerationIntegrationAlgorithm = new AdvancedAccelerationIntegrator();
+        */
         //Define Motors
         FrontRight = lhmap.dcMotor.get("FrontRight");
         FrontLeft = lhmap.dcMotor.get("FrontLeft");
@@ -77,12 +81,15 @@ public class HardwareBot {
         lineRight = lhmap.opticalDistanceSensor.get("lineRight");
         wallDist = lhmap.opticalDistanceSensor.get("wallDist");
 
+        rangeSensor = lhmap.get(ModernRoboticsI2cRangeSensor.class, "rangeSensor");
+
+
         // Retrieve and initialize the IMU. We expect the IMU to be attached to an I2C port
         // on a Core Device Interface Module, configured to be a sensor of type "AdaFruit IMU",
 
         // and named "imu".
         imu = lhmap.get(BNO055IMU.class, "imu");
-        imu.initialize(parameters);
+        //imu.initialize(parameters);
 
         //Set Direction (Might be the other side base// d on orientation)
         FrontLeft.setDirection(DcMotor.Direction.FORWARD);

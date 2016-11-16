@@ -10,8 +10,8 @@ import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
  */
 public class LineFollow {
     HardwareBot bot = new HardwareBot();
-    public static double highValue;
-    public static double lowValue;
+    public static double highValue = 0.6;
+    public static double lowValue = 0.1;
     public LineFollow (HardwareBot bot){
         this.bot = bot;
     }
@@ -103,7 +103,7 @@ public class LineFollow {
     public void driveTillLine(double power, double threshold){
 
         drive.straightF(power);
-        while (bot.lineRight.getRawLightDetected() > threshold){}
+        while (bot.lineRight.getLightDetected() < threshold){}
         drive.stop();
 
 
@@ -114,4 +114,5 @@ public class LineFollow {
         while (bot.lineRight.getRawLightDetected() > threshold){}
         drive.stop();
     }
+
 }

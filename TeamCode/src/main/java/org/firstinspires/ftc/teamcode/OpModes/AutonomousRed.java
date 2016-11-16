@@ -23,7 +23,7 @@ public class AutonomousRed extends LinearOpMode {
     DistanceSensing distS = new DistanceSensing(bot);
     double whiteLineRaw;//Find this
     double blackRaw;//Find this
-    double toLine; //in inches also find
+    double toLine = 7.0; //in inches also find
 
 
     public void runOpMode() throws InterruptedException {
@@ -53,7 +53,7 @@ public class AutonomousRed extends LinearOpMode {
 
         follow.driveTillLine(-0.5);
         sleep(500);
-        follow.simpleFollow(1, distS.getDistance() > toLine, -0.3);
+        follow.simpleFollow(1, bot.rangeSensor.cmUltrasonic()> toLine, -0.3);
         //drive.encoderDrive();
         sleep(500);
         teamColor = colorS.colorDecisionRed();
