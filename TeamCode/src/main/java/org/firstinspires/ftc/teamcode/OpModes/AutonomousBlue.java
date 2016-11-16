@@ -14,6 +14,16 @@ import org.firstinspires.ftc.teamcode.Libs.LineFollow;
 /**
  * Created by abhin on 10/24/2016.
  */
+/*
+         * We have many options here
+         * 1. We can follow the line until a condition is met
+         *      a.Distance
+         *      b.Camera
+         * 2. We can use the camera to line up with the target and drive until
+         *      a.Distance
+         *      b.Camera
+         *      c.Encoders
+*/
 @Autonomous(name = "BlueAuton", group = "Autonomous")
 class AutonomousBlue extends LinearOpMode {
 
@@ -41,40 +51,92 @@ class AutonomousBlue extends LinearOpMode {
         telemetry.addData("Task: ", "Resetting Encoders");
         telemetry.update();
 
-        bot.BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        bot.BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        bot.FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        bot.FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         idle();
 
-        bot.BackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        bot.BackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        bot.FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        bot.FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        bot.BackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        bot.BackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        bot.FrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        bot.FrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
         telemetry.addData("Task: ", "Waiting For Start");
         telemetry.update();
 
         waitForStart();
-        drive.setMaxSpeedAll(speed);
-        follow.driveTillLine(-0.5);
+
+        sleep(3000); //Initial Sleep
+
+        follow.driveTillLine(-0.5,0.4); // Drive to the Line
+        sleep(500); //Pause
+
+        follow.driveTillLine(0.2,0.5); // Back Up and Line Up Precisely
         sleep(500);
-        /*
-         * We have many options here
-         * 1. We can follow the line until a condition is met
-         *      a.Distance
-         *      b.Camera
-         * 2. We can use the camera to line up with the target and drive until
-         *      a.Distance
-         *      b.Camera
-         *      c.Encoders
-         */
-        follow.simpleFollow(1, distS.getDistance() > toLineIn, -0.3);
-        //follow.simpleFollow(1,cameraF.getTraslationY(cameraTarg1) < toLineMm,-0.3);
-        //drive.encoderDrive();
+
+        drive.turnClock(0.4); //Start turn
+        //Initialize Range Variables
+        double previousDist = bot.rangeSensor.cmUltrasonic();
+        double currentDist = bot.rangeSensor.cmUltrasonic();
+        //Turn until the range is starting to increase
+        while (opModeIsActive() && (previousDist >= currentDist)) {
+            previousDist = currentDist; //Set last current distance to previous
+            currentDist = bot.rangeSensor.cmUltrasonic(); //Set new current
+            idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
+        }
+        //Stop the motors
+        drive.stop();
+
+        distS.driveTillDist(-0.3,7.0); //Drive till certain distance from beacon
+
+        sleep(500); // Pause
+
+        teamColor = colorS.colorDecisionBlue(); // Decide the color
+
+        sleep(500); // Pause
+
+        if (teamColor){
+            bot.leftPusher.setPosition(0.0); // Left if Blue on sensor
+        } else {
+            bot.rightPusher.setPosition(1.0); //Right if not Blue on sensor
+        }
+        sleep(1000); // Pause
+
+        bot.leftPusher.setPosition(1.0); // Reset Pushers
+        bot.rightPusher.setPosition(0.0); // Reset Pushers
+
+        distS.driveAwayDist(0.4,31.0); // Drive away from the beacon
+
+        // Turn around 90 to the next line
+        drive.turnCClock(0.4);
+        sleep(1000);
+        drive.stop();
+
+        follow.driveTillLine(-0.5,0.4); // Drive to the Line
+        sleep(500); //Pause
+
+        follow.driveTillLine(0.2,0.5); // Back Up and Line Up Precisely
         sleep(500);
-        teamColor = colorS.colorDecisionBlue();
-        sleep(500);
+
+        //Turn Until Lined Up With Wall
+        drive.turnClock(0.4); //Start turn
+        //Initialize Range Variables
+        double previousDist2 = bot.rangeSensor.cmUltrasonic();
+        double currentDist2 = bot.rangeSensor.cmUltrasonic();
+        //Turn until the range is starting to increase
+        while (opModeIsActive() && (previousDist2 >= currentDist2)) {
+            previousDist2 = currentDist2; //Set last current distance to previous
+            currentDist2 = bot.rangeSensor.cmUltrasonic(); //Set new current
+            idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
+        }
+        //Stop the motors
+        drive.stop();
+
+        distS.driveTillDist(-0.3,7.0); //Drive till certain distance from beacon
+
+        sleep(500); // Pause
+
+        teamColor = colorS.colorDecisionBlue(); // Decide the color
+
+        sleep(500); // Pause
 
         if (teamColor){
             bot.leftPusher.setPosition(0.0);
@@ -85,28 +147,6 @@ class AutonomousBlue extends LinearOpMode {
 
         bot.leftPusher.setPosition(1.0);
         bot.rightPusher.setPosition(0.0);
-
-        drive.encoderDrive(3.0,3.0,0.5);//Calculate this
-        sleep(500);
-        drive.pivotTurn(90,0.5,18);//Calculate this
-
-        follow.driveTillLine(-0.5);
-        sleep(500);
-        follow.simpleFollow(1, distS.getDistance() > toLineIn, -0.3);
-        //drive.encoderDrive();
-        sleep(500);
-        teamColor = colorS.colorDecisionBlue();
-        sleep(500);
-
-        if (teamColor){
-            bot.leftPusher.setPosition(0.0);
-        } else {
-            bot.rightPusher.setPosition(1.0);
-        }
-        sleep(1000);
-
-        bot.leftPusher.setPosition(1.0);
-        bot.rightPusher.setPosition(1.0);
 
     }
 

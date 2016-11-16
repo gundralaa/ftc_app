@@ -15,7 +15,6 @@ public class LineFollow {
     public LineFollow (HardwareBot bot){
         this.bot = bot;
     }
-    EncoderDrive drive = new EncoderDrive(bot);
 
     public void setHighValue(double highValue){
         this.highValue = highValue;
@@ -102,17 +101,18 @@ public class LineFollow {
     }
     public void driveTillLine(double power, double threshold){
 
-        drive.straightF(power);
-        while (bot.lineRight.getLightDetected() < threshold){}
-        drive.stop();
+        bot.FrontLeft.setPower(power);
+        bot.BackLeft.setPower(power);
+        bot.FrontRight.setPower(power);
+        bot.BackRight.setPower(power);
+        while (bot.lineRight.getLightDetected() < threshold){
+        }
+        bot.FrontLeft.setPower(0);
+        bot.BackLeft.setPower(0);
+        bot.FrontRight.setPower(0);
+        bot.BackRight.setPower(0);
 
 
-    }
-    public void driveTillLine(double power){
-        double threshold = (highValue + lowValue)/2;
-        drive.straightF(power);
-        while (bot.lineRight.getRawLightDetected() > threshold){}
-        drive.stop();
     }
 
 }

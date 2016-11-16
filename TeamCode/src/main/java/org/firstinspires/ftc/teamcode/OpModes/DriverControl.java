@@ -83,15 +83,15 @@ public class DriverControl extends OpMode {
                 TestBot.rightClaw.setPosition(0.5);
             }
 
-            colorS.enableLed(false);
-            colorNumber = colorS.getColorNumber();
+            //colorS.enableLed(false);
+            //colorNumber = colorS.getColorNumber();
             /*
             telemetry.addData("Color Number", colorNumber);
             telemetry.addData("Red:", colorS.colorDecisionRed());
             telemetry.addData("Blue:", colorS.colorDecisionBlue());
             telemetry.addData("LeftODS",TestBot.lineRight.getLightDetected());
             */
-            telemetry.addData("Range Sensor", TestBot.rangeSensor.cmUltrasonic());
+            //telemetry.addData("Range Sensor", TestBot.rangeSensor.cmUltrasonic());
         }
 
 }
