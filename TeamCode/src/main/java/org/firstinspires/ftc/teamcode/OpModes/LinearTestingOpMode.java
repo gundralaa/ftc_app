@@ -25,7 +25,7 @@ public class LinearTestingOpMode extends LinearOpMode {
 
     int colorNumber;
     double WHITE_THRESHOLD = 0.4;
-    double DISTANCE_FROM_BEACON = 7.0;
+    double DISTANCE_FROM_BEACON = 12.0;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -156,13 +156,130 @@ public class LinearTestingOpMode extends LinearOpMode {
 
         if(ColorS.colorDecisionBlue()){
             testBot.leftPusher.setPosition(0.0);
-            sleep(500);
         }
         else {
             testBot.rightPusher.setPosition(1.0);
         }
 
+        sleep(500);
+        testBot.leftPusher.setPosition(1.0);
+        testBot.rightPusher.setPosition(0.0);
 
+        testBot.BackLeft.setPower(0.3);
+        testBot.BackRight.setPower(0.3);
+        testBot.FrontLeft.setPower(0.3);
+        testBot.FrontRight.setPower(0.3);
+
+        // run until the white line is seen OR the driver presses STOP;
+        while (opModeIsActive() && (testBot.rangeSensor.cmUltrasonic() < 31.0)) {
+
+            // Display the light level while we are looking for the line
+            telemetry.addData("distance in cm",  testBot.rangeSensor.cmUltrasonic());
+            telemetry.update();
+            idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
+        }
+
+        testBot.BackLeft.setPower(0.0);
+        testBot.BackRight.setPower(0.0);
+        testBot.FrontLeft.setPower(0.0);
+        testBot.FrontRight.setPower(0.0);
+
+        testBot.BackLeft.setPower(-0.4);
+        testBot.BackRight.setPower(0.4);
+        testBot.FrontLeft.setPower(-0.4);
+        testBot.FrontRight.setPower(0.4);
+        sleep(1000);
+        testBot.BackLeft.setPower(0);
+        testBot.BackRight.setPower(0);
+        testBot.FrontLeft.setPower(0);
+        testBot.FrontRight.setPower(0);
+
+        testBot.BackLeft.setPower(-0.5);
+        testBot.BackRight.setPower(-0.5);
+        testBot.FrontLeft.setPower(-0.5);
+        testBot.FrontRight.setPower(-0.5);
+
+        // Run until forward the white line is seen OR the driver presses STOP;
+        while (opModeIsActive() && (testBot.lineRight.getLightDetected() < WHITE_THRESHOLD)) {
+
+            // Display the light level while we are looking for the line
+            telemetry.addData("Light Level",  testBot.lineRight.getLightDetected());
+            telemetry.update();
+            idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
+        }
+
+        // Stop all motors
+        testBot.BackLeft.setPower(0);
+        testBot.BackRight.setPower(0);
+        testBot.FrontLeft.setPower(0);
+        testBot.FrontRight.setPower(0);
+
+        sleep(500);
+
+        testBot.BackLeft.setPower(0.2);
+        testBot.BackRight.setPower(0.2);
+        testBot.FrontLeft.setPower(0.2);
+        testBot.FrontRight.setPower(0.2);
+
+        // Run back until the white line is seen OR the driver presses STOP;
+        while (opModeIsActive() && (testBot.lineRight.getLightDetected() < WHITE_THRESHOLD + 0.1)) {
+
+            // Display the light level while we are looking for the line
+            telemetry.addData("Light Level",  testBot.lineRight.getLightDetected());
+            telemetry.update();
+            idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
+        }
+
+        // Stop all motors
+        testBot.BackLeft.setPower(0);
+        testBot.BackRight.setPower(0);
+        testBot.FrontLeft.setPower(0);
+        testBot.FrontRight.setPower(0);
+
+        testBot.BackLeft.setPower(0.4);
+        testBot.BackRight.setPower(-0.4);
+        testBot.FrontLeft.setPower(0.4);
+        testBot.FrontRight.setPower(-0.4);
+        sleep(1000);
+        testBot.BackLeft.setPower(0);
+        testBot.BackRight.setPower(0);
+        testBot.FrontLeft.setPower(0);
+        testBot.FrontRight.setPower(0);
+
+        sleep(500);
+
+        testBot.BackLeft.setPower(-0.3);
+        testBot.BackRight.setPower(-0.3);
+        testBot.FrontLeft.setPower(-0.3);
+        testBot.FrontRight.setPower(-0.3);
+
+        // run until the white line is seen OR the driver presses STOP;
+        while (opModeIsActive() && (testBot.rangeSensor.cmUltrasonic() > DISTANCE_FROM_BEACON)) {
+
+            // Display the light level while we are looking for the line
+            telemetry.addData("distance in cm",  testBot.rangeSensor.cmUltrasonic());
+            telemetry.update();
+            idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
+        }
+
+        // Stop all motors
+        testBot.BackLeft.setPower(0);
+        testBot.BackRight.setPower(0);
+        testBot.FrontLeft.setPower(0);
+        testBot.FrontRight.setPower(0);
+
+        sleep(1000);
+
+        if(ColorS.colorDecisionBlue()){
+            testBot.leftPusher.setPosition(0.0);
+        }
+        else {
+            testBot.rightPusher.setPosition(1.0);
+        }
+
+        sleep(500);
+        testBot.leftPusher.setPosition(1.0);
+        testBot.rightPusher.setPosition(0.0);
 
     }
 }
