@@ -122,6 +122,7 @@ public class LinearTestingOpMode extends LinearOpMode {
         testBot.FrontLeft.setPower(0);
         testBot.FrontRight.setPower(0);
         */
+        //ClockWiseTurn
         testBot.BackLeft.setPower(0.4);
         testBot.BackRight.setPower(-0.4);
         testBot.FrontLeft.setPower(0.4);

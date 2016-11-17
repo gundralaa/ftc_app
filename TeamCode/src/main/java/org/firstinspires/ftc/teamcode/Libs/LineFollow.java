@@ -24,18 +24,18 @@ public class LineFollow {
     }
 
     public void simpleFollow(int numberOfSensors, double power, double threshold){
-        double midValue = threshold;
+        double midValue = 0.4;
         switch (numberOfSensors){
             case 1:
                 while (bot.rangeSensor.cmUltrasonic() > threshold){
-                    double reflectedLight = bot.lineRight.getRawLightDetected();
-                    if (reflectedLight > midValue){
+                    double reflectedLight = bot.lineRight.getLightDetected();
+                    if (reflectedLight < midValue){
                         bot.FrontLeft.setPower(0);
                         bot.BackLeft.setPower(0);
                         bot.FrontRight.setPower(-power);
                         bot.BackRight.setPower(-power);
                     }
-                    if (reflectedLight < midValue){
+                    if (reflectedLight > midValue){
                         bot.FrontLeft.setPower(-power);
                         bot.BackLeft.setPower(-power);
                         bot.FrontRight.setPower(0);
