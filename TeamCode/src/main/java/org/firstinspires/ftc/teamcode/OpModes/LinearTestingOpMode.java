@@ -122,11 +122,16 @@ public class LinearTestingOpMode extends LinearOpMode {
         testBot.FrontLeft.setPower(0);
         testBot.FrontRight.setPower(0);
         */
+        testBot.BackLeft.setPower(0.4);
+        testBot.BackRight.setPower(-0.4);
+        testBot.FrontLeft.setPower(0.4);
+        testBot.FrontRight.setPower(-0.4);
+        sleep(700);
+        testBot.BackLeft.setPower(0);
+        testBot.BackRight.setPower(0);
+        testBot.FrontLeft.setPower(0);
+        testBot.FrontRight.setPower(0);
 
-        follow.simpleFollow(1,0.5,7.0);
-
-        sleep(500);
-        /*
         testBot.BackLeft.setPower(-0.3);
         testBot.BackRight.setPower(-0.3);
         testBot.FrontLeft.setPower(-0.3);
@@ -146,7 +151,7 @@ public class LinearTestingOpMode extends LinearOpMode {
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
         testBot.FrontRight.setPower(0);
-        */
+
         sleep(1000);
 
         if(ColorS.colorDecisionBlue()){
