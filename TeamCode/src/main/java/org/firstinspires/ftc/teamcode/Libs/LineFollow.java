@@ -23,23 +23,23 @@ public class LineFollow {
         this.lowValue = lowValue;
     }
 
-    public void simpleFollow(int numberOfSensors, boolean breakCondition, double power){
-        double midValue = (highValue + lowValue)/2;
+    public void simpleFollow(int numberOfSensors, double power, double threshold){
+        double midValue = threshold;
         switch (numberOfSensors){
             case 1:
-                while (breakCondition){
+                while (bot.rangeSensor.cmUltrasonic() > threshold){
                     double reflectedLight = bot.lineRight.getRawLightDetected();
                     if (reflectedLight > midValue){
-                        bot.FrontLeft.setPower(-power);
-                        bot.BackLeft.setPower(-power);
-                        bot.FrontRight.setPower(0);
-                        bot.BackRight.setPower(0);
-                    }
-                    if (reflectedLight < midValue){
                         bot.FrontLeft.setPower(0);
                         bot.BackLeft.setPower(0);
                         bot.FrontRight.setPower(-power);
                         bot.BackRight.setPower(-power);
+                    }
+                    if (reflectedLight < midValue){
+                        bot.FrontLeft.setPower(-power);
+                        bot.BackLeft.setPower(-power);
+                        bot.FrontRight.setPower(0);
+                        bot.BackRight.setPower(0);
                     }
                     if (reflectedLight == midValue){
                         bot.FrontLeft.setPower(-power);
@@ -50,7 +50,7 @@ public class LineFollow {
                 }
                 break;
             case 2:
-                while (breakCondition){
+                while (bot.rangeSensor.cmUltrasonic() > threshold){
                     double reflectedLeftLight = bot.lineLeft.getLightDetected();
                     double reflectedRightLight = bot.lineRight.getLightDetected();
                     if (reflectedLeftLight > midValue || reflectedRightLight < midValue){

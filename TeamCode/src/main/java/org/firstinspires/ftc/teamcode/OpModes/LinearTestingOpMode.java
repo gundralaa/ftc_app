@@ -101,16 +101,17 @@ public class LinearTestingOpMode extends LinearOpMode {
         testBot.FrontRight.setPower(0);
 
         sleep(500);
-
+        /*
         testBot.BackLeft.setPower(0.4);
         testBot.BackRight.setPower(-0.4);
         testBot.FrontLeft.setPower(0.4);
         testBot.FrontRight.setPower(-0.4);
 
         double previousDist = testBot.rangeSensor.cmUltrasonic();
-        double currentDist = testBot.rangeSensor.cmUltrasonic();
+        double currentDist = previousDist;
+
         // run until the white line is seen OR the driver presses STOP;
-        while (opModeIsActive() && (previousDist >= currentDist)) {
+        while ((opModeIsActive() && (previousDist >= currentDist + 0.5)) || (opModeIsActive() && (previousDist >= currentDist - 0.5))) {
             previousDist = currentDist; //Set last current distance to previous
             currentDist = testBot.rangeSensor.cmUltrasonic(); //Set new current
             idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
@@ -120,9 +121,12 @@ public class LinearTestingOpMode extends LinearOpMode {
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
         testBot.FrontRight.setPower(0);
+        */
+
+        follow.simpleFollow(1,0.5,7.0);
 
         sleep(500);
-
+        /*
         testBot.BackLeft.setPower(-0.3);
         testBot.BackRight.setPower(-0.3);
         testBot.FrontLeft.setPower(-0.3);
@@ -142,7 +146,7 @@ public class LinearTestingOpMode extends LinearOpMode {
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
         testBot.FrontRight.setPower(0);
-
+        */
         sleep(1000);
 
         if(ColorS.colorDecisionBlue()){
