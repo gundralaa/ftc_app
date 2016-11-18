@@ -91,7 +91,7 @@ public class DriverControl extends OpMode {
             telemetry.addData("Blue:", colorS.colorDecisionBlue());
             telemetry.addData("LeftODS",TestBot.lineRight.getLightDetected());
             */
-            //telemetry.addData("Range Sensor", TestBot.rangeSensor.cmUltrasonic());
+            telemetry.addData("Range Sensor", TestBot.rangeSensor.cmUltrasonic());
         }
 
 }

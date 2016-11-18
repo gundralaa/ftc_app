@@ -23,58 +23,26 @@ public class LineFollow {
         this.lowValue = lowValue;
     }
 
-    public void simpleFollow(int numberOfSensors, double power, double threshold){
+    public void simpleFollow(double power){
         double midValue = 0.4;
-        switch (numberOfSensors){
-            case 1:
-                while (bot.rangeSensor.cmUltrasonic() > threshold){
-                    double reflectedLight = bot.lineRight.getLightDetected();
-                    if (reflectedLight < midValue){
-                        bot.FrontLeft.setPower(0);
-                        bot.BackLeft.setPower(0);
-                        bot.FrontRight.setPower(-power);
-                        bot.BackRight.setPower(-power);
-                    }
-                    if (reflectedLight > midValue){
-                        bot.FrontLeft.setPower(-power);
-                        bot.BackLeft.setPower(-power);
-                        bot.FrontRight.setPower(0);
-                        bot.BackRight.setPower(0);
-                    }
-                    if (reflectedLight == midValue){
-                        bot.FrontLeft.setPower(-power);
-                        bot.BackLeft.setPower(-power);
-                        bot.FrontRight.setPower(-power);
-                        bot.BackRight.setPower(-power);
-                    }
-                }
-                break;
-            case 2:
-                while (bot.rangeSensor.cmUltrasonic() > threshold){
-                    double reflectedLeftLight = bot.lineLeft.getLightDetected();
-                    double reflectedRightLight = bot.lineRight.getLightDetected();
-                    if (reflectedLeftLight > midValue || reflectedRightLight < midValue){
-                        bot.FrontLeft.setPower(0);
-                        bot.BackLeft.setPower(0);
-                        bot.FrontRight.setPower(power);
-                        bot.BackRight.setPower(power);
-                    }
-                    if (reflectedLeftLight < midValue || reflectedRightLight > midValue){
-                        bot.FrontLeft.setPower(power);
-                        bot.BackLeft.setPower(power);
-                        bot.FrontRight.setPower(0);
-                        bot.BackRight.setPower(0);
-                    }
-                    if (reflectedLeftLight == midValue || reflectedRightLight == midValue){
-                        bot.FrontLeft.setPower(power);
-                        bot.BackLeft.setPower(power);
-                        bot.FrontRight.setPower(power);
-                        bot.BackRight.setPower(power);
-                    }
-                }
-                break;
-            default:
-                break;
+        double reflectedLight = bot.lineRight.getLightDetected();
+        if (reflectedLight < midValue){
+            bot.FrontLeft.setPower(0);
+            bot.BackLeft.setPower(0);
+            bot.FrontRight.setPower(-power);
+            bot.BackRight.setPower(-power);
+        }
+        if (reflectedLight > midValue){
+            bot.FrontLeft.setPower(-power);
+            bot.BackLeft.setPower(-power);
+            bot.FrontRight.setPower(0);
+            bot.BackRight.setPower(0);
+        }
+        if (reflectedLight == midValue){
+            bot.FrontLeft.setPower(-power);
+            bot.BackLeft.setPower(-power);
+            bot.FrontRight.setPower(-power);
+            bot.BackRight.setPower(-power);
         }
     }
     public void proportionalFollow(boolean breakCondition, double gain, double diffConstant){
