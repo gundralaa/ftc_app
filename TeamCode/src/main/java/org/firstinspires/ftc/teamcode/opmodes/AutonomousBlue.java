@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.methods.SensorMethods;
 
 @Autonomous(name = "BlueAuton", group = "Autonomous")
 
-class AutonomousBlue extends LinearOpMode {
+public class AutonomousBlue extends LinearOpMode {
 
     HardwareBot bot = new HardwareBot();
 
@@ -34,7 +34,7 @@ class AutonomousBlue extends LinearOpMode {
         double previousDist = bot.rangeSensor.cmUltrasonic();
 
         //TODO: Measure distances for launching
-        SensorMethods.distanceWithEncoders();
+        SensorMethods.distanceWithEncoders(bot, 5, 0.2);
 
         //Shoot balls
         bot.motorB.setPower(1);
