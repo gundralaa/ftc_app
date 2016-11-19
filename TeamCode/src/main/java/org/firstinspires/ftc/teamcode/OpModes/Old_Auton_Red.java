@@ -2,23 +2,17 @@ package org.firstinspires.ftc.teamcode.OpModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-import org.firstinspires.ftc.teamcode.Libs.LineFollow;
-import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
 import org.firstinspires.ftc.teamcode.Libs.ColorSensing;
 import org.firstinspires.ftc.teamcode.Libs.EncoderDrive;
+import org.firstinspires.ftc.teamcode.Libs.LineFollow;
 
 /**
- * Created by abhin on 11/1/2016.
+ * Created by abhin on 11/18/2016.
  */
-@Autonomous(name = "BlueAuton", group = "Competition")
-public class LinearTestingOpMode extends LinearOpMode {
-
+@Autonomous(name = "RedAuton",group = "Competition")
+public class Old_Auton_Red extends LinearOpMode {
     HardwareBot testBot = new HardwareBot();
     EncoderDrive Drive = new EncoderDrive(testBot);
     ColorSensing ColorS = new ColorSensing(testBot);
@@ -124,10 +118,10 @@ public class LinearTestingOpMode extends LinearOpMode {
         testBot.FrontRight.setPower(0);
         */
         //ClockWiseTurn
-        testBot.BackLeft.setPower(0.4);
-        testBot.BackRight.setPower(-0.4);
-        testBot.FrontLeft.setPower(0.4);
-        testBot.FrontRight.setPower(-0.4);
+        testBot.BackLeft.setPower(-0.4);
+        testBot.BackRight.setPower(0.4);
+        testBot.FrontLeft.setPower(-0.4);
+        testBot.FrontRight.setPower(0.4);
         sleep(650);
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
@@ -153,7 +147,7 @@ public class LinearTestingOpMode extends LinearOpMode {
         sleep(1000);
 
 
-        if(ColorS.colorDecisionBlue()){
+        if(ColorS.colorDecisionRed()){
             testBot.leftPusher.setPosition(0.0);
         }
         else {
@@ -257,10 +251,10 @@ public class LinearTestingOpMode extends LinearOpMode {
         testBot.FrontLeft.setPower(0);
         testBot.FrontRight.setPower(0);
 
-        testBot.BackLeft.setPower(0.4);
-        testBot.BackRight.setPower(-0.4);
-        testBot.FrontLeft.setPower(0.4);
-        testBot.FrontRight.setPower(-0.4);
+        testBot.BackLeft.setPower(-0.4);
+        testBot.BackRight.setPower(0.4);
+        testBot.FrontLeft.setPower(-0.4);
+        testBot.FrontRight.setPower(0.4);
         sleep(1000);
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
@@ -288,7 +282,7 @@ public class LinearTestingOpMode extends LinearOpMode {
         sleep(1000);
 
 
-        if(ColorS.colorDecisionBlue()){
+        if(ColorS.colorDecisionRed()){
             testBot.leftPusher.setPosition(0.0);
         }
         else {

@@ -24,7 +24,6 @@ import org.firstinspires.ftc.teamcode.Libs.LineFollow;
          *      b.Camera
          *      c.Encoders
 */
-@Autonomous(name = "BlueAuton", group = "Autonomous")
 class AutonomousBlue extends LinearOpMode {
 
     HardwareBot bot = new HardwareBot();

@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.Libs.LineFollow;
 /**
  * Created by abhin on 11/8/2016.
  */
-@Autonomous(name = "RedAuton",group = "Competition")
+
 public class AutonomousRed extends LinearOpMode {
 
     HardwareBot bot = new HardwareBot();
