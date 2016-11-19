@@ -59,10 +59,10 @@ public class LinearTestingOpMode extends LinearOpMode {
 
         sleep(3000); //Sleep Method
 
-        testBot.BackLeft.setPower(-0.5);
-        testBot.BackRight.setPower(-0.5);
-        testBot.FrontLeft.setPower(-0.5);
-        testBot.FrontRight.setPower(-0.5);
+        testBot.BackLeft.setPower(-0.4);
+        testBot.BackRight.setPower(-0.4);
+        testBot.FrontLeft.setPower(-0.4);
+        testBot.FrontRight.setPower(-0.4);
 
         // Run until forward the white line is seen OR the driver presses STOP;
         while (opModeIsActive() && (testBot.lineRight.getLightDetected() < WHITE_THRESHOLD)) {
@@ -124,10 +124,27 @@ public class LinearTestingOpMode extends LinearOpMode {
         testBot.FrontRight.setPower(0);
         */
         //ClockWiseTurn
-        while (opModeIsActive() && testBot.rangeSensor.getDistance(DistanceUnit.CM) >= 10.0){
-            follow.simpleFollow(0.5);
-        }
+        testBot.BackLeft.setPower(0.4);
+        testBot.BackRight.setPower(-0.4);
+        testBot.FrontLeft.setPower(0.4);
+        testBot.FrontRight.setPower(-0.4);
+        sleep(650);
+        testBot.BackLeft.setPower(0);
+        testBot.BackRight.setPower(0);
+        testBot.FrontLeft.setPower(0);
+        testBot.FrontRight.setPower(0);
 
+        testBot.BackLeft.setPower(-0.2);
+        testBot.BackRight.setPower(-0.2);
+        testBot.FrontLeft.setPower(-0.2);
+        testBot.FrontRight.setPower(-0.2);
+        while (opModeIsActive() && (testBot.rangeSensor.cmUltrasonic() > 15.0)) {
+
+            // Display the light level while we are looking for the line
+            telemetry.addData("distance in cm",  testBot.rangeSensor.cmUltrasonic());
+            telemetry.update();
+            idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
+        }
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
@@ -142,6 +159,18 @@ public class LinearTestingOpMode extends LinearOpMode {
         else {
             testBot.rightPusher.setPosition(1.0);
         }
+
+        sleep(1000);
+
+        testBot.BackLeft.setPower(-0.4);
+        testBot.BackRight.setPower(-0.4);
+        testBot.FrontLeft.setPower(-0.4);
+        testBot.FrontRight.setPower(-0.4);
+        sleep(300);
+        testBot.BackLeft.setPower(0);
+        testBot.BackRight.setPower(0);
+        testBot.FrontLeft.setPower(0);
+        testBot.FrontRight.setPower(0);
 
         sleep(500);
         testBot.leftPusher.setPosition(1.0);
@@ -244,17 +273,13 @@ public class LinearTestingOpMode extends LinearOpMode {
         testBot.BackRight.setPower(-0.2);
         testBot.FrontLeft.setPower(-0.2);
         testBot.FrontRight.setPower(-0.2);
-
-        // run until the white line is seen OR the driver presses STOP;
-        while (opModeIsActive() && (testBot.rangeSensor.cmUltrasonic() > DISTANCE_FROM_BEACON)) {
+        while (opModeIsActive() && (testBot.rangeSensor.cmUltrasonic() > 15.0)) {
 
             // Display the light level while we are looking for the line
             telemetry.addData("distance in cm",  testBot.rangeSensor.cmUltrasonic());
             telemetry.update();
             idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
         }
-
-        // Stop all motors
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
@@ -262,12 +287,26 @@ public class LinearTestingOpMode extends LinearOpMode {
 
         sleep(1000);
 
+
         if(ColorS.colorDecisionBlue()){
             testBot.leftPusher.setPosition(0.0);
         }
         else {
             testBot.rightPusher.setPosition(1.0);
         }
+
+        sleep(1000);
+
+        testBot.BackLeft.setPower(-0.4);
+        testBot.BackRight.setPower(-0.4);
+        testBot.FrontLeft.setPower(-0.4);
+        testBot.FrontRight.setPower(-0.4);
+        sleep(300);
+        testBot.BackLeft.setPower(0);
+        testBot.BackRight.setPower(0);
+        testBot.FrontLeft.setPower(0);
+        testBot.FrontRight.setPower(0);
+
 
         sleep(500);
         testBot.leftPusher.setPosition(1.0);

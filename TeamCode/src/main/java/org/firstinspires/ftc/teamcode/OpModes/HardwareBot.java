@@ -30,7 +30,7 @@ public class HardwareBot {
     private final int COLOR_SENSOR_ADDRESS = 0x3c;
     //Define all motors set to null
     public DcMotor FrontRight, FrontLeft, BackRight, BackLeft, MotorA, MotorB;
-    public Servo leftClaw, rightClaw, leftPusher, rightPusher;
+    public Servo leftClaw, rightClaw, leftPusher, rightPusher,secondBall;
     public I2cDevice beaconSensor;
     public I2cDeviceSynch beaconSensorReader;
     public OpticalDistanceSensor lineLeft,lineRight,wallDist;
@@ -72,6 +72,7 @@ public class HardwareBot {
         rightPusher = lhmap.servo.get("rightPusher");
         leftClaw = lhmap.servo.get("leftClaw");
         rightClaw = lhmap.servo.get("rightClaw");
+        secondBall = lhmap.servo.get("secondBall");
 
         beaconSensor = lhmap.i2cDevice.get("BeaconSensor");
         beaconSensorReader = new I2cDeviceSynchImpl(beaconSensor, I2cAddr.create8bit(COLOR_SENSOR_ADDRESS),false);
@@ -117,7 +118,9 @@ public class HardwareBot {
         rightPusher.setPosition(0.0);
 
         leftClaw.setPosition(0.0);
-        rightClaw.setPosition(0.0);
+        rightClaw.setPosition(1.0);
+
+        secondBall.setPosition(0.6);
 
         //Set Run Mode (Change for Encoder Function)
         BackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);

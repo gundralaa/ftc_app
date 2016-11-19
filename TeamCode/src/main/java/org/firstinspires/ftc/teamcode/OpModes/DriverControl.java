@@ -40,47 +40,35 @@ public class DriverControl extends OpMode {
             TestBot.BackLeft.setPower(leftValue);
 
             //Set Power of Peripherals
-            if(gamepad1.a) {
-                if(motorPowerA != 1.0f) {
-                    motorPowerA = motorPowerA + INCREMENT;
-                    TestBot.MotorA.setPower(motorPowerA);
-                }
-                motorPowerA = 0.0f;
-            } else if (gamepad1.x){
-                if(motorPowerA != 0.0f) {
-                    motorPowerA = motorPowerA - INCREMENT;
-                    TestBot.MotorA.setPower(motorPowerA);
-                }
-                motorPowerA = 1.0f;
+            if(gamepad1.left_trigger > 0.0) {
+                TestBot.leftClaw.setPosition(1.0);
+                TestBot.rightClaw.setPosition(0.0);
+            } else{
+                TestBot.leftClaw.setPosition(0.0);
+                TestBot.rightClaw.setPosition(1.0);
             }
             if(gamepad1.y) {
                 TestBot.MotorB.setPower(1.0);
-            } else if (gamepad1.b){
-                TestBot.MotorB.setPower(-1.0);
             } else {
                 TestBot.MotorB.setPower(0.0);
             }
 
-            if(gamepad1.left_trigger > 0.0) {
+            if(gamepad1.a) {
                 TestBot.leftPusher.setPosition(0.0);
             } else {
                 TestBot.leftPusher.setPosition(1.0);
             }
 
-            if(gamepad1.right_trigger > 0.0) {
+            if(gamepad1.b) {
                 TestBot.rightPusher.setPosition(1.0);
             } else {
                 TestBot.rightPusher.setPosition(0.0);
             }
-            if (gamepad1.left_bumper){
-                TestBot.leftClaw.setPosition(0.0);
+
+            if(gamepad1.left_bumper){
+                TestBot.secondBall.setPosition(0.0);
             } else {
-                TestBot.rightClaw.setPosition(0.5);
-            }
-            if (gamepad1.right_bumper){
-                TestBot.rightClaw.setPosition(0.0);
-            } else {
-                TestBot.rightClaw.setPosition(0.5);
+                TestBot.secondBall.setPosition(1.0);
             }
 
             //colorS.enableLed(false);
