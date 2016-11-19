@@ -51,7 +51,7 @@ public class StraightShooter extends LinearOpMode {
         bot.FrontLeft.setPower(0);
         bot.FrontRight.setPower(0);
         sleep(500);
-        bot.secondBall.setPosition(1.0);
+        bot.secondBall.setPosition(0.7);
         sleep(500);
 
         bot.MotorB.setPower(1.0);
@@ -61,7 +61,7 @@ public class StraightShooter extends LinearOpMode {
 
         bot.secondBall.setPosition(0.3);
         sleep(1000);
-        bot.secondBall.setPosition(1.0);
+        bot.secondBall.setPosition(0.7);
         sleep(500);
 
         bot.MotorB.setPower(1.0);
