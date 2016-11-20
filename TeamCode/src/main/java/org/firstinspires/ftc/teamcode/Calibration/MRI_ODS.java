@@ -18,10 +18,8 @@ package org.firstinspires.ftc.teamcode.Calibration;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 
-import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
+import org.firstinspires.ftc.teamcode.Libs.HardwareBot;
 import org.firstinspires.ftc.teamcode.Libs.DistanceSensing;
 
 @TeleOp(name = "DistanceCalib",group = "Calibration")

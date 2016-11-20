@@ -1,8 +1,5 @@
 package org.firstinspires.ftc.teamcode.Methods;
 
-import android.graphics.Color;
-import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
-
 /**
  * Created by naisan on 10/30/16.
  */

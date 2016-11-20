@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.OpModes;
+package org.firstinspires.ftc.teamcode.Libs;
 import com.qualcomm.hardware.adafruit.AdafruitBNO055IMU;
 import com.qualcomm.hardware.adafruit.BNO055IMU;
 import com.qualcomm.hardware.adafruit.JustLoggingAccelerationIntegrator;
@@ -51,14 +51,13 @@ public class HardwareBot {
         //Reference the local version of hardware map to argument
         lhmap = hmap;
         //BNO055IMU
-        /*
+
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
         parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
         parameters.loggingEnabled      = true;
         parameters.loggingTag          = "IMU";
-        parameters.accelerationIntegrationAlgorithm = new AdvancedAccelerationIntegrator();
-        */
+
         //Define Motors
         FrontRight = lhmap.dcMotor.get("FrontRight");
         FrontLeft = lhmap.dcMotor.get("FrontLeft");
@@ -90,7 +89,7 @@ public class HardwareBot {
 
         // and named "imu".
         imu = lhmap.get(BNO055IMU.class, "imu");
-        //imu.initialize(parameters);
+        imu.initialize(parameters);
 
         //Set Direction (Might be the other side base// d on orientation)
         FrontLeft.setDirection(DcMotor.Direction.FORWARD);
@@ -120,7 +119,7 @@ public class HardwareBot {
         leftClaw.setPosition(0.0);
         rightClaw.setPosition(1.0);
 
-        secondBall.setPosition(0.6);
+        secondBall.setPosition(1.0);
 
         //Set Run Mode (Change for Encoder Function)
         BackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);

@@ -1,11 +1,10 @@
 package org.firstinspires.ftc.teamcode.OpModes;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Libs.CameraFunction;
-import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
+import org.firstinspires.ftc.teamcode.Libs.HardwareBot;
 import org.firstinspires.ftc.teamcode.Libs.ColorSensing;
 import org.firstinspires.ftc.teamcode.Libs.DistanceSensing;
 import org.firstinspires.ftc.teamcode.Libs.EncoderDrive;

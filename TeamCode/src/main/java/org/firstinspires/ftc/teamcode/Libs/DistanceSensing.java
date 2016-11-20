@@ -1,22 +1,22 @@
 package org.firstinspires.ftc.teamcode.Libs;
 
-import com.qualcomm.robotcore.hardware.Gamepad;
-
-import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 /**
  * Created by abhin on 11/8/2016.
  */
 public class DistanceSensing {
     HardwareBot bot = new HardwareBot();
+    LinearOpMode opMode;
     static double mvalue = 56 ;
     static double cvalue = -0.756;
     private double rawLValue;
     private double linearLValue;
     private double distanceValue;
     private double convertedValue;
-    public DistanceSensing (HardwareBot bot) {
+    public DistanceSensing (HardwareBot bot, LinearOpMode opMode) {
         this.bot = bot;
+        this.opMode = opMode;
     }
 
     public void setMValue(double mvalue){
@@ -44,7 +44,9 @@ public class DistanceSensing {
         bot.FrontRight.setPower(power);
         bot.BackRight.setPower(power);
 
-        while (bot.rangeSensor.cmUltrasonic() > threshold){}
+        while (opMode.opModeIsActive() && bot.rangeSensor.cmUltrasonic() > threshold){
+            opMode.telemetry.addData("Distance:",bot.rangeSensor.cmUltrasonic());
+        }
 
         bot.FrontLeft.setPower(0);
         bot.BackLeft.setPower(0);
@@ -58,7 +60,9 @@ public class DistanceSensing {
         bot.FrontRight.setPower(power);
         bot.BackRight.setPower(power);
 
-        while (bot.rangeSensor.cmUltrasonic() < threshold){}
+        while (opMode.opModeIsActive() && bot.rangeSensor.cmUltrasonic() < threshold){
+            opMode.telemetry.addData("Distance", bot.rangeSensor.cmUltrasonic());
+        }
 
         bot.FrontLeft.setPower(0);
         bot.BackLeft.setPower(0);

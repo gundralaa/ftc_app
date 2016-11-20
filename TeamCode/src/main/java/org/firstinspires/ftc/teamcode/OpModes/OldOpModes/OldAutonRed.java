@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.OpModes;
+package org.firstinspires.ftc.teamcode.OpModes.OldOpModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -6,17 +6,18 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Libs.ColorSensing;
 import org.firstinspires.ftc.teamcode.Libs.EncoderDrive;
+import org.firstinspires.ftc.teamcode.Libs.HardwareBot;
 import org.firstinspires.ftc.teamcode.Libs.LineFollow;
 
 /**
  * Created by abhin on 11/18/2016.
  */
 @Autonomous(name = "RedAuton",group = "Competition")
-public class Old_Auton_Red extends LinearOpMode {
+public class OldAutonRed extends LinearOpMode {
     HardwareBot testBot = new HardwareBot();
-    EncoderDrive Drive = new EncoderDrive(testBot);
-    ColorSensing ColorS = new ColorSensing(testBot);
-    LineFollow follow =  new LineFollow(testBot);
+    EncoderDrive Drive = new EncoderDrive(testBot,this);
+    ColorSensing ColorS = new ColorSensing(testBot,this);
+    LineFollow follow =  new LineFollow(testBot,this);
 
     int colorNumber;
     double WHITE_THRESHOLD = 0.4;

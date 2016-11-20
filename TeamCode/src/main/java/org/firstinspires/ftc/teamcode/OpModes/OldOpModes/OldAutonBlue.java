@@ -1,15 +1,11 @@
-package org.firstinspires.ftc.teamcode.OpModes;
+package org.firstinspires.ftc.teamcode.OpModes.OldOpModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Libs.LineFollow;
-import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
+import org.firstinspires.ftc.teamcode.Libs.HardwareBot;
 import org.firstinspires.ftc.teamcode.Libs.ColorSensing;
 import org.firstinspires.ftc.teamcode.Libs.EncoderDrive;
 
@@ -17,12 +13,12 @@ import org.firstinspires.ftc.teamcode.Libs.EncoderDrive;
  * Created by abhin on 11/1/2016.
  */
 @Autonomous(name = "BlueAuton", group = "Competition")
-public class LinearTestingOpMode extends LinearOpMode {
+public class OldAutonBlue extends LinearOpMode {
 
     HardwareBot testBot = new HardwareBot();
-    EncoderDrive Drive = new EncoderDrive(testBot);
-    ColorSensing ColorS = new ColorSensing(testBot);
-    LineFollow follow =  new LineFollow(testBot);
+    EncoderDrive Drive = new EncoderDrive(testBot,this);
+    ColorSensing ColorS = new ColorSensing(testBot,this);
+    LineFollow follow =  new LineFollow(testBot,this);
 
     int colorNumber;
     double WHITE_THRESHOLD = 0.4;

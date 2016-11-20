@@ -5,7 +5,6 @@ import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
-import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
 
 /**
  * Created by abhin on 11/9/2016.
@@ -14,7 +13,6 @@ public class CameraFunction {
     HardwareBot bot = new HardwareBot();
     VuforiaTrackables beacons = bot.beacons;
     double initialTranslationY;
-    EncoderDrive drive = new EncoderDrive(bot);
     /*
         Wheels: 0
         Tools: 1

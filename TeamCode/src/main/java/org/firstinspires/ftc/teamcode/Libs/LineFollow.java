@@ -1,19 +1,19 @@
 package org.firstinspires.ftc.teamcode.Libs;
 
-import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
-import com.qualcomm.robotcore.hardware.UltrasonicSensor;
-
-import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 /**
  * Created by abhin on 11/2/2016.
  */
 public class LineFollow {
-    HardwareBot bot = new HardwareBot();
+    LinearOpMode opMode;
+    HardwareBot bot;
     public static double highValue = 0.6;
     public static double lowValue = 0.1;
-    public LineFollow (HardwareBot bot){
+    public LineFollow (HardwareBot bot, LinearOpMode opMode){
         this.bot = bot;
+        this.opMode = opMode;
+
     }
 
     public void setHighValue(double highValue){
@@ -73,8 +73,11 @@ public class LineFollow {
         bot.BackLeft.setPower(power);
         bot.FrontRight.setPower(power);
         bot.BackRight.setPower(power);
-        while (bot.lineRight.getLightDetected() < threshold){
+
+        while (opMode.opModeIsActive() && bot.lineRight.getLightDetected() < threshold){
+            opMode.telemetry.addData("Sensor Value", bot.lineRight.getLightDetected());
         }
+
         bot.FrontLeft.setPower(0);
         bot.BackLeft.setPower(0);
         bot.FrontRight.setPower(0);

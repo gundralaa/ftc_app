@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.OpModes;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
@@ -8,6 +7,7 @@ import org.firstinspires.ftc.teamcode.Libs.CameraFunction;
 import org.firstinspires.ftc.teamcode.Libs.ColorSensing;
 import org.firstinspires.ftc.teamcode.Libs.DistanceSensing;
 import org.firstinspires.ftc.teamcode.Libs.EncoderDrive;
+import org.firstinspires.ftc.teamcode.Libs.HardwareBot;
 import org.firstinspires.ftc.teamcode.Libs.LineFollow;
 
 
@@ -27,11 +27,12 @@ import org.firstinspires.ftc.teamcode.Libs.LineFollow;
 class AutonomousBlue extends LinearOpMode {
 
     HardwareBot bot = new HardwareBot();
-    ColorSensing colorS = new ColorSensing(bot);
+    ColorSensing colorS = new ColorSensing(bot,this);
     LineFollow follow = new LineFollow(bot);
     EncoderDrive drive = new EncoderDrive(bot);
-    DistanceSensing distS = new DistanceSensing(bot);
+    DistanceSensing distS = new DistanceSensing(bot,this);
     CameraFunction cameraF =  new CameraFunction(bot);
+
     int cameraTarg1 = 1;
     int cameraTarg2 = 2;
     double whiteLineRaw;//Find this
