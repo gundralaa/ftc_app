@@ -34,13 +34,13 @@ public class DriverControl extends OpMode {
             float rightValue = gamepad1.right_stick_y;
 
             //Set power of Drive Motors
-            TestBot.FrontRight.setPower(rightValue);
-            TestBot.BackRight.setPower(rightValue);
-            TestBot.FrontLeft.setPower(leftValue);
-            TestBot.BackLeft.setPower(leftValue);
+            TestBot.FrontRight.setPower(leftValue);
+            TestBot.BackRight.setPower(leftValue);
+            TestBot.FrontLeft.setPower(rightValue);
+            TestBot.BackLeft.setPower(rightValue);
 
             //Set Power of Peripherals
-            if(gamepad1.left_trigger > 0.0) {
+            if(gamepad1.left_bumper) {
                 TestBot.leftClaw.setPosition(1.0);
                 TestBot.rightClaw.setPosition(0.0);
             } else{
@@ -53,22 +53,16 @@ public class DriverControl extends OpMode {
                 TestBot.MotorB.setPower(0.0);
             }
 
-            if(gamepad1.a) {
+            if(gamepad1.left_trigger > 0.0) {
                 TestBot.leftPusher.setPosition(0.0);
             } else {
                 TestBot.leftPusher.setPosition(1.0);
             }
 
-            if(gamepad1.b) {
+            if(gamepad1.right_trigger > 0.0) {
                 TestBot.rightPusher.setPosition(1.0);
             } else {
                 TestBot.rightPusher.setPosition(0.0);
-            }
-
-            if(gamepad1.left_bumper){
-                TestBot.secondBall.setPosition(0.0);
-            } else {
-                TestBot.secondBall.setPosition(1.0);
             }
 
             //colorS.enableLed(false);

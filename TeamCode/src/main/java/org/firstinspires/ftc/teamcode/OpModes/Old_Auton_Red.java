@@ -189,10 +189,10 @@ public class Old_Auton_Red extends LinearOpMode {
         testBot.FrontLeft.setPower(0.0);
         testBot.FrontRight.setPower(0.0);
 
-        testBot.BackLeft.setPower(-0.4);
-        testBot.BackRight.setPower(0.4);
-        testBot.FrontLeft.setPower(-0.4);
-        testBot.FrontRight.setPower(0.4);
+        testBot.BackLeft.setPower(0.4);
+        testBot.BackRight.setPower(-0.4);
+        testBot.FrontLeft.setPower(0.4);
+        testBot.FrontRight.setPower(-0.4);
         sleep(1000);
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
@@ -251,10 +251,10 @@ public class Old_Auton_Red extends LinearOpMode {
         testBot.FrontLeft.setPower(0);
         testBot.FrontRight.setPower(0);
 
-        testBot.BackLeft.setPower(-0.4);
-        testBot.BackRight.setPower(0.4);
-        testBot.FrontLeft.setPower(-0.4);
-        testBot.FrontRight.setPower(0.4);
+        testBot.BackLeft.setPower(0.4);
+        testBot.BackRight.setPower(-0.4);
+        testBot.FrontLeft.setPower(0.4);
+        testBot.FrontRight.setPower(-0.4);
         sleep(1000);
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
