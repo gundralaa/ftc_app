@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Libs.HardwareBot;
 import org.firstinspires.ftc.teamcode.Libs.ColorSensing;
+import org.firstinspires.ftc.teamcode.Methods.DrivingMethods;
 
 /**
  * Created by abhin on 9/28/2016.
@@ -17,8 +18,9 @@ public class DriverControl extends OpMode {
         //Create Hardware Object
 
         HardwareBot TestBot = new HardwareBot();
-        ColorSensing colorS = new ColorSensing(TestBot);
+        DrivingMethods drive = new DrivingMethods(TestBot);
         int colorNumber;
+        double values [] = new double[2];
 
 
         public void init() {
@@ -29,14 +31,13 @@ public class DriverControl extends OpMode {
 
         public void loop() {
             // Get Joystick values
-            float leftValue = gamepad1.left_stick_y;
-            float rightValue = gamepad1.right_stick_y;
+            float leftValue = -gamepad1.left_stick_y;
+            float rightValue = -gamepad1.right_stick_y;
+
+            values = drive.square(leftValue,rightValue);
 
             //Set power of Drive Motors
-            TestBot.FrontRight.setPower(leftValue);
-            TestBot.BackRight.setPower(leftValue);
-            TestBot.FrontLeft.setPower(rightValue);
-            TestBot.BackLeft.setPower(rightValue);
+            drive.tankDrive(values[0],values[1]);
 
             //Set Power of Peripherals
             if(gamepad1.left_bumper) {

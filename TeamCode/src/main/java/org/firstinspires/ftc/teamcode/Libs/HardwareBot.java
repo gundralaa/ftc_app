@@ -92,10 +92,10 @@ public class HardwareBot {
         imu.initialize(parameters);
 
         //Set Direction (Might be the other side base// d on orientation)
-        FrontLeft.setDirection(DcMotor.Direction.FORWARD);
-        BackLeft.setDirection(DcMotor.Direction.FORWARD);
-        FrontRight.setDirection(DcMotor.Direction.FORWARD);
-        BackRight.setDirection(DcMotor.Direction.FORWARD);
+        FrontLeft.setDirection(DcMotor.Direction.REVERSE);
+        BackLeft.setDirection(DcMotor.Direction.REVERSE);
+        FrontRight.setDirection(DcMotor.Direction.REVERSE);
+        BackRight.setDirection(DcMotor.Direction.REVERSE);
         MotorA.setDirection(DcMotor.Direction.FORWARD);
         MotorB.setDirection(DcMotor.Direction.FORWARD);
         leftPusher.setDirection(Servo.Direction.FORWARD);
