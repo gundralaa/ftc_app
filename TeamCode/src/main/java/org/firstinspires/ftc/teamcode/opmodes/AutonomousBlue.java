@@ -29,6 +29,7 @@ public class AutonomousBlue extends LinearOpMode {
         bot.frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         bot.frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+        telemetry.addData("Status", "Wait for Start");
         waitForStart();
 
         double previousDist = bot.rangeSensor.cmUltrasonic();

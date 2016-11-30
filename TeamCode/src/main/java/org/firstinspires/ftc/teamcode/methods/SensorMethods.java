@@ -24,14 +24,14 @@ public class SensorMethods {
                hardwareBot.backLeft.isBusy()
               ) {
             //if the robot is on the line, proceed slowly, veering left
-            if(hardwareBot.lineFollowing.getLightDetected() == lineLight) {
+            if(hardwareBot.lineRight.getLightDetected() == lineLight) {
                 hardwareBot.frontLeft.setPower(0.2);
                 hardwareBot.frontRight.setPower(0.3);
                 hardwareBot.backLeft.setPower(0.2);
                 hardwareBot.backRight.setPower(0.3);
             //if the robot is not on the line, proceed slowly, veering right
-            } else if(hardwareBot.lineFollowing.getLightDetected() != lineLight + 5 ||
-               hardwareBot.lineFollowing.getLightDetected() != lineLight - 5) {
+            } else if(hardwareBot.lineRight.getLightDetected() != lineLight + 5 ||
+               hardwareBot.lineRight.getLightDetected() != lineLight - 5) {
                 hardwareBot.frontLeft.setPower(0.3);
                 hardwareBot.frontRight.setPower(0.2);
                 hardwareBot.backLeft.setPower(0.3);
@@ -42,7 +42,7 @@ public class SensorMethods {
 
     public static void stopAtColoredLine(HardwareBot bot, float lineLight) {
         DrivingMethods.setAllMotors(bot, 0.5);
-        while(bot.lineFollowing.getLightDetected() != lineLight) {}
+        while(bot.lineRight.getLightDetected() != lineLight) {}
         DrivingMethods.setAllMotors(bot, 0);
     }
 

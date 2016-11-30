@@ -22,10 +22,10 @@ public class HardwareBot {
     private final int COLOR_SENSOR_ADDRESS = 0x3c;
     //Define all motors set to null
     public DcMotor frontRight, frontLeft, backRight, backLeft, motorA, motorB;
-    public Servo leftClaw, rightClaw, leftPusher, rightPusher;
+    public Servo leftClaw, rightClaw, leftPusher, rightPusher, secondBall;
     public I2cDevice beaconSensor;
     public I2cDeviceSynch beaconSensorReader;
-    public OpticalDistanceSensor lineFollowing, wallDist;
+    public OpticalDistanceSensor lineLeft, wallDist,lineRight;
     public ModernRoboticsI2cRangeSensor rangeSensor;
 
     //Define local hmap
@@ -56,7 +56,8 @@ public class HardwareBot {
         beaconSensorReader = new I2cDeviceSynchImpl(beaconSensor, I2cAddr.create8bit(COLOR_SENSOR_ADDRESS),false);
         beaconSensorReader.engage();
 
-        lineFollowing = lhmap.opticalDistanceSensor.get("lineFollowing");
+        lineLeft = lhmap.opticalDistanceSensor.get("lineLeft");
+        lineRight = lhmap.opticalDistanceSensor.get("lineRight");
         wallDist = lhmap.opticalDistanceSensor.get("wallDist");
 
         rangeSensor = lhmap.get(ModernRoboticsI2cRangeSensor.class, "rangeSensor");
@@ -97,11 +98,6 @@ public class HardwareBot {
         motorA.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorB.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        VuforiaLocalizer.Parameters params = new VuforiaLocalizer.Parameters();
-        params.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
-        params.vuforiaLicenseKey = "AYjW+kn/////AAAAGckyQkdtk0g+vMt7+v21EQwSR82nxrrI34xlR+F75StLY+q3kjvWvgZiO0rBImulRIdCD4IjzWtqgZ8lPunOWuhUUi5eERTExNybyTwhn4GpdRr2XkcN+5uFD+5ZRoMfgx+z4RL4ONOLGWVMD30/VhwSM5vvkKB9C1VyGK0DyKcidSfxW8yhL1BKR2J0B5DtRtDW91hzalAEH2BfKE2+ee/F8f0HQ67DE5nnoVqrnT+THXWFb9W6OOBLszYdHTkUMtMV5U0RQxNuTBkeYGHtgcy17ULkQLY9Lnv0pqCLKdvlz4P3gtUAHPs/kr1cfzcaCS4iRY+ZlwxxLIKSazd0u4NSBjhH/f+zKJMaL/uVG2j4";
-        params.cameraMonitorFeedback = VuforiaLocalizer.Parameters.CameraMonitorFeedback.AXES;
-        Vuforia.setHint(HINT.HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS,4);
     }
 
 
