@@ -51,13 +51,13 @@ public class HardwareBot {
         //Reference the local version of hardware map to argument
         lhmap = hmap;
         //BNO055IMU
-
+        /*
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
         parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
         parameters.loggingEnabled      = true;
         parameters.loggingTag          = "IMU";
-
+        */
         //Define Motors
         FrontRight = lhmap.dcMotor.get("FrontRight");
         FrontLeft = lhmap.dcMotor.get("FrontLeft");
@@ -88,14 +88,14 @@ public class HardwareBot {
         // on a Core Device Interface Module, configured to be a sensor of type "AdaFruit IMU",
 
         // and named "imu".
-        imu = lhmap.get(BNO055IMU.class, "imu");
-        imu.initialize(parameters);
+        //imu = lhmap.get(BNO055IMU.class, "imu");
+        //imu.initialize(parameters);
 
         //Set Direction (Might be the other side base// d on orientation)
-        FrontLeft.setDirection(DcMotor.Direction.REVERSE);
-        BackLeft.setDirection(DcMotor.Direction.REVERSE);
-        FrontRight.setDirection(DcMotor.Direction.REVERSE);
-        BackRight.setDirection(DcMotor.Direction.REVERSE);
+        FrontLeft.setDirection(DcMotor.Direction.FORWARD);
+        BackLeft.setDirection(DcMotor.Direction.FORWARD);
+        FrontRight.setDirection(DcMotor.Direction.FORWARD);
+        BackRight.setDirection(DcMotor.Direction.FORWARD);
         MotorA.setDirection(DcMotor.Direction.FORWARD);
         MotorB.setDirection(DcMotor.Direction.FORWARD);
         leftPusher.setDirection(Servo.Direction.FORWARD);
@@ -129,17 +129,6 @@ public class HardwareBot {
         MotorA.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         MotorB.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        VuforiaLocalizer.Parameters params = new VuforiaLocalizer.Parameters();
-        params.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
-        params.vuforiaLicenseKey = "AYjW+kn/////AAAAGckyQkdtk0g+vMt7+v21EQwSR82nxrrI34xlR+F75StLY+q3kjvWvgZiO0rBImulRIdCD4IjzWtqgZ8lPunOWuhUUi5eERTExNybyTwhn4GpdRr2XkcN+5uFD+5ZRoMfgx+z4RL4ONOLGWVMD30/VhwSM5vvkKB9C1VyGK0DyKcidSfxW8yhL1BKR2J0B5DtRtDW91hzalAEH2BfKE2+ee/F8f0HQ67DE5nnoVqrnT+THXWFb9W6OOBLszYdHTkUMtMV5U0RQxNuTBkeYGHtgcy17ULkQLY9Lnv0pqCLKdvlz4P3gtUAHPs/kr1cfzcaCS4iRY+ZlwxxLIKSazd0u4NSBjhH/f+zKJMaL/uVG2j4";
-        params.cameraMonitorFeedback = VuforiaLocalizer.Parameters.CameraMonitorFeedback.AXES;
-        this.vuforia = ClassFactory.createVuforiaLocalizer(params);
-        Vuforia.setHint(HINT.HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS,4);
-        this.beacons = vuforia.loadTrackablesFromAsset("FTC_2016-17");
-        beacons.get(0).setName("Wheels");
-        beacons.get(1).setName("Tools");
-        beacons.get(2).setName("Lego");
-        beacons.get(3).setName("Gears");
 
     }
 

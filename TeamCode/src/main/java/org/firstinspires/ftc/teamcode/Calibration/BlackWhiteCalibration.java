@@ -14,7 +14,7 @@ public class BlackWhiteCalibration extends LinearOpMode{
     @Override
     public void runOpMode() throws InterruptedException {
         HardwareBot bot = new HardwareBot();
-        LineFollow lineF = new LineFollow(bot);
+        LineFollow lineF = new LineFollow(bot,this);
         telemetry.addData("Status:","Wait for start");
         waitForStart();
         while (opModeIsActive()){

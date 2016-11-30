@@ -27,7 +27,7 @@ public class MRI_ODS extends LinearOpMode {
 
     //Instance of OpticalDistanceSensor
     HardwareBot bot = new HardwareBot();
-    DistanceSensing distS = new DistanceSensing(bot);
+    DistanceSensing distS = new DistanceSensing(bot,this);
 
     //rawValue reading when sensor is 2cm from object
     //this value can be set by pressing A on the Logitech controller

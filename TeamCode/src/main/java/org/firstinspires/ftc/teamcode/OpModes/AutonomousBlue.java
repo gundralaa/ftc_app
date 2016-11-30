@@ -28,8 +28,8 @@ class AutonomousBlue extends LinearOpMode {
 
     HardwareBot bot = new HardwareBot();
     ColorSensing colorS = new ColorSensing(bot,this);
-    LineFollow follow = new LineFollow(bot);
-    EncoderDrive drive = new EncoderDrive(bot);
+    LineFollow follow = new LineFollow(bot,this);
+    EncoderDrive drive = new EncoderDrive(bot,this);
     DistanceSensing distS = new DistanceSensing(bot,this);
     CameraFunction cameraF =  new CameraFunction(bot);
 

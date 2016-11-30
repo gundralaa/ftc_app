@@ -40,26 +40,26 @@ public class DriverControl extends OpMode {
             drive.tankDrive(values[0],values[1]);
 
             //Set Power of Peripherals
-            if(gamepad1.left_bumper) {
+            if(gamepad2.left_bumper) {
                 TestBot.leftClaw.setPosition(1.0);
                 TestBot.rightClaw.setPosition(0.0);
             } else{
                 TestBot.leftClaw.setPosition(0.0);
                 TestBot.rightClaw.setPosition(1.0);
             }
-            if(gamepad1.y) {
+            if(gamepad2.y) {
                 TestBot.MotorB.setPower(1.0);
             } else {
                 TestBot.MotorB.setPower(0.0);
             }
 
-            if(gamepad1.left_trigger > 0.0) {
+            if(gamepad2.a) {
                 TestBot.leftPusher.setPosition(0.0);
             } else {
                 TestBot.leftPusher.setPosition(1.0);
             }
 
-            if(gamepad1.right_trigger > 0.0) {
+            if(gamepad2.b) {
                 TestBot.rightPusher.setPosition(1.0);
             } else {
                 TestBot.rightPusher.setPosition(0.0);

@@ -17,10 +17,10 @@ import org.firstinspires.ftc.teamcode.Libs.LineFollow;
 public class AutonomousRed extends LinearOpMode {
 
     HardwareBot bot = new HardwareBot();
-    ColorSensing colorS = new ColorSensing(bot);
-    LineFollow follow = new LineFollow(bot);
-    EncoderDrive drive = new EncoderDrive(bot);
-    DistanceSensing distS = new DistanceSensing(bot);
+    ColorSensing colorS = new ColorSensing(bot,this);
+    LineFollow follow = new LineFollow(bot,this);
+    EncoderDrive drive = new EncoderDrive(bot,this);
+    DistanceSensing distS = new DistanceSensing(bot,this);
     CameraFunction cameraF =  new CameraFunction(bot);
     int cameraTarg1 = 1;
     int cameraTarg2 = 2;
