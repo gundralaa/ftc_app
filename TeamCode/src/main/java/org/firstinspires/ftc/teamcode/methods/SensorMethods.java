@@ -1,6 +1,9 @@
 package org.firstinspires.ftc.teamcode.methods;
 
 import android.graphics.Color;
+
+import com.qualcomm.robotcore.hardware.DcMotor;
+
 import org.firstinspires.ftc.teamcode.opmodes.HardwareBot;
 
 /**
@@ -42,7 +45,7 @@ public class SensorMethods {
 
     public static void stopAtColoredLine(HardwareBot bot, float lineLight) {
         DrivingMethods.setAllMotors(bot, 0.5);
-        while(bot.lineRight.getLightDetected() != lineLight) {}
+        while(bot.lineRight.getLightDetected() != lineLight);
         DrivingMethods.setAllMotors(bot, 0);
     }
 
@@ -50,15 +53,31 @@ public class SensorMethods {
     public static void distanceWithEncoders(HardwareBot hardwareBot, double distanceInInches, double power) {
         int encoder_counts = (int)(distanceInInches / CIRCUMFERENCE) * CPR;
 
-        hardwareBot.backLeft.setTargetPosition(encoder_counts);
-        hardwareBot.backRight.setTargetPosition((encoder_counts));
-        hardwareBot.frontLeft.setTargetPosition((encoder_counts));
-        hardwareBot.frontRight.setTargetPosition((encoder_counts));
+        int bl_pos = hardwareBot.backLeft.getCurrentPosition();
+        int br_pos = hardwareBot.backRight.getCurrentPosition();
+        int fl_pos = hardwareBot.frontLeft.getCurrentPosition();
+        int fr_pos = hardwareBot.frontRight.getCurrentPosition();
 
-        hardwareBot.backLeft.setPower(power);
-        hardwareBot.backRight.setPower(power);
-        hardwareBot.frontLeft.setPower(power);
-        hardwareBot.frontRight.setPower(power);
+        hardwareBot.backLeft.setTargetPosition(bl_pos +encoder_counts);
+        hardwareBot.backRight.setTargetPosition(br_pos + encoder_counts);
+        hardwareBot.frontLeft.setTargetPosition(fl_pos + encoder_counts);
+        hardwareBot.frontRight.setTargetPosition(fr_pos + encoder_counts);
+
+        hardwareBot.backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        hardwareBot.backRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        hardwareBot.frontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        hardwareBot.backRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        DrivingMethods.setAllMotors(hardwareBot, power);
+
+        while(hardwareBot.backLeft.isBusy() || hardwareBot.backRight.isBusy() || hardwareBot.frontLeft.isBusy() || hardwareBot.frontRight.isBusy());
+
+        DrivingMethods.setAllMotors(hardwareBot, 0);
+
+        hardwareBot.backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        hardwareBot.backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        hardwareBot.frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        hardwareBot.backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public static boolean beaconRed(HardwareBot bot) {

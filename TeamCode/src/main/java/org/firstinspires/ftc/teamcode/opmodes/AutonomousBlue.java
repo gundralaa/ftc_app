@@ -35,7 +35,8 @@ public class AutonomousBlue extends LinearOpMode {
         double previousDist = bot.rangeSensor.cmUltrasonic();
 
         //TODO: Measure distances for launching
-        SensorMethods.distanceWithEncoders(bot, 5, 0.2);
+        SensorMethods.distanceWithEncoders(bot, 10, 0.2);
+        telemetry.addData("Status","Distance Moved");
 
         //Shoot balls
         bot.motorB.setPower(1);
@@ -45,8 +46,9 @@ public class AutonomousBlue extends LinearOpMode {
         //Turn so the robot can proceed to the white line by the beacon
         DrivingMethods.turnClockwise(bot, 0.5);
         //TODO: Either use gyro/encoders or test to find the correct amount of time to turn
-        sleep(250);
+        sleep(1000);
         DrivingMethods.setAllMotors(bot, 0);
+        telemetry.addData("Status","Turned");
 
         //TODO: Measure the light reflectance of the white line
         SensorMethods.stopAtColoredLine(bot, 1);

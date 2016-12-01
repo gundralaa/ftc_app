@@ -22,7 +22,7 @@ public class HardwareBot {
     private final int COLOR_SENSOR_ADDRESS = 0x3c;
     //Define all motors set to null
     public DcMotor frontRight, frontLeft, backRight, backLeft, motorA, motorB;
-    public Servo leftClaw, rightClaw, leftPusher, rightPusher, secondBall;
+    public Servo leftClaw, rightClaw, leftPusher, rightPusher;
     public I2cDevice beaconSensor;
     public I2cDeviceSynch beaconSensorReader;
     public OpticalDistanceSensor lineLeft, wallDist,lineRight;
@@ -43,6 +43,8 @@ public class HardwareBot {
 
         frontLeft = lhmap.dcMotor.get("frontLeft");
         backLeft = lhmap.dcMotor.get("backLeft");
+        backRight = lhmap.dcMotor.get("backRight");
+        frontRight = lhmap.dcMotor.get("frontRight");
 
         motorA = lhmap.dcMotor.get("motorA");
         motorB = lhmap.dcMotor.get("motorB");
@@ -52,7 +54,7 @@ public class HardwareBot {
         leftClaw = lhmap.servo.get("leftClaw");
         rightClaw = lhmap.servo.get("rightClaw");
 
-        beaconSensor = lhmap.i2cDevice.get("BeaconSensor");
+        beaconSensor = lhmap.i2cDevice.get("beaconSensor");
         beaconSensorReader = new I2cDeviceSynchImpl(beaconSensor, I2cAddr.create8bit(COLOR_SENSOR_ADDRESS),false);
         beaconSensorReader.engage();
 
