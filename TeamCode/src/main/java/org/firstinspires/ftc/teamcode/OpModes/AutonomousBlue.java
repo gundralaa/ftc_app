@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.OpModes;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
@@ -30,6 +31,7 @@ import org.firstinspires.ftc.teamcode.Libs.LineFollow;
          *      Red 1 = Gears
          *      Red 2 = Tools
 */
+@Autonomous(name = "BlueAuton", group = "Competition")
 class AutonomousBlue extends LinearOpMode {
 
     HardwareBot bot = new HardwareBot();

@@ -12,11 +12,11 @@ import org.firstinspires.ftc.teamcode.Libs.EncoderDrive;
 /**
  * Created by abhin on 11/1/2016.
  */
-@Autonomous(name = "BlueAuton", group = "Competition")
+@Autonomous(name = "BlueAutonOLD", group = "Competition")
 public class OldAutonBlue extends LinearOpMode {
 
     HardwareBot testBot = new HardwareBot();
-    EncoderDrive Drive = new EncoderDrive(testBot,this);
+    EncoderDrive drive = new EncoderDrive(testBot,this);
     ColorSensing ColorS = new ColorSensing(testBot,this);
     LineFollow follow =  new LineFollow(testBot,this);
 
@@ -54,8 +54,41 @@ public class OldAutonBlue extends LinearOpMode {
         waitForStart();
 
         sleep(3000); //Sleep Method
-        Drive.straightB(0.4);
+        drive.straightF(-0.3);
+        sleep(500); //TODO Change this value
+        drive.stop();
 
+        sleep(500);
+        testBot.secondBall.setPosition(1.0);
+        sleep(500);
+
+        testBot.MotorB.setPower(1.0);
+        sleep(500);
+        testBot.MotorB.setPower(0.0);
+        sleep(1000);
+
+        testBot.secondBall.setPosition(0.3);
+        sleep(1000);
+        testBot.secondBall.setPosition(1.0);
+        sleep(500);
+
+        testBot.MotorB.setPower(1.0);
+        sleep(1000);
+        testBot.MotorB.setPower(0.0);
+        sleep(1000);
+
+        testBot.BackLeft.setPower(-0.4);
+        testBot.BackRight.setPower(-0.4);
+        testBot.FrontLeft.setPower(-0.4);
+        testBot.FrontRight.setPower(-0.4);
+        sleep(500);
+
+        drive.turnClock(0.4);
+        sleep(500);
+        drive.stop();
+        sleep(500);
+
+        drive.straightF(-0.4);
         // Run until forward the white line is seen OR the driver presses STOP;
         while (opModeIsActive() && (testBot.lineRight.getLightDetected() < WHITE_THRESHOLD)) {
 

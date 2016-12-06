@@ -12,10 +12,10 @@ import org.firstinspires.ftc.teamcode.Libs.LineFollow;
 /**
  * Created by abhin on 11/18/2016.
  */
-@Autonomous(name = "RedAuton",group = "Competition")
+@Autonomous(name = "RedAutonOLD",group = "Competition")
 public class OldAutonRed extends LinearOpMode {
     HardwareBot testBot = new HardwareBot();
-    EncoderDrive Drive = new EncoderDrive(testBot,this);
+    EncoderDrive drive = new EncoderDrive(testBot,this);
     ColorSensing ColorS = new ColorSensing(testBot,this);
     LineFollow follow =  new LineFollow(testBot,this);
 
@@ -53,11 +53,41 @@ public class OldAutonRed extends LinearOpMode {
         waitForStart();
 
         sleep(3000); //Sleep Method
+        drive.straightF(-0.3);
+        sleep(500); //TODO Change this value
+        drive.stop();
+
+        sleep(500);
+        testBot.secondBall.setPosition(1.0);
+        sleep(500);
+
+        testBot.MotorB.setPower(1.0);
+        sleep(500);
+        testBot.MotorB.setPower(0.0);
+        sleep(1000);
+
+        testBot.secondBall.setPosition(0.3);
+        sleep(1000);
+        testBot.secondBall.setPosition(1.0);
+        sleep(500);
+
+        testBot.MotorB.setPower(1.0);
+        sleep(1000);
+        testBot.MotorB.setPower(0.0);
+        sleep(1000);
 
         testBot.BackLeft.setPower(-0.4);
         testBot.BackRight.setPower(-0.4);
         testBot.FrontLeft.setPower(-0.4);
         testBot.FrontRight.setPower(-0.4);
+        sleep(500);
+
+        drive.turnCClock(0.4);
+        sleep(500);
+        drive.stop();
+        sleep(500);
+
+        drive.straightF(-0.4);
 
         // Run until forward the white line is seen OR the driver presses STOP;
         while (opModeIsActive() && (testBot.lineRight.getLightDetected() < WHITE_THRESHOLD)) {
@@ -252,10 +282,10 @@ public class OldAutonRed extends LinearOpMode {
         testBot.FrontLeft.setPower(0);
         testBot.FrontRight.setPower(0);
 
-        testBot.BackLeft.setPower(0.4);
-        testBot.BackRight.setPower(-0.4);
-        testBot.FrontLeft.setPower(0.4);
-        testBot.FrontRight.setPower(-0.4);
+        testBot.BackLeft.setPower(-0.4);
+        testBot.BackRight.setPower(0.4);
+        testBot.FrontLeft.setPower(-0.4);
+        testBot.FrontRight.setPower(0.4);
         sleep(1000);
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
