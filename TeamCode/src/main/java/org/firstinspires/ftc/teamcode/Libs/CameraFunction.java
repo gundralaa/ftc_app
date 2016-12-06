@@ -10,8 +10,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  * Created by abhin on 11/9/2016.
  */
 public class CameraFunction {
-    HardwareBot bot = new HardwareBot();
-    public VuforiaTrackables beacons = bot.beacons;
+    HardwareBot bot;
+    public VuforiaTrackables beacons;
     double initialTranslationY;
     /*
         Wheels: 0
@@ -19,7 +19,10 @@ public class CameraFunction {
         Lego: 2
         Gears: 3
     */
-    public CameraFunction(HardwareBot bot){this.bot = bot;}
+    public CameraFunction(HardwareBot bot){
+        this.bot = bot;
+        beacons = bot.beacons;
+    }
     public double getAngle(int i){
         double degrees;
         double angle = 0;

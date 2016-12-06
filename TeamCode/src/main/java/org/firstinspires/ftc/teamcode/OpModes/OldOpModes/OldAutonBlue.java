@@ -54,11 +54,7 @@ public class OldAutonBlue extends LinearOpMode {
         waitForStart();
 
         sleep(3000); //Sleep Method
-
-        testBot.BackLeft.setPower(-0.4);
-        testBot.BackRight.setPower(-0.4);
-        testBot.FrontLeft.setPower(-0.4);
-        testBot.FrontRight.setPower(-0.4);
+        Drive.straightB(0.4);
 
         // Run until forward the white line is seen OR the driver presses STOP;
         while (opModeIsActive() && (testBot.lineRight.getLightDetected() < WHITE_THRESHOLD)) {

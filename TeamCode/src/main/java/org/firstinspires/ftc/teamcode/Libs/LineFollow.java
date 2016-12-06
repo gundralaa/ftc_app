@@ -76,6 +76,7 @@ public class LineFollow {
 
         while (opMode.opModeIsActive() && bot.lineRight.getLightDetected() < threshold){
             opMode.telemetry.addData("Sensor Value", bot.lineRight.getLightDetected());
+            opMode.telemetry.update();
         }
 
         bot.FrontLeft.setPower(0);

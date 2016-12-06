@@ -45,10 +45,10 @@ public class DrivingMethods {
 
     public void tankDrive(double leftY, double rightY){
 
-        bot.FrontRight.setPower(leftY);
-        bot.BackRight.setPower(leftY);
-        bot.FrontLeft.setPower(rightY);
-        bot.BackLeft.setPower(rightY);
+        bot.FrontRight.setPower(rightY);
+        bot.BackRight.setPower(rightY);
+        bot.FrontLeft.setPower(leftY);
+        bot.BackLeft.setPower(leftY);
 
     }
 
