@@ -54,7 +54,7 @@ public class OldAutonRed extends LinearOpMode {
 
         sleep(3000); //Sleep Method
         drive.straightF(-0.3);
-        sleep(1400); //TODO Change this value
+        sleep(1400); //TODO Change this value if you wanna initially go forward more
         drive.stop();
 
         sleep(500);
@@ -83,11 +83,11 @@ public class OldAutonRed extends LinearOpMode {
         sleep(500);
 
         drive.straightF(0.3);
-        sleep(900); //TODO Change this value
+        sleep(900); //TODO Change this value to go back more after going forward at first
         drive.stop();
 
         drive.turnCClock(0.4);
-        sleep(700);
+        sleep(700); //TODO Change this to turn more after backing up this turns towards the white line
         drive.stop();
         sleep(500);
 
@@ -157,7 +157,7 @@ public class OldAutonRed extends LinearOpMode {
         testBot.BackRight.setPower(0.4);
         testBot.FrontLeft.setPower(-0.4);
         testBot.FrontRight.setPower(0.4);
-        sleep(550);
+        sleep(550);// TODO This turn is to square up with the beacon Increase this value if you wanna turn more
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
@@ -228,7 +228,7 @@ public class OldAutonRed extends LinearOpMode {
         testBot.BackRight.setPower(-0.4);
         testBot.FrontLeft.setPower(0.4);
         testBot.FrontRight.setPower(-0.4);
-        sleep(1250);
+        sleep(1250); // TODO This turn is towards the white line of the second beacon increase if you wanna turn more
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
@@ -290,7 +290,7 @@ public class OldAutonRed extends LinearOpMode {
         testBot.BackRight.setPower(0.4);
         testBot.FrontLeft.setPower(-0.4);
         testBot.FrontRight.setPower(0.4);
-        sleep(1250);
+        sleep(1250); //TODO This turn is to square up with the second beacon increase if you wanna turn more
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
