@@ -18,6 +18,8 @@ public class DriverControl extends OpMode {
         float motorPowerB = 0.0f;
         double wheelAngle;
         boolean wheelVisible;
+        double legoAngle;
+        boolean legoVisible;
     //Create Hardware Object
 
         HardwareBot TestBot = new HardwareBot();
@@ -30,19 +32,17 @@ public class DriverControl extends OpMode {
         public void init() {
             //Initialize all hardware through method
             TestBot.init(hardwareMap);
-            cameraF = new CameraFunction(TestBot);
-            telemetry.addData("Status", "Image Targets");
-            cameraF.beacons.activate();
-            telemetry.addData("Status", "Init");
+            //cameraF = new CameraFunction(TestBot);
+            //telemetry.addData("Status", "Image Targets");
+            //cameraF.beacons.activate();
+            //telemetry.addData("Status", "Init");
 
-        }
-        public void start(){
         }
 
         public void loop() {
             // Get Joystick values
-            float leftValue = gamepad1.left_stick_y;
-            float rightValue = gamepad1.right_stick_y;
+            float leftValue = gamepad1.right_stick_y;
+            float rightValue = gamepad1.left_stick_y;
 
             values = drive.square(leftValue,rightValue);
 
@@ -84,11 +84,18 @@ public class DriverControl extends OpMode {
             telemetry.addData("LeftODS",TestBot.lineRight.getLightDetected());
             */
             //telemetry.addData("Range Sensor", TestBot.rangeSensor.cmUltrasonic());
+            /*
             wheelAngle = cameraF.getAngle(0);
             wheelVisible = cameraF.getIsVisible(0);
+            legoAngle = cameraF.getAngle(2);
+            legoVisible = cameraF.getIsVisible(2);
 
             telemetry.addData("Wheels Angle", wheelAngle);
             telemetry.addData("Wheel Visibility", wheelVisible);
+            telemetry.addData("Lego Angle", legoAngle);
+            telemetry.addData("Lego Visible", legoVisible);
+            */
+
 
         }
 

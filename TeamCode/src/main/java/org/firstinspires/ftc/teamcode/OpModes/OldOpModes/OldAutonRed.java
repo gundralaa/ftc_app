@@ -54,7 +54,7 @@ public class OldAutonRed extends LinearOpMode {
 
         sleep(3000); //Sleep Method
         drive.straightF(-0.3);
-        sleep(500); //TODO Change this value
+        sleep(1400); //TODO Change this value
         drive.stop();
 
         sleep(500);
@@ -82,8 +82,12 @@ public class OldAutonRed extends LinearOpMode {
         testBot.FrontRight.setPower(-0.4);
         sleep(500);
 
+        drive.straightF(0.3);
+        sleep(900); //TODO Change this value
+        drive.stop();
+
         drive.turnCClock(0.4);
-        sleep(500);
+        sleep(700);
         drive.stop();
         sleep(500);
 
@@ -153,7 +157,7 @@ public class OldAutonRed extends LinearOpMode {
         testBot.BackRight.setPower(0.4);
         testBot.FrontLeft.setPower(-0.4);
         testBot.FrontRight.setPower(0.4);
-        sleep(650);
+        sleep(550);
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
@@ -224,7 +228,7 @@ public class OldAutonRed extends LinearOpMode {
         testBot.BackRight.setPower(-0.4);
         testBot.FrontLeft.setPower(0.4);
         testBot.FrontRight.setPower(-0.4);
-        sleep(1000);
+        sleep(1250);
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
@@ -286,7 +290,7 @@ public class OldAutonRed extends LinearOpMode {
         testBot.BackRight.setPower(0.4);
         testBot.FrontLeft.setPower(-0.4);
         testBot.FrontRight.setPower(0.4);
-        sleep(1000);
+        sleep(1250);
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
@@ -331,6 +335,10 @@ public class OldAutonRed extends LinearOpMode {
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
         testBot.FrontRight.setPower(0);
+        sleep(2000);
+        drive.straightF(0.4);
+        sleep(300);
+        drive.stop();
 
 
         sleep(500);

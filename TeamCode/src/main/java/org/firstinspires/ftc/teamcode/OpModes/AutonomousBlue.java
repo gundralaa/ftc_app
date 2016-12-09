@@ -66,18 +66,18 @@ class AutonomousBlue extends LinearOpMode {
         bot.BackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         bot.FrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         bot.FrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
+        idle();
+        cameraF.beacons.activate();
         telemetry.addData("Task: ", "Waiting For Start");
         telemetry.update();
 
         waitForStart();
 
-        cameraF.beacons.activate();
 
         sleep(3000); //Initial Sleep
 
         drive.straightF(-0.3);
-        sleep(500); //TODO Change this value
+        sleep(700); //TODO Change this value
         drive.stop();
 
         sleep(500);
@@ -100,13 +100,13 @@ class AutonomousBlue extends LinearOpMode {
         sleep(1000);
 
 
-        drive.turnClock(0.4); //Turn until image is visible
-        boolean initialVisible = cameraF.getIsVisible(cameraTarg1);
-        while(opModeIsActive() && !initialVisible){
-            initialVisible = cameraF.getIsVisible(cameraTarg1); // Using the Wheels
-            idle();
-        }
+        drive.straightF(-0.4);
+        sleep(500);
 
+        drive.turnClock(0.4);
+        sleep(1000);
+        drive.stop();
+        sleep(500);
 
         follow.driveTillLine(-0.5,0.4); // Drive to the Line
         sleep(500); //Pause
@@ -114,7 +114,7 @@ class AutonomousBlue extends LinearOpMode {
         follow.driveTillLine(0.2,0.5); // Back Up and Line Up Precisely
         sleep(500);
 
-        drive.turnClock(0.4); //Start turn
+        drive.turnClock(0.3); //Start turn
         boolean wheelVisible = cameraF.getIsVisible(cameraTarg1);
         while(opModeIsActive() && !wheelVisible){
             wheelVisible = cameraF.getIsVisible(cameraTarg1);
@@ -124,10 +124,10 @@ class AutonomousBlue extends LinearOpMode {
         drive.stop();
 
         sleep(1000);
-        drive.turnClock(0.3);
+        drive.turnClock(0.2);
 
         double wheelAngle = cameraF.getAngle(cameraTarg1);
-        while(opModeIsActive() &&  wheelAngle < 180 && wheelAngle > 0 ){
+        while(opModeIsActive() &&  wheelAngle > -17 ){
             wheelAngle = cameraF.getAngle(cameraTarg1);
             idle();
         }
@@ -185,7 +185,7 @@ class AutonomousBlue extends LinearOpMode {
         drive.turnClock(0.3);
 
         double legosAngle = cameraF.getAngle(cameraTarg2);
-        while(opModeIsActive() &&  legosAngle < 180 && legosAngle > 0 ){
+        while(opModeIsActive() &&  legosAngle > -17){
             legosAngle = cameraF.getAngle(cameraTarg2);
             idle();
         }

@@ -128,7 +128,7 @@ public class HardwareBot {
         FrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         MotorA.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         MotorB.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
+/*
         //Creates Localizer Object to set Parameters
         VuforiaLocalizer.Parameters params = new VuforiaLocalizer.Parameters(R.id.cameraMonitorViewId);
         // Will show the camera on screen leave parameter less if no need.
@@ -147,7 +147,7 @@ public class HardwareBot {
         beacons.get(1).setName("Tools");
         beacons.get(2).setName("Lego");
         beacons.get(3).setName("Gears");
-
+*/
 
     }
 
