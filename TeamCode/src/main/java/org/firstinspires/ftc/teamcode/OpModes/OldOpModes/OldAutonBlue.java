@@ -44,6 +44,8 @@ public class OldAutonBlue extends LinearOpMode {
         testBot.FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         testBot.FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         */
+
+
         testBot.BackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         testBot.BackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         testBot.FrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -53,9 +55,9 @@ public class OldAutonBlue extends LinearOpMode {
 
         waitForStart();
 
-        sleep(3000); //Sleep Method
-        drive.straightF(-0.3);
-        sleep(1400); //TODO This value is how far it will go when first launching the first forward movement increase if you wanna increase the distance
+        sleep(1000); //Sleep Method
+        drive.straightF(-0.2);
+        sleep(1200); //TODO This value is how far it will go when first launching the first forward movement increase if you wanna increase the distance
         drive.stop();
 
         sleep(500);
@@ -78,7 +80,7 @@ public class OldAutonBlue extends LinearOpMode {
         sleep(1000);
 
         drive.straightF(0.3);
-        sleep(900); //TODO This value is how far it will go back after launching increase if you wanna go further
+        sleep(600); //TODO This value is how far it will go back after launching increase if you wanna go further
         drive.stop();
 
 
@@ -152,7 +154,7 @@ public class OldAutonBlue extends LinearOpMode {
         testBot.BackRight.setPower(-0.4);
         testBot.FrontLeft.setPower(0.4);
         testBot.FrontRight.setPower(-0.4);
-        sleep(550); // TODO This value is the turn the robot makes to square up with the first beacon increase to turn more
+        sleep(500); // TODO This value is the turn the robot makes to square up with the first beacon increase to turn more
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
@@ -223,7 +225,7 @@ public class OldAutonBlue extends LinearOpMode {
         testBot.BackRight.setPower(0.4);
         testBot.FrontLeft.setPower(-0.4);
         testBot.FrontRight.setPower(0.4);
-        sleep(1250); // TODO This value is the turn towards the white line of the second beacon increase to turn more
+        sleep(1100); // TODO This value is the turn towards the white line of the second beacon increase to turn more
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
@@ -280,6 +282,11 @@ public class OldAutonBlue extends LinearOpMode {
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
         testBot.FrontRight.setPower(0);
+
+        drive.straightF(-0.2);
+        sleep(100);
+        drive.stop();
+
 
         testBot.BackLeft.setPower(0.4);
         testBot.BackRight.setPower(-0.4);

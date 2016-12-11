@@ -52,9 +52,9 @@ public class OldAutonRed extends LinearOpMode {
 
         waitForStart();
 
-        sleep(3000); //Sleep Method
-        drive.straightF(-0.3);
-        sleep(1400); //TODO Change this value if you wanna initially go forward more
+        sleep(1000); //Sleep Method
+        drive.straightF(-0.2);
+        sleep(1500); //TODO Change this value if you wanna initially go forward more
         drive.stop();
 
         sleep(500);
@@ -76,11 +76,6 @@ public class OldAutonRed extends LinearOpMode {
         testBot.MotorB.setPower(0.0);
         sleep(1000);
 
-        testBot.BackLeft.setPower(-0.4);
-        testBot.BackRight.setPower(-0.4);
-        testBot.FrontLeft.setPower(-0.4);
-        testBot.FrontRight.setPower(-0.4);
-        sleep(500);
 
         drive.straightF(0.3);
         sleep(900); //TODO Change this value to go back more after going forward at first
@@ -157,7 +152,7 @@ public class OldAutonRed extends LinearOpMode {
         testBot.BackRight.setPower(0.4);
         testBot.FrontLeft.setPower(-0.4);
         testBot.FrontRight.setPower(0.4);
-        sleep(550);// TODO This turn is to square up with the beacon Increase this value if you wanna turn more
+        sleep(650);// TODO This turn is to square up with the beacon Increase this value if you wanna turn more
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
@@ -285,6 +280,10 @@ public class OldAutonRed extends LinearOpMode {
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
         testBot.FrontRight.setPower(0);
+
+        drive.straightF(-0.2);
+        sleep(100);
+        drive.stop();
 
         testBot.BackLeft.setPower(-0.4);
         testBot.BackRight.setPower(0.4);
