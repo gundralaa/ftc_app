@@ -57,7 +57,7 @@ public class OldAutonBlue extends LinearOpMode {
 
         sleep(1000); //Sleep Method
         drive.straightF(-0.2);
-        sleep(1200); //TODO This value is how far it will go when first launching the first forward movement increase if you wanna increase the distance
+        sleep(1500); //TODO This value is how far it will go when first launching the first forward movement increase if you wanna increase the distance
         drive.stop();
 
         sleep(500);
@@ -80,7 +80,7 @@ public class OldAutonBlue extends LinearOpMode {
         sleep(1000);
 
         drive.straightF(0.3);
-        sleep(600); //TODO This value is how far it will go back after launching increase if you wanna go further
+        sleep(900); //TODO This value is how far it will go back after launching increase if you wanna go further
         drive.stop();
 
 
@@ -188,11 +188,11 @@ public class OldAutonBlue extends LinearOpMode {
 
         sleep(1000);
 
-        testBot.BackLeft.setPower(-0.4);
-        testBot.BackRight.setPower(-0.4);
-        testBot.FrontLeft.setPower(-0.4);
-        testBot.FrontRight.setPower(-0.4);
-        sleep(300);
+        testBot.BackLeft.setPower(-0.2);
+        testBot.BackRight.setPower(-0.2);
+        testBot.FrontLeft.setPower(-0.2);
+        testBot.FrontRight.setPower(-0.2);
+        sleep(500);
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
@@ -328,11 +328,11 @@ public class OldAutonBlue extends LinearOpMode {
 
         sleep(1000);
 
-        testBot.BackLeft.setPower(-0.4);
-        testBot.BackRight.setPower(-0.4);
-        testBot.FrontLeft.setPower(-0.4);
-        testBot.FrontRight.setPower(-0.4);
-        sleep(300);
+        testBot.BackLeft.setPower(-0.2);
+        testBot.BackRight.setPower(-0.2);
+        testBot.FrontLeft.setPower(-0.2);
+        testBot.FrontRight.setPower(-0.2);
+        sleep(500);
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);

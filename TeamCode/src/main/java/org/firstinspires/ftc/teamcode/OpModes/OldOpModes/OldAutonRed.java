@@ -152,7 +152,7 @@ public class OldAutonRed extends LinearOpMode {
         testBot.BackRight.setPower(0.4);
         testBot.FrontLeft.setPower(-0.4);
         testBot.FrontRight.setPower(0.4);
-        sleep(650);// TODO This turn is to square up with the beacon Increase this value if you wanna turn more
+        sleep(500);// TODO This turn is to square up with the beacon Increase this value if you wanna turn more
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
@@ -186,11 +186,11 @@ public class OldAutonRed extends LinearOpMode {
 
         sleep(1000);
 
-        testBot.BackLeft.setPower(-0.4);
-        testBot.BackRight.setPower(-0.4);
-        testBot.FrontLeft.setPower(-0.4);
-        testBot.FrontRight.setPower(-0.4);
-        sleep(300);
+        testBot.BackLeft.setPower(-0.2);
+        testBot.BackRight.setPower(-0.2);
+        testBot.FrontLeft.setPower(-0.2);
+        testBot.FrontRight.setPower(-0.2);
+        sleep(500);
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
@@ -223,7 +223,7 @@ public class OldAutonRed extends LinearOpMode {
         testBot.BackRight.setPower(-0.4);
         testBot.FrontLeft.setPower(0.4);
         testBot.FrontRight.setPower(-0.4);
-        sleep(1250); // TODO This turn is towards the white line of the second beacon increase if you wanna turn more
+        sleep(1100); // TODO This turn is towards the white line of the second beacon increase if you wanna turn more
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
@@ -289,7 +289,7 @@ public class OldAutonRed extends LinearOpMode {
         testBot.BackRight.setPower(0.4);
         testBot.FrontLeft.setPower(-0.4);
         testBot.FrontRight.setPower(0.4);
-        sleep(1250); //TODO This turn is to square up with the second beacon increase if you wanna turn more
+        sleep(1100); //TODO This turn is to square up with the second beacon increase if you wanna turn more
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
@@ -325,11 +325,11 @@ public class OldAutonRed extends LinearOpMode {
 
         sleep(1000);
 
-        testBot.BackLeft.setPower(-0.4);
-        testBot.BackRight.setPower(-0.4);
-        testBot.FrontLeft.setPower(-0.4);
-        testBot.FrontRight.setPower(-0.4);
-        sleep(300);
+        testBot.BackLeft.setPower(-0.2);
+        testBot.BackRight.setPower(-0.2);
+        testBot.FrontLeft.setPower(-0.2);
+        testBot.FrontRight.setPower(-0.2);
+        sleep(500);
         testBot.BackLeft.setPower(0);
         testBot.BackRight.setPower(0);
         testBot.FrontLeft.setPower(0);
