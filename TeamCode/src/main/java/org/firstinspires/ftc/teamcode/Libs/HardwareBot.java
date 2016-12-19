@@ -30,7 +30,7 @@ public class HardwareBot {
     private final int COLOR_SENSOR_ADDRESS = 0x3c;
     //Define all motors set to null
     public DcMotor FrontRight, FrontLeft, BackRight, BackLeft, MotorA, MotorB;
-    public Servo leftClaw, rightClaw, leftPusher, rightPusher,secondBall;
+    public Servo leftClaw, rightClaw, leftPusher, rightPusher,secondBall,vortexPusher;
     public I2cDevice beaconSensor;
     public I2cDeviceSynch beaconSensorReader;
     public OpticalDistanceSensor lineLeft,lineRight,wallDist;
@@ -72,6 +72,7 @@ public class HardwareBot {
         leftClaw = lhmap.servo.get("leftClaw");
         rightClaw = lhmap.servo.get("rightClaw");
         secondBall = lhmap.servo.get("secondBall");
+        vortexPusher = lhmap.servo.get("vortexPusher");
 
         beaconSensor = lhmap.i2cDevice.get("BeaconSensor");
         beaconSensorReader = new I2cDeviceSynchImpl(beaconSensor, I2cAddr.create8bit(COLOR_SENSOR_ADDRESS),false);
@@ -121,6 +122,8 @@ public class HardwareBot {
 
         secondBall.setPosition(1.0);
 
+        vortexPusher.setPosition(0.4);
+
         //Set Run Mode (Change for Encoder Function)
         BackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         BackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -128,18 +131,18 @@ public class HardwareBot {
         FrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         MotorA.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         MotorB.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-/*
-        //Creates Localizer Object to set Parameters
+
+        //Creates Localizer Parameters Object to set Parameters
         VuforiaLocalizer.Parameters params = new VuforiaLocalizer.Parameters(R.id.cameraMonitorViewId);
         // Will show the camera on screen leave parameter less if no need.
         params.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
         //Which camera we will be using.
         params.vuforiaLicenseKey = "AYjW+kn/////AAAAGckyQkdtk0g+vMt7+v21EQwSR82nxrrI34xlR+F75StLY+q3kjvWvgZiO0rBImulRIdCD4IjzWtqgZ8lPunOWuhUUi5eERTExNybyTwhn4GpdRr2XkcN+5uFD+5ZRoMfgx+z4RL4ONOLGWVMD30/VhwSM5vvkKB9C1VyGK0DyKcidSfxW8yhL1BKR2J0B5DtRtDW91hzalAEH2BfKE2+ee/F8f0HQ67DE5nnoVqrnT+THXWFb9W6OOBLszYdHTkUMtMV5U0RQxNuTBkeYGHtgcy17ULkQLY9Lnv0pqCLKdvlz4P3gtUAHPs/kr1cfzcaCS4iRY+ZlwxxLIKSazd0u4NSBjhH/f+zKJMaL/uVG2j4";
-        //Vuphoria Key taken from Dev Portal
+        //Vuforia Key taken from Dev Portal
         params.cameraMonitorFeedback = VuforiaLocalizer.Parameters.CameraMonitorFeedback.AXES;
         // AR or object that will appear on image target
         //Object used to run Vuphoria by FTC. Pass in param
-        VuforiaLocalizer vuforia = ClassFactory.createVuforiaLocalizer(params);
+        vuforia = ClassFactory.createVuforiaLocalizer(params);
         Vuforia.setHint(HINT.HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS,4);
 
         beacons = vuforia.loadTrackablesFromAsset("FTC_2016-17");
@@ -147,7 +150,7 @@ public class HardwareBot {
         beacons.get(1).setName("Tools");
         beacons.get(2).setName("Lego");
         beacons.get(3).setName("Gears");
-*/
+
 
     }
 

@@ -22,8 +22,8 @@ public class DriverControl extends OpMode {
         boolean legoVisible;
     //Create Hardware Object
 
-        HardwareBot TestBot = new HardwareBot();
-        DrivingMethods drive = new DrivingMethods(TestBot);
+        HardwareBot bot = new HardwareBot();
+        DrivingMethods drive = new DrivingMethods(bot);
         CameraFunction cameraF;
         int colorNumber;
         double values [] = new double[2];
@@ -31,7 +31,7 @@ public class DriverControl extends OpMode {
 
         public void init() {
             //Initialize all hardware through method
-            TestBot.init(hardwareMap);
+            bot.init(hardwareMap);
             //cameraF = new CameraFunction(TestBot);
             //telemetry.addData("Status", "Image Targets");
             //cameraF.beacons.activate();
@@ -51,28 +51,35 @@ public class DriverControl extends OpMode {
 
             //Set Power of Peripherals
             if(gamepad2.left_bumper) {
-                TestBot.leftClaw.setPosition(1.0);
-                TestBot.rightClaw.setPosition(0.0);
+                bot.leftClaw.setPosition(1.0);
+                bot.rightClaw.setPosition(0.0);
             } else{
-                TestBot.leftClaw.setPosition(0.0);
-                TestBot.rightClaw.setPosition(1.0);
+                bot.leftClaw.setPosition(0.0);
+                bot.rightClaw.setPosition(1.0);
             }
             if(gamepad2.y) {
-                TestBot.MotorB.setPower(1.0);
+                bot.MotorB.setPower(1.0);
             } else {
-                TestBot.MotorB.setPower(0.0);
+                bot.MotorB.setPower(0.0);
             }
 
             if(gamepad2.a) {
-                TestBot.leftPusher.setPosition(0.0);
+                bot.leftPusher.setPosition(0.0);
             } else {
-                TestBot.leftPusher.setPosition(1.0);
+                bot.leftPusher.setPosition(1.0);
             }
 
             if(gamepad2.b) {
-                TestBot.rightPusher.setPosition(1.0);
+                bot.rightPusher.setPosition(1.0);
             } else {
-                TestBot.rightPusher.setPosition(0.0);
+                bot.rightPusher.setPosition(0.0);
+            }
+            if(gamepad1.a){
+                bot.vortexPusher.setPosition(1.0);
+            } else if(gamepad1.b){
+                bot.vortexPusher.setPosition(0.0);
+            } else {
+                bot.vortexPusher.setPosition(0.4);
             }
 
             //colorS.enableLed(false);
