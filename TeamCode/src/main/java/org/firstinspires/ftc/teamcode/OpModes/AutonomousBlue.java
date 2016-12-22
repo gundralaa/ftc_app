@@ -48,26 +48,35 @@ class AutonomousBlue extends LinearOpMode {
     double toLineIn; //in inches also find
     double toLineMm; //
     int speed = 500; //counts per second
+    boolean teamColor;
 
     @Override
     public void runOpMode() throws InterruptedException {
 
         bot.init(hardwareMap);
-        boolean teamColor = false;
+        idle();
+
         cameraF = new CameraFunction(bot);
+        idle();
 
         telemetry.addData("Task: ", "Initilizing");
         telemetry.update();
 
-
+        bot.BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        bot.BackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        bot.FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        bot.FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         idle();
 
-        bot.BackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        bot.BackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        bot.FrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        bot.FrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        bot.BackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        bot.BackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        bot.FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        bot.FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         idle();
+
         cameraF.beacons.activate();
+        idle();
+
         telemetry.addData("Task: ", "Waiting For Start");
         telemetry.update();
 
@@ -76,9 +85,7 @@ class AutonomousBlue extends LinearOpMode {
 
         sleep(3000); //Initial Sleep
 
-        drive.straightF(-0.3);
-        sleep(700); //TODO Change this value
-        drive.stop();
+        drive.encoderDrive(-26,-26,0.3);//TODO Change this value
 
         sleep(500);
         bot.secondBall.setPosition(1.0);
@@ -100,12 +107,10 @@ class AutonomousBlue extends LinearOpMode {
         sleep(1000);
 
 
-        drive.straightF(-0.4);
+        drive.encoderDrive(13,13,0.4);
         sleep(500);
 
-        drive.turnClock(0.4);
-        sleep(1000);
-        drive.stop();
+        drive.pivotTurn(45,0.4,18);
         sleep(500);
 
         follow.driveTillLine(-0.5,0.4); // Drive to the Line
@@ -139,6 +144,8 @@ class AutonomousBlue extends LinearOpMode {
 
         sleep(500); // Pause
 
+        drive.encoderDrive(-4,-4,0.2);
+
         teamColor = colorS.colorDecisionBlue(); // Decide the color
 
         sleep(500); // Pause
@@ -150,21 +157,13 @@ class AutonomousBlue extends LinearOpMode {
         }
         sleep(1000); // Pause
 
-        drive.straightF(-0.4);
-        sleep(300);
-        drive.stop();
-
-        sleep(500);
-
         bot.leftPusher.setPosition(1.0); // Reset Pushers
         bot.rightPusher.setPosition(0.0); // Reset Pushers
 
         distS.driveAwayDist(0.3,31.0); // Drive away from the beacon
 
         // Turn around 90 to the next line
-        drive.turnCClock(0.4);
-        sleep(1000);
-        drive.stop();
+        drive.pivotTurn(90,0.4,18);
 
         follow.driveTillLine(-0.5,0.4); // Drive to the Line
         sleep(500); //Pause
@@ -193,6 +192,8 @@ class AutonomousBlue extends LinearOpMode {
         drive.stop();
 
         distS.driveTillDist(-0.3,15.0); //Drive till certain distance from beacon
+
+        drive.encoderDrive(-4,-4,0.2);
 
         sleep(500); // Pause
 

@@ -19,34 +19,43 @@ public class EncoderDrive {
     }
 
     public void encoderDrive(double rightInches, double leftInches, double power){
-        int newLeftTarget;
-        int newRightTarget;
+        int newBackLeftTarget;
+        int newBackRightTarget;
+        int newFrontLeftTarget;
+        int newFrontRightTarget;
 
-        newLeftTarget = bot.BackLeft.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
-        newRightTarget = bot.BackRight.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
+        newBackLeftTarget = bot.BackLeft.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
+        newBackRightTarget = bot.BackRight.getCurrentPosition() + (int)((rightInches) * COUNTS_PER_INCH);
+        newFrontLeftTarget = bot.FrontLeft.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
+        newFrontRightTarget = bot.FrontRight.getCurrentPosition() + (int)((rightInches) * COUNTS_PER_INCH);
 
-        bot.FrontLeft.setTargetPosition(newLeftTarget);
-        bot.BackLeft.setTargetPosition(newLeftTarget);
-        bot.FrontRight.setTargetPosition(newRightTarget);
-        bot.BackRight.setTargetPosition(newRightTarget);
+        bot.FrontLeft.setTargetPosition(newFrontLeftTarget);
+        bot.BackLeft.setTargetPosition(newBackLeftTarget);
+        bot.FrontRight.setTargetPosition(newFrontRightTarget);
+        bot.BackRight.setTargetPosition(newBackRightTarget);
 
         bot.FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         bot.BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         bot.FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         bot.BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        bot.FrontLeft.setPower(Math.abs(power));
-        bot.BackLeft.setPower(Math.abs(power));
-        bot.FrontRight.setPower(Math.abs(power));
-        bot.BackRight.setPower(Math.abs(power));
+        bot.FrontLeft.setPower((power));
+        bot.FrontRight.setPower((power));
+        bot.BackLeft.setPower((power));
+        bot.BackRight.setPower((power));
 
-        while (opMode.opModeIsActive() && bot.BackRight.isBusy() && bot.BackLeft.isBusy()){
+        while (opMode.opModeIsActive() && bot.BackRight.isBusy() && bot.BackLeft.isBusy() && bot.FrontLeft.isBusy() && bot.FrontRight.isBusy()){
+            opMode.telemetry.addData("BackRight", bot.BackRight.getCurrentPosition());
+            opMode.telemetry.addData("BackLeft", bot.BackLeft.getCurrentPosition());
+            opMode.telemetry.addData("FrontRight", bot.FrontRight.getCurrentPosition());
+            opMode.telemetry.addData("FrontLeft", bot.FrontLeft.getCurrentPosition());
+            opMode.telemetry.update();
         }
 
-        bot.FrontLeft.setPower(0.0);
-        bot.BackLeft.setPower(0.0);
-        bot.FrontRight.setPower(0.0);
-        bot.BackRight.setPower(0.0);
+        bot.FrontLeft.setPower(0);
+        bot.FrontRight.setPower(0);
+        bot.BackLeft.setPower(0);
+        bot.BackRight.setPower(0);
 
         bot.FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         bot.BackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -55,7 +64,7 @@ public class EncoderDrive {
 
     }
 
-    public void pivotTurn(double angle, double power, double width){ // r in inches
+    public void pivotTurn(double angle, double power, double width){ // r in inches Positive Angles is Counter Clockwise
         double rightDistance = ((angle/360)*(3.14 * width));
         double leftDistance = (-(angle/360)*(3.14 * width ));
 
