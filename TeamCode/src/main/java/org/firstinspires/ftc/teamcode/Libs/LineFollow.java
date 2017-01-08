@@ -25,7 +25,7 @@ public class LineFollow {
 
     public void simpleFollow(double power){
         double midValue = 0.4;
-        double reflectedLight = bot.lineRight.getLightDetected();
+        double reflectedLight = bot.lineFront.getLightDetected();
         if (reflectedLight < midValue){
             bot.FrontLeft.setPower(0);
             bot.BackLeft.setPower(0);
@@ -49,7 +49,7 @@ public class LineFollow {
         double error;
         double midValue = (highValue + lowValue)/2;
         double powerValue;
-        double lighValue = bot.lineRight.getRawLightDetected();
+        double lighValue = bot.lineFront.getRawLightDetected();
         /*
          * If the error is negative that means
          *     The robot is over the line
@@ -74,8 +74,8 @@ public class LineFollow {
         bot.FrontRight.setPower(power);
         bot.BackRight.setPower(power);
 
-        while (opMode.opModeIsActive() && bot.lineRight.getLightDetected() < threshold){
-            opMode.telemetry.addData("Sensor Value", bot.lineRight.getLightDetected());
+        while (opMode.opModeIsActive() && bot.lineBack.getLightDetected() < threshold){
+            opMode.telemetry.addData("Sensor Value", bot.lineBack.getLightDetected());
             opMode.telemetry.update();
         }
 
@@ -93,8 +93,8 @@ public class LineFollow {
         bot.FrontRight.setPower(power);
         bot.BackRight.setPower(power);
 
-        while (opMode.opModeIsActive() && bot.lineRight.getLightDetected() < threshold){
-            opMode.telemetry.addData("Sensor Value", bot.lineRight.getLightDetected());
+        while (opMode.opModeIsActive() && bot.lineFront.getLightDetected() < threshold){
+            opMode.telemetry.addData("Sensor Value", bot.lineFront.getLightDetected());
             opMode.telemetry.update();
         }
 
@@ -109,8 +109,8 @@ public class LineFollow {
         bot.FrontRight.setPower(-power);
         bot.BackRight.setPower(-power);
 
-        while (opMode.opModeIsActive() && bot.lineRight.getLightDetected() < threshold){
-            opMode.telemetry.addData("Sensor Value", bot.lineRight.getLightDetected());
+        while (opMode.opModeIsActive() && bot.lineFront.getLightDetected() < threshold){
+            opMode.telemetry.addData("Sensor Value", bot.lineFront.getLightDetected());
             opMode.telemetry.update();
         }
 

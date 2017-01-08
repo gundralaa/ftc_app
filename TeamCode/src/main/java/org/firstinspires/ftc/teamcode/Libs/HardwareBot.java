@@ -33,7 +33,7 @@ public class HardwareBot {
     public Servo leftClaw, rightClaw, leftPusher, rightPusher,secondBall,vortexPusher;
     public I2cDevice beaconSensor;
     public I2cDeviceSynch beaconSensorReader;
-    public OpticalDistanceSensor lineLeft,lineRight,wallDist;
+    public OpticalDistanceSensor lineFront,lineBack,wallDist;
     public VuforiaLocalizer vuforia;
     public VuforiaTrackables beacons;
     public BNO055IMU imu;
@@ -78,8 +78,8 @@ public class HardwareBot {
         beaconSensorReader = new I2cDeviceSynchImpl(beaconSensor, I2cAddr.create8bit(COLOR_SENSOR_ADDRESS),false);
         beaconSensorReader.engage();
 
-        lineLeft = lhmap.opticalDistanceSensor.get("lineLeft");
-        lineRight = lhmap.opticalDistanceSensor.get("lineRight");
+        lineFront = lhmap.opticalDistanceSensor.get("lineFront");
+        lineBack = lhmap.opticalDistanceSensor.get("lineBack");
         wallDist = lhmap.opticalDistanceSensor.get("wallDist");
 
         rangeSensor = lhmap.get(ModernRoboticsI2cRangeSensor.class, "rangeSensor");
