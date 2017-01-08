@@ -87,4 +87,37 @@ public class LineFollow {
 
     }
 
+    public void turnCCLine(double power, double threshold){
+        bot.FrontLeft.setPower(-power);
+        bot.BackLeft.setPower(-power);
+        bot.FrontRight.setPower(power);
+        bot.BackRight.setPower(power);
+
+        while (opMode.opModeIsActive() && bot.lineRight.getLightDetected() < threshold){
+            opMode.telemetry.addData("Sensor Value", bot.lineRight.getLightDetected());
+            opMode.telemetry.update();
+        }
+
+        bot.FrontLeft.setPower(0);
+        bot.BackLeft.setPower(0);
+        bot.FrontRight.setPower(0);
+        bot.BackRight.setPower(0);
+    }
+    public void turnCLine(double power, double threshold){
+        bot.FrontLeft.setPower(power);
+        bot.BackLeft.setPower(power);
+        bot.FrontRight.setPower(-power);
+        bot.BackRight.setPower(-power);
+
+        while (opMode.opModeIsActive() && bot.lineRight.getLightDetected() < threshold){
+            opMode.telemetry.addData("Sensor Value", bot.lineRight.getLightDetected());
+            opMode.telemetry.update();
+        }
+
+        bot.FrontLeft.setPower(0);
+        bot.BackLeft.setPower(0);
+        bot.FrontRight.setPower(0);
+        bot.BackRight.setPower(0);
+    }
+
 }

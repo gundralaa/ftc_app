@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Libs;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 /**
  * Created by abhin on 10/31/2016.
@@ -24,11 +25,14 @@ public class EncoderDrive {
         int newFrontLeftTarget;
         int newFrontRightTarget;
 
-        newBackLeftTarget = bot.BackLeft.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
-        newBackRightTarget = bot.BackRight.getCurrentPosition() + (int)((rightInches) * COUNTS_PER_INCH);
-        newFrontLeftTarget = bot.FrontLeft.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
-        newFrontRightTarget = bot.FrontRight.getCurrentPosition() + (int)((rightInches) * COUNTS_PER_INCH);
+        int directionRight;
+        int directionLeft;
 
+        newBackLeftTarget = bot.BackLeft.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
+        newBackRightTarget = bot.BackRight.getCurrentPosition() - (int)((rightInches) * COUNTS_PER_INCH);
+        newFrontLeftTarget = bot.FrontLeft.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
+        newFrontRightTarget = bot.FrontRight.getCurrentPosition() - (int)((rightInches) * COUNTS_PER_INCH);
+/*
         bot.FrontLeft.setTargetPosition(newFrontLeftTarget);
         bot.BackLeft.setTargetPosition(newBackLeftTarget);
         bot.FrontRight.setTargetPosition(newFrontRightTarget);
@@ -38,30 +42,105 @@ public class EncoderDrive {
         bot.BackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         bot.FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         bot.BackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+*/
+        if (newFrontRightTarget > bot.FrontRight.getCurrentPosition()){
+            directionRight = -1;
+        } else if (newFrontRightTarget < bot.FrontRight.getCurrentPosition()){
+            directionRight = 1;
+        } else {
+            directionRight = 1;
+        }
+        if (newFrontLeftTarget > bot.FrontLeft.getCurrentPosition()){
+            directionLeft = 1;
+        } else if (newFrontLeftTarget < bot.FrontLeft.getCurrentPosition()){
+            directionLeft = -1;
+        } else {
+            directionLeft = 1;
+        }
 
-        bot.FrontLeft.setPower((power));
-        bot.FrontRight.setPower((power));
-        bot.BackLeft.setPower((power));
-        bot.BackRight.setPower((power));
 
+        if (directionLeft == 1 && directionRight == 1){ // Its Going Forwards
+            bot.FrontLeft.setPower(-(power));
+            bot.FrontRight.setPower(-(power));
+            bot.BackLeft.setPower(-(power));
+            bot.BackRight.setPower(-(power));
+            while (opMode.opModeIsActive() && bot.FrontLeft.getCurrentPosition() <= newFrontLeftTarget || bot.FrontRight.getCurrentPosition() >= newFrontRightTarget){
+                opMode.telemetry.addData("TargetBackRight", newBackRightTarget);
+                opMode.telemetry.addData("TargetFrontLeft", newFrontLeftTarget);
+                opMode.telemetry.addData("BackRight", bot.BackRight.getCurrentPosition());
+                opMode.telemetry.addData("BackLeft", bot.BackLeft.getCurrentPosition());
+                opMode.telemetry.addData("FrontRight", bot.FrontRight.getCurrentPosition());
+                opMode.telemetry.addData("FrontLeft", bot.FrontLeft.getCurrentPosition());
+                opMode.telemetry.update();
+            }
+        }
+        if (directionLeft == -1 && directionRight == -1){ // Its Going Backwards
+            bot.FrontLeft.setPower((power));
+            bot.FrontRight.setPower((power));
+            bot.BackLeft.setPower((power));
+            bot.BackRight.setPower((power));
+            while (opMode.opModeIsActive() && bot.FrontLeft.getCurrentPosition() > newFrontLeftTarget && bot.FrontRight.getCurrentPosition() < newFrontRightTarget ){
+                opMode.telemetry.addData("TargetBackRight", newBackRightTarget);
+                opMode.telemetry.addData("TargetFrontLeft", newFrontLeftTarget);
+                opMode.telemetry.addData("BackRight", bot.BackRight.getCurrentPosition());
+                opMode.telemetry.addData("BackLeft", bot.BackLeft.getCurrentPosition());
+                opMode.telemetry.addData("FrontRight", bot.FrontRight.getCurrentPosition());
+                opMode.telemetry.addData("FrontLeft", bot.FrontLeft.getCurrentPosition());
+                opMode.telemetry.update();
+            }
+        }
+        if (directionLeft == 1 && directionRight == -1){
+            bot.FrontLeft.setPower(-(power));
+            bot.FrontRight.setPower((power));
+            bot.BackLeft.setPower(-(power));
+            bot.BackRight.setPower((power));
+            while (opMode.opModeIsActive() && bot.FrontLeft.getCurrentPosition() < newFrontLeftTarget || bot.FrontRight.getCurrentPosition() < newFrontRightTarget){
+                opMode.telemetry.addData("TargetBackRight", newBackRightTarget);
+                opMode.telemetry.addData("TargetFrontLeft", newFrontLeftTarget);
+                opMode.telemetry.addData("BackRight", bot.BackRight.getCurrentPosition());
+                opMode.telemetry.addData("BackLeft", bot.BackLeft.getCurrentPosition());
+                opMode.telemetry.addData("FrontRight", bot.FrontRight.getCurrentPosition());
+                opMode.telemetry.addData("FrontLeft", bot.FrontLeft.getCurrentPosition());
+                opMode.telemetry.update();
+            }
+        }
+        if (directionLeft == -1 && directionRight == 1){
+            bot.FrontLeft.setPower((power));
+            bot.FrontRight.setPower(-(power));
+            bot.BackLeft.setPower((power));
+            bot.BackRight.setPower(-(power));
+            while (opMode.opModeIsActive() && bot.FrontLeft.getCurrentPosition() > newFrontLeftTarget || bot.FrontRight.getCurrentPosition() > newFrontRightTarget){
+                opMode.telemetry.addData("TargetBackRight", newBackRightTarget);
+                opMode.telemetry.addData("TargetFrontLeft", newFrontLeftTarget);
+                opMode.telemetry.addData("BackRight", bot.BackRight.getCurrentPosition());
+                opMode.telemetry.addData("BackLeft", bot.BackLeft.getCurrentPosition());
+                opMode.telemetry.addData("FrontRight", bot.FrontRight.getCurrentPosition());
+                opMode.telemetry.addData("FrontLeft", bot.FrontLeft.getCurrentPosition());
+                opMode.telemetry.update();
+            }
+        }
+
+/*
         while (opMode.opModeIsActive() && bot.BackRight.isBusy() && bot.BackLeft.isBusy() && bot.FrontLeft.isBusy() && bot.FrontRight.isBusy()){
+            opMode.telemetry.addData("TargetBackRight", newBackRightTarget);
+            opMode.telemetry.addData("TargetFrontLeft", newFrontLeftTarget);
             opMode.telemetry.addData("BackRight", bot.BackRight.getCurrentPosition());
             opMode.telemetry.addData("BackLeft", bot.BackLeft.getCurrentPosition());
             opMode.telemetry.addData("FrontRight", bot.FrontRight.getCurrentPosition());
             opMode.telemetry.addData("FrontLeft", bot.FrontLeft.getCurrentPosition());
             opMode.telemetry.update();
         }
-
+*/
         bot.FrontLeft.setPower(0);
         bot.FrontRight.setPower(0);
         bot.BackLeft.setPower(0);
         bot.BackRight.setPower(0);
-
+/*
         bot.FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         bot.BackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         bot.FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         bot.BackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
+*/
     }
 
     public void pivotTurn(double angle, double power, double width){ // r in inches Positive Angles is Counter Clockwise

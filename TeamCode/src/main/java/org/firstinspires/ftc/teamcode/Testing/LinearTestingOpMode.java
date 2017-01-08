@@ -53,12 +53,17 @@ public class LinearTestingOpMode extends LinearOpMode {
         bot.FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         bot.FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         idle();
-
+/*
         bot.BackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         bot.BackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         bot.FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         bot.FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         idle();
+*/
+        bot.BackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        bot.BackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        bot.FrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        bot.FrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         cameraF.beacons.activate();
         idle();
@@ -70,9 +75,14 @@ public class LinearTestingOpMode extends LinearOpMode {
 
         sleep(1000);
 
-        drive.encoderDrive(-26,-26,0.65); //Optimal 0.65 Power
+        drive.encoderDrive(-26,-26,0.25); //Forward
         sleep(500);
-        //drive.pivotTurn(90,0.5,18);
+        drive.encoderDrive(26,26,0.25); //Backward
+        sleep(500);
+        drive.encoderDrive(14.6,-14.6,0.45);
+        sleep(500);
+        drive.encoderDrive(-14.6,14.6,0.45);
+        sleep(500);
 
         while (opModeIsActive()){
             wheelAngle = cameraF.getAngle(0);
