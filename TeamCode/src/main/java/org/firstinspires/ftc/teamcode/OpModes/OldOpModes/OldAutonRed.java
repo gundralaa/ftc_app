@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.Libs.LineFollow;
 /**
  * Created by abhin on 11/18/2016.
  */
-@Autonomous(name = "RedAutonOLD",group = "Competition")
+//@Autonomous(name = "RedAutonOLD",group = "Competition")
 public class OldAutonRed extends LinearOpMode {
     HardwareBot testBot = new HardwareBot();
     EncoderDrive drive = new EncoderDrive(testBot,this);

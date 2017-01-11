@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.Libs.EncoderDrive;
 /**
  * Created by abhin on 11/1/2016.
  */
-@Autonomous(name = "BlueAutonOLD", group = "Competition")
+//@Autonomous(name = "BlueAutonOLD", group = "Competition")
 public class OldAutonBlue extends LinearOpMode {
 
     HardwareBot testBot = new HardwareBot();
@@ -91,10 +91,10 @@ public class OldAutonBlue extends LinearOpMode {
 
         drive.straightF(-0.4);
         // Run until forward the white line is seen OR the driver presses STOP;
-        while (opModeIsActive() && (testBot.lineRight.getLightDetected() < WHITE_THRESHOLD)) {
+        while (opModeIsActive() && (testBot.lineBack.getLightDetected() < WHITE_THRESHOLD)) {
 
             // Display the light level while we are looking for the line
-            telemetry.addData("Light Level",  testBot.lineRight.getLightDetected());
+            telemetry.addData("Light Level",  testBot.lineBack.getLightDetected());
             telemetry.update();
             idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
         }
@@ -113,10 +113,10 @@ public class OldAutonBlue extends LinearOpMode {
         testBot.FrontRight.setPower(0.2);
 
         // Run back until the white line is seen OR the driver presses STOP;
-        while (opModeIsActive() && (testBot.lineRight.getLightDetected() < WHITE_THRESHOLD + 0.1)) {
+        while (opModeIsActive() && (testBot.lineBack.getLightDetected() < WHITE_THRESHOLD + 0.1)) {
 
             // Display the light level while we are looking for the line
-            telemetry.addData("Light Level",  testBot.lineRight.getLightDetected());
+            telemetry.addData("Light Level",  testBot.lineBack.getLightDetected());
             telemetry.update();
             idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
         }
@@ -247,10 +247,10 @@ public class OldAutonBlue extends LinearOpMode {
         testBot.FrontRight.setPower(-0.5);
 
         // Run until forward the white line is seen OR the driver presses STOP;
-        while (opModeIsActive() && (testBot.lineRight.getLightDetected() < WHITE_THRESHOLD)) {
+        while (opModeIsActive() && (testBot.lineBack.getLightDetected() < WHITE_THRESHOLD)) {
 
             // Display the light level while we are looking for the line
-            telemetry.addData("Light Level",  testBot.lineRight.getLightDetected());
+            telemetry.addData("Light Level",  testBot.lineBack.getLightDetected());
             telemetry.update();
             idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
         }
@@ -269,10 +269,10 @@ public class OldAutonBlue extends LinearOpMode {
         testBot.FrontRight.setPower(0.2);
 
         // Run back until the white line is seen OR the driver presses STOP;
-        while (opModeIsActive() && (testBot.lineRight.getLightDetected() < WHITE_THRESHOLD + 0.1)) {
+        while (opModeIsActive() && (testBot.lineBack.getLightDetected() < WHITE_THRESHOLD + 0.1)) {
 
             // Display the light level while we are looking for the line
-            telemetry.addData("Light Level",  testBot.lineRight.getLightDetected());
+            telemetry.addData("Light Level",  testBot.lineBack.getLightDetected());
             telemetry.update();
             idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
         }

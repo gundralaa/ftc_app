@@ -21,14 +21,14 @@ public class BlackWhiteCalibration extends LinearOpMode{
             telemetry.addLine("A for White Level, B for Black Level: Right Sensor");
             if(gamepad1.a){
                 telemetry.addData("Status:","Updating White Level");
-                lineF.setHighValue(bot.lineRight.getRawLightDetected());
+                lineF.setHighValue(bot.lineBack.getRawLightDetected());
                 telemetry.addData("High Value:",lineF.highValue);
                 while (gamepad1.a){
                 }
             }
             if(gamepad1.b){
                 telemetry.addData("Status:","Updating Black Level");
-                lineF.setLowValue(bot.lineRight.getRawLightDetected());
+                lineF.setLowValue(bot.lineBack.getRawLightDetected());
                 telemetry.addData("Low Value",lineF.lowValue);
                 while (gamepad1.b){
                 }

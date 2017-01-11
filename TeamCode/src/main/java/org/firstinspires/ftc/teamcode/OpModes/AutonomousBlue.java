@@ -32,7 +32,7 @@ import org.firstinspires.ftc.teamcode.Libs.LineFollow;
          *      Red 2 = Tools
 */
 @Autonomous(name = "BlueAuton", group = "Competition")
-class AutonomousBlue extends LinearOpMode {
+public class AutonomousBlue extends LinearOpMode {
 
     HardwareBot bot = new HardwareBot();
     ColorSensing colorS = new ColorSensing(bot,this);
@@ -77,7 +77,7 @@ class AutonomousBlue extends LinearOpMode {
 
         sleep(3000); //Initial Sleep
 
-        drive.encoderDrive(-26,-26,0.3);
+        drive.encoderDrive(26,26,0.3);
 
         sleep(500);
         bot.secondBall.setPosition(1.0);
