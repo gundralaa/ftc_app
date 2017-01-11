@@ -32,7 +32,7 @@ import org.firstinspires.ftc.teamcode.Libs.LineFollow;
          *      Red 2 = Tools
 */
 @Autonomous(name = "BlueAuton", group = "Competition")
-class AutonomousBlue extends LinearOpMode {
+public class AutonomousBlue extends LinearOpMode {
 
     HardwareBot bot = new HardwareBot();
     ColorSensing colorS = new ColorSensing(bot,this);
