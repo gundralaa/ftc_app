@@ -62,10 +62,10 @@ public class AutonomousBlue extends LinearOpMode {
         bot.FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         idle();
 
-        bot.BackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        bot.BackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        bot.FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        bot.FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        bot.BackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        bot.BackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        bot.FrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        bot.FrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         idle();
 
 
@@ -77,7 +77,7 @@ public class AutonomousBlue extends LinearOpMode {
 
         sleep(3000); //Initial Sleep
 
-        drive.encoderDrive(26,26,0.3);
+        drive.encoderDrive(-26,-26,0.3);
 
         sleep(500);
         bot.secondBall.setPosition(1.0);

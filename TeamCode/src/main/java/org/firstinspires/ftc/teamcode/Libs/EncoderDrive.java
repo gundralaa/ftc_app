@@ -64,7 +64,7 @@ public class EncoderDrive {
             bot.FrontRight.setPower((power));
             bot.BackLeft.setPower((power));
             bot.BackRight.setPower((power));
-            while (opMode.opModeIsActive() && bot.FrontLeft.getCurrentPosition() <= newFrontLeftTarget && bot.FrontRight.getCurrentPosition() >= newFrontRightTarget){
+            while (opMode.opModeIsActive() && bot.FrontLeft.getCurrentPosition() < newFrontLeftTarget){
                 opMode.telemetry.addData("TargetFrontRight", newFrontRightTarget);
                 opMode.telemetry.addData("TargetFrontLeft", newFrontLeftTarget);
                 opMode.telemetry.addData("BackRight", bot.BackRight.getCurrentPosition());
@@ -83,7 +83,7 @@ public class EncoderDrive {
             bot.FrontRight.setPower(-(power));
             bot.BackLeft.setPower(-(power));
             bot.BackRight.setPower(-(power));
-            while (opMode.opModeIsActive() && bot.FrontLeft.getCurrentPosition() > newFrontLeftTarget && bot.FrontRight.getCurrentPosition() < newFrontRightTarget ){
+            while (opMode.opModeIsActive() && bot.FrontLeft.getCurrentPosition() > newFrontLeftTarget){
                 opMode.telemetry.addData("TargetFrontRight", newFrontRightTarget);
                 opMode.telemetry.addData("TargetFrontLeft", newFrontLeftTarget);
                 opMode.telemetry.addData("BackRight", bot.BackRight.getCurrentPosition());
