@@ -133,7 +133,7 @@ public class HardwareBot {
         MotorB.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         //Creates Localizer Parameters Object to set Parameters
-        VuforiaLocalizer.Parameters params = new VuforiaLocalizer.Parameters(R.id.cameraMonitorViewId);
+        VuforiaLocalizer.Parameters params = new VuforiaLocalizer.Parameters();
         // Will show the camera on screen leave parameter less if no need.
         params.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
         //Which camera we will be using.

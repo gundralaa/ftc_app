@@ -60,10 +60,10 @@ public class EncoderDrive {
 
 
         if (directionLeft == 1 && directionRight == 1){ // Its Going Forwards
-            bot.FrontLeft.setPower((power));
-            bot.FrontRight.setPower((power));
-            bot.BackLeft.setPower((power));
-            bot.BackRight.setPower((power));
+            bot.FrontLeft.setPower(-(power));
+            bot.FrontRight.setPower(-(power));
+            bot.BackLeft.setPower(-(power));
+            bot.BackRight.setPower(-(power));
             while (opMode.opModeIsActive() && bot.FrontLeft.getCurrentPosition() < newFrontLeftTarget){
                 opMode.telemetry.addData("TargetFrontRight", newFrontRightTarget);
                 opMode.telemetry.addData("TargetFrontLeft", newFrontLeftTarget);
@@ -73,16 +73,12 @@ public class EncoderDrive {
                 opMode.telemetry.addData("FrontLeft", bot.FrontLeft.getCurrentPosition());
                 opMode.telemetry.update();
             }
-            bot.FrontLeft.setPower(0);
-            bot.FrontRight.setPower(0);
-            bot.BackLeft.setPower(0);
-            bot.BackRight.setPower(0);
         }
         if (directionLeft == -1 && directionRight == -1){ // Its Going Backwards
-            bot.FrontLeft.setPower(-(power));
-            bot.FrontRight.setPower(-(power));
-            bot.BackLeft.setPower(-(power));
-            bot.BackRight.setPower(-(power));
+            bot.FrontLeft.setPower((power));
+            bot.FrontRight.setPower((power));
+            bot.BackLeft.setPower((power));
+            bot.BackRight.setPower((power));
             while (opMode.opModeIsActive() && bot.FrontLeft.getCurrentPosition() > newFrontLeftTarget){
                 opMode.telemetry.addData("TargetFrontRight", newFrontRightTarget);
                 opMode.telemetry.addData("TargetFrontLeft", newFrontLeftTarget);
@@ -92,10 +88,6 @@ public class EncoderDrive {
                 opMode.telemetry.addData("FrontLeft", bot.FrontLeft.getCurrentPosition());
                 opMode.telemetry.update();
             }
-            bot.FrontLeft.setPower(0);
-            bot.FrontRight.setPower(0);
-            bot.BackLeft.setPower(0);
-            bot.BackRight.setPower(0);
         }
         if (directionLeft == 1 && directionRight == -1){
             bot.FrontLeft.setPower((power));
@@ -111,10 +103,6 @@ public class EncoderDrive {
                 opMode.telemetry.addData("FrontLeft", bot.FrontLeft.getCurrentPosition());
                 opMode.telemetry.update();
             }
-            bot.FrontLeft.setPower(0);
-            bot.FrontRight.setPower(0);
-            bot.BackLeft.setPower(0);
-            bot.BackRight.setPower(0);
         }
         if (directionLeft == -1 && directionRight == 1){
             bot.FrontLeft.setPower(-(power));
@@ -130,11 +118,12 @@ public class EncoderDrive {
                 opMode.telemetry.addData("FrontLeft", bot.FrontLeft.getCurrentPosition());
                 opMode.telemetry.update();
             }
-            bot.FrontLeft.setPower(0);
-            bot.FrontRight.setPower(0);
-            bot.BackLeft.setPower(0);
-            bot.BackRight.setPower(0);
         }
+
+        bot.FrontLeft.setPower(0);
+        bot.FrontRight.setPower(0);
+        bot.BackLeft.setPower(0);
+        bot.BackRight.setPower(0);
 
 /*
         while (opMode.opModeIsActive() && bot.BackRight.isBusy() && bot.BackLeft.isBusy() && bot.FrontLeft.isBusy() && bot.FrontRight.isBusy()){
@@ -155,11 +144,11 @@ public class EncoderDrive {
 */
     }
 
-    public void pivotTurn(double angle, double power, double width){ // r in inches Positive Angles is Counter Clockwise
-        double rightDistance = ((angle/360)*(3.14 * width));
+    public int pivotTurn(double angle, double width){ // r in inches Positive Angles is Counter Clockwise
         double leftDistance = (-(angle/360)*(3.14 * width ));
+        int newBackLeftTarget = bot.BackLeft.getCurrentPosition() + (int)(leftDistance * COUNTS_PER_INCH);
 
-        encoderDrive(rightDistance, leftDistance, power);
+        return newBackLeftTarget;
 
     }
     public void setMaxSpeedAll(int speed){
