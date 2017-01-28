@@ -1,9 +1,11 @@
 package org.firstinspires.ftc.teamcode.OpModes;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsUsbDcMotorController;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 import org.firstinspires.ftc.teamcode.Libs.CameraFunction;
 import org.firstinspires.ftc.teamcode.Libs.HardwareBot;
@@ -57,8 +59,6 @@ public class DriverControl extends LinearOpMode {
         bot.FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         idle();
 
-        cameraF.beacons.activate();
-        idle();
 
         telemetry.addData("Task: ", "Waiting For Start");
         telemetry.update();
@@ -69,6 +69,8 @@ public class DriverControl extends LinearOpMode {
             //Get Joystick Values
             float leftValue = gamepad1.right_stick_y;
             float rightValue = gamepad1.left_stick_y;
+
+
 
             values = drive.square(leftValue,rightValue);
 
@@ -101,12 +103,14 @@ public class DriverControl extends LinearOpMode {
                 bot.rightPusher.setPosition(0.0);
             }
             if(gamepad1.right_bumper){
-                bot.vortexPusher.setPosition(1.0);
-            } else if(gamepad1.b){
-                bot.vortexPusher.setPosition(0.0);
+                bot.secondBall.setPosition(0.3);
+                sleep(1000);
+                bot.secondBall.setPosition(1.0);
+                sleep(500);
             } else {
-                bot.vortexPusher.setPosition(0.4);
+                bot.secondBall.setPosition(1.0);
             }
+
         }
     }
 }

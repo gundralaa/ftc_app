@@ -36,7 +36,7 @@ public class AutonomousRed extends LinearOpMode {
         bot.init(hardwareMap);
         idle();
 
-        telemetry.addData("Task: ", "Initilizing");
+        telemetry.addData("Task: ", "Initializing");
         telemetry.update();
 
         bot.BackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -45,11 +45,24 @@ public class AutonomousRed extends LinearOpMode {
         bot.FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         idle();
 
-        bot.BackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        bot.BackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        bot.FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        bot.FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        bot.BackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        bot.BackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        bot.FrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        bot.FrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         idle();
+
+        telemetry.addData(">", "Gyro Calibrating. Do Not move!");
+        telemetry.update();
+        bot.gyroSensor.calibrate();
+
+        // make sure the gyro is calibrated.
+        while (bot.gyroSensor.isCalibrating())  {
+            Thread.sleep(50);
+            idle();
+        }
+
+        telemetry.addData(">","Gyro Calibrated.  Press Start.");
+        telemetry.update();
 
 
         telemetry.addData("Task: ", "Waiting For Start");
@@ -58,9 +71,9 @@ public class AutonomousRed extends LinearOpMode {
         waitForStart();
 
 
-        sleep(3000); //Initial Sleep
+        //sleep(3000); //Initial Sleep
 
-        drive.encoderDrive(22,22,0.2);
+        drive.encoderDrive(15,15,0.2);
 
         sleep(500);
         bot.secondBall.setPosition(1.0);
@@ -82,13 +95,13 @@ public class AutonomousRed extends LinearOpMode {
         sleep(1000);
 
 
-        drive.encoderDrive(-9,-9,0.2);
+        drive.encoderDrive(-2,-2,0.2);
         sleep(500);
 
-        drive.turnCClock(0.4);
+        drive.turnCClock(0.5);
         //int targetdistance = drive.pivotTurn(60,18);
         //while(bot.BackLeft.getCurrentPosition() < targetdistance)
-        sleep(750);
+        sleep(1000);
         drive.stop();
         sleep(500);
 
@@ -110,9 +123,9 @@ public class AutonomousRed extends LinearOpMode {
         sleep(500); // Pause
 
         if (teamColor){
-            bot.leftPusher.setPosition(0.0); // Left if Blue on sensor
+            bot.rightPusher.setPosition(1.0); // Left if Blue on sensor
         } else {
-            bot.rightPusher.setPosition(1.0); //Right if not Blue on sensor
+            bot.leftPusher.setPosition(0.0); //Right if not Blue on sensor
         }
         sleep(1000); // Pause
 
@@ -123,8 +136,9 @@ public class AutonomousRed extends LinearOpMode {
         bot.leftPusher.setPosition(1.0); // Reset Pushers
         bot.rightPusher.setPosition(0.0); // Reset Pushers
 
-        distS.driveAwayDist(0.3,31.0); // Drive away from the beacon
+        //distS.driveAwayDist(0.3,31.0); // Drive away from the beacon
 
+        drive.encoderDrive(-15, -15, 0.4);
         // Turn around 90 to the next line
         drive.turnCClock(0.4);
         sleep(1300);
@@ -152,9 +166,9 @@ public class AutonomousRed extends LinearOpMode {
         sleep(500); // Pause
 
         if (teamColor){
-            bot.leftPusher.setPosition(0.0); //If true then extend with left
+            bot.rightPusher.setPosition(1.0); //If true then extend with left
         } else {
-            bot.rightPusher.setPosition(1.0); //If false then extend with right
+            bot.leftPusher.setPosition(0.0); //If false then extend with right
         }
         sleep(1000);
 

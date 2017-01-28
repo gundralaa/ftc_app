@@ -62,6 +62,12 @@ public class DistanceSensing {
         bot.FrontRight.setPower(power);
         bot.BackRight.setPower(power);
 
+        while(true) {
+            opMode.telemetry.addData("bot.range.cmUltrasonic", bot.rangeSensor.cmUltrasonic());
+            opMode.telemetry.update();
+        }
+
+        /*
         while (opMode.opModeIsActive() && bot.rangeSensor.cmUltrasonic() < threshold){
             opMode.telemetry.addData("Distance", bot.rangeSensor.cmUltrasonic());
         }
@@ -70,6 +76,7 @@ public class DistanceSensing {
         bot.BackLeft.setPower(0);
         bot.FrontRight.setPower(0);
         bot.BackRight.setPower(0);
+    */
     }
 
 

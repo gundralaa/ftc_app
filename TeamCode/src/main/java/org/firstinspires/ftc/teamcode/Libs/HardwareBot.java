@@ -1,9 +1,14 @@
 package org.firstinspires.ftc.teamcode.Libs;
+import android.graphics.Region;
+
 import com.qualcomm.hardware.adafruit.AdafruitBNO055IMU;
 import com.qualcomm.hardware.adafruit.BNO055IMU;
 import com.qualcomm.hardware.adafruit.JustLoggingAccelerationIntegrator;
 import com.qualcomm.hardware.adafruit.NaiveAccelerationIntegrator;
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -37,13 +42,16 @@ public class HardwareBot {
     public VuforiaLocalizer vuforia;
     public VuforiaTrackables beacons;
     public BNO055IMU imu;
+    public ModernRoboticsI2cGyro gyroSensor;
     public ModernRoboticsI2cRangeSensor rangeSensor;
 
     //Define local hmap
     HardwareMap lhmap;
 
-    public HardwareBot() {
 
+
+
+    public HardwareBot() {
     }
 
     public void init(HardwareMap hmap){
@@ -77,6 +85,8 @@ public class HardwareBot {
         beaconSensor = lhmap.i2cDevice.get("BeaconSensor");
         beaconSensorReader = new I2cDeviceSynchImpl(beaconSensor, I2cAddr.create8bit(COLOR_SENSOR_ADDRESS),false);
         beaconSensorReader.engage();
+
+        gyroSensor = (ModernRoboticsI2cGyro)lhmap.gyroSensor.get("gyro");
 
         lineFront = lhmap.opticalDistanceSensor.get("lineFront");
         lineBack = lhmap.opticalDistanceSensor.get("lineBack");

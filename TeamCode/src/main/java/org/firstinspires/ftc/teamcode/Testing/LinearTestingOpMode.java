@@ -17,6 +17,7 @@ import org.firstinspires.ftc.teamcode.Libs.DistanceSensing;
 import org.firstinspires.ftc.teamcode.Libs.EncoderDrive;
 import org.firstinspires.ftc.teamcode.Libs.HardwareBot;
 import org.firstinspires.ftc.teamcode.Libs.LineFollow;
+import org.firstinspires.ftc.teamcode.Libs.MRGyro;
 
 /**
  * Created by abhin on 11/19/2016.
@@ -31,20 +32,21 @@ public class LinearTestingOpMode extends LinearOpMode {
     ColorSensing colorS = new ColorSensing(bot,this);
     CameraFunction cameraF;
     EncoderDrive drive =  new EncoderDrive(bot,this);
+    MRGyro gyroMethods = new MRGyro(bot,this);
 
     int imageTarget = 1;
     double wheelAngle;
     boolean wheelVisible;
     double legoAngle;
     boolean legoVisible;
+    int heading;
+    int angleZ;
 
 
     @Override
     public void runOpMode() throws InterruptedException {
         bot.init(hardwareMap);
-        idle();
-        cameraF = new CameraFunction(bot);
-        idle();
+
         telemetry.addData("Task: ", "Initilizing");
         telemetry.update();
 
@@ -65,8 +67,21 @@ public class LinearTestingOpMode extends LinearOpMode {
         bot.FrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         bot.FrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        cameraF.beacons.activate();
         idle();
+
+        telemetry.addData(">", "Gyro Calibrating. Do Not move!");
+        telemetry.update();
+        bot.gyroSensor.calibrate();
+
+        // make sure the gyro is calibrated.
+        while (bot.gyroSensor.isCalibrating())  {
+            Thread.sleep(50);
+            idle();
+        }
+
+        telemetry.addData(">","Gyro Calibrated.  Press Start.");
+        telemetry.update();
+
 
         telemetry.addData("Task: ", "Waiting For Start");
         telemetry.update();
@@ -79,22 +94,22 @@ public class LinearTestingOpMode extends LinearOpMode {
         sleep(500);
         drive.encoderDrive(26,26,0.25); //Backward
         sleep(500);
-        drive.encoderDrive(14.6,-14.6,0.45);
+
+        gyroMethods.turnCCAngle(90,0.3);
         sleep(500);
-        drive.encoderDrive(-14.6,14.6,0.45);
-        sleep(500);
+        gyroMethods.turnCAngle(90,0.3);
+
 
         while (opModeIsActive()){
-            wheelAngle = cameraF.getAngle(0);
-            wheelVisible = cameraF.getIsVisible(0);
-            legoAngle = cameraF.getAngle(2);
-            legoVisible = cameraF.getIsVisible(2);
 
-            telemetry.addData("Wheels Angle", wheelAngle);
-            telemetry.addData("Wheel Visibility", wheelVisible);
-            telemetry.addData("Lego Angle", legoAngle);
-            telemetry.addData("Lego Visible", legoVisible);
+            heading = bot.gyroSensor.getHeading();
+            angleZ = bot.gyroSensor.getIntegratedZValue();
+
+            telemetry.addData("Heading: ", heading);
+            telemetry.addData("AngleZ: ", angleZ);
             telemetry.update();
+
+
         }
 
 

@@ -68,6 +68,19 @@ public class AutonomousBlue extends LinearOpMode {
         bot.FrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         idle();
 
+        telemetry.addData(">", "Gyro Calibrating. Do Not move!");
+        telemetry.update();
+        bot.gyroSensor.calibrate();
+
+        // make sure the gyro is calibrated.
+        while (bot.gyroSensor.isCalibrating())  {
+            Thread.sleep(50);
+            idle();
+        }
+
+        telemetry.addData(">","Gyro Calibrated.  Press Start.");
+        telemetry.update();
+
 
         telemetry.addData("Task: ", "Waiting For Start");
         telemetry.update();
@@ -75,16 +88,16 @@ public class AutonomousBlue extends LinearOpMode {
         waitForStart();
 
 
-        sleep(3000); //Initial Sleep
+        //sleep(3000); //Initial Sleep
 
-        drive.encoderDrive(22,22,0.2);
+        drive.encoderDrive(15,15,0.2);
 
         sleep(500);
         bot.secondBall.setPosition(1.0);
         sleep(500);
 
         bot.MotorB.setPower(1.0);
-        sleep(500);
+        sleep(1000);
         bot.MotorB.setPower(0.0);
         sleep(1000);
 
@@ -99,7 +112,7 @@ public class AutonomousBlue extends LinearOpMode {
         sleep(1000);
 
 
-        drive.encoderDrive(-9,-9,0.2);
+        drive.encoderDrive(-2,-2,0.2);
         sleep(500);
 
         drive.turnClock(0.4);
@@ -116,7 +129,11 @@ public class AutonomousBlue extends LinearOpMode {
         sleep(500);
 
         //TODO First turn towards first beacon
-        follow.turnCLine(0.5,0.4);
+        follow.turnCLine(0.5,0.4); //Change name turn towards line using front
+
+        drive.turnClock(0.4);
+        sleep(100);
+        drive.stop();
 
         distS.driveTillDist(-0.3,15); //Drive till certain distance from beacon
 
@@ -137,16 +154,17 @@ public class AutonomousBlue extends LinearOpMode {
         }
         sleep(1000); // Pause
 
-        drive.encoderDrive(4,4,0.1); //Drive really close to the beacon
-
+        drive.straightB(0.1);//Get really close to the beacon
         sleep(500);
+        drive.stop();
+
 
 
         bot.leftPusher.setPosition(1.0); // Reset Pushers
         bot.rightPusher.setPosition(0.0); // Reset Pushers
 
-        distS.driveAwayDist(0.3,31.0); // Drive away from the beacon
-
+        //distS.driveAwayDist(0.3,31.0); // Drive away from the beacon
+        drive.encoderDrive(-15,-15,0.4);
         // Turn around 90 to the next line
         drive.turnCClock(0.4);
         sleep(1300);
@@ -161,7 +179,7 @@ public class AutonomousBlue extends LinearOpMode {
         sleep(500);
 
         //TODO First turn towards second beacon
-        follow.turnCLine(0.4,0.4);
+        follow.turnCLine(0.5,0.4);
 
         sleep(1000);
 
@@ -174,16 +192,17 @@ public class AutonomousBlue extends LinearOpMode {
         sleep(500); // Pause
 
         if (teamColor){
-            bot.leftPusher.setPosition(0.0); //If true then extend with left
+            bot.rightPusher.setPosition(1.0); //If true then extend with left
         } else {
-            bot.rightPusher.setPosition(1.0); //If false then extend with right
+            bot.leftPusher.setPosition(0.0); //If false then extend with right
         }
         sleep(1000);
 
-        drive.encoderDrive(4,4,0.1); //Get really close to the beacon
-
+        drive.straightB(0.1);//Get really close to the beacon
         sleep(500);
+        drive.stop();
 
+        //sleep(500);
         drive.encoderDrive(-10,-10,0.2);
 
         sleep(500);

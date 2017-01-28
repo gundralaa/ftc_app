@@ -74,8 +74,8 @@ public class LineFollow {
         bot.FrontRight.setPower(power);
         bot.BackRight.setPower(power);
 
-        while (opMode.opModeIsActive() && bot.lineBack.getLightDetected() < threshold){
-            opMode.telemetry.addData("Sensor Value", bot.lineBack.getLightDetected());
+        while (opMode.opModeIsActive() && bot.lineFront.getLightDetected() < threshold){
+            opMode.telemetry.addData("Sensor Value", bot.lineFront.getLightDetected());
             opMode.telemetry.update();
         }
 
@@ -93,8 +93,8 @@ public class LineFollow {
         bot.FrontRight.setPower(power);
         bot.BackRight.setPower(power);
 
-        while (opMode.opModeIsActive() && bot.lineFront.getLightDetected() < threshold){
-            opMode.telemetry.addData("Sensor Value", bot.lineFront.getLightDetected());
+        while (opMode.opModeIsActive() && bot.lineBack.getLightDetected() < threshold){
+            opMode.telemetry.addData("Sensor Value", bot.lineBack.getLightDetected());
             opMode.telemetry.update();
         }
 
@@ -109,8 +109,8 @@ public class LineFollow {
         bot.FrontRight.setPower(-power);
         bot.BackRight.setPower(-power);
 
-        while (opMode.opModeIsActive() && bot.lineFront.getLightDetected() < threshold){
-            opMode.telemetry.addData("Sensor Value", bot.lineFront.getLightDetected());
+        while (opMode.opModeIsActive() && bot.lineBack.getLightDetected() < threshold){
+            opMode.telemetry.addData("Sensor Value", bot.lineBack.getLightDetected());
             opMode.telemetry.update();
         }
 

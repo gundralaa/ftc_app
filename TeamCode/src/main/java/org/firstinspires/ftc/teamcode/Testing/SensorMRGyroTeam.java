@@ -29,13 +29,12 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
-package org.firstinspires.ftc.robotcontroller.external.samples;
+package org.firstinspires.ftc.teamcode.Testing;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.GyroSensor;
 
 /*
  * This is an example LinearOpMode that shows how to use
@@ -49,8 +48,7 @@ import com.qualcomm.robotcore.hardware.GyroSensor;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
 */
 @TeleOp(name = "Sensor: MR Gyro", group = "Sensor")
-@Disabled
-public class SensorMRGyro extends LinearOpMode {
+public class SensorMRGyroTeam extends LinearOpMode {
 
   @Override
   public void runOpMode() throws InterruptedException {
@@ -74,7 +72,6 @@ public class SensorMRGyro extends LinearOpMode {
     while (gyro.isCalibrating())  {
       Thread.sleep(50);
       idle();
-
     }
 
     telemetry.addData(">", "Gyro Calibrated.  Press Start.");
