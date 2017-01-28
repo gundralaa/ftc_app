@@ -187,4 +187,6 @@ public class EncoderDrive {
         bot.FrontRight.setPower(power);
         bot.BackRight.setPower(power);
     }
+    public void pEncoderDrive(){
+    }
 }

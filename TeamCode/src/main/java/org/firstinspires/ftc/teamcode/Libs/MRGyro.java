@@ -35,4 +35,42 @@ public class MRGyro {
         }
         drive.stop();
     }
+    public void piCCGyroTurn(int angle, int gain){
+        int currentAngle = bot.gyroSensor.getIntegratedZValue();
+        int targetAngle = currentAngle + Math.abs(angle)
+        int error = targetAngle - currentAngle;
+        int power;
+        while(opmode.opModeIsActive() && error > 0){
+            power = (error * PCONSTANT) + gain;
+            bot.FrontLeft.setPower(power);
+            bot.BackLeft.setPower(power);
+            bot.FrontRight.setPower(-power);
+            bot.BackRight.setPower(-power);
+            currentAngle = bot.gyroSensor.getIntegratedZValue();
+            error = targetAngle - currentAngle;
+        }
+        bot.FrontLeft.setPower(0.0);
+        bot.BackLeft.setPower(0.0);
+        bot.FrontRight.setPower(0.0);
+        bot.BackRight.setPower(0.0);
+    }
+    public void piCGyroTurn(int angle, int gain){
+        int currentAngle = bot.gyroSensor.getIntegratedZValue();
+        int targetAngle = currentAngle - Math.abs(angle)
+        int error = -(targetAngle - currentAngle);
+        int power;
+        while(opmode.opModeIsActive() && error > 0){
+            power = (error * PCONSTANT) + gain;
+            bot.FrontLeft.setPower(-power);
+            bot.BackLeft.setPower(-power);
+            bot.FrontRight.setPower(power);
+            bot.BackRight.setPower(power);
+            currentAngle = bot.gyroSensor.getIntegratedZValue();
+            error = -(targetAngle - currentAngle);
+        }
+        bot.FrontLeft.setPower(0.0);
+        bot.BackLeft.setPower(0.0);
+        bot.FrontRight.setPower(0.0);
+        bot.BackRight.setPower(0.0);
+    }
 }
