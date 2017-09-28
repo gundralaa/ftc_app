@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.OpModes;
+package org.firstinspires.ftc.teamcode.Testing;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -62,7 +62,9 @@ public class CameraTest extends LinearOpMode {
                 }
             }
             telemetry.update();
-            idle();
+            //idle();
         }
+
+
     }
 }

@@ -1,4 +1,14 @@
-package org.firstinspires.ftc.teamcode.OpModes;
+package org.firstinspires.ftc.teamcode.Libs;
+import android.graphics.Region;
+
+import com.qualcomm.hardware.adafruit.AdafruitBNO055IMU;
+import com.qualcomm.hardware.adafruit.BNO055IMU;
+import com.qualcomm.hardware.adafruit.JustLoggingAccelerationIntegrator;
+import com.qualcomm.hardware.adafruit.NaiveAccelerationIntegrator;
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -15,6 +25,7 @@ import com.vuforia.Vuforia;
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
+import org.firstinspires.ftc.teamcode.Libs.AdvancedAccelerationIntegrator;
 import org.firstinspires.ftc.teamcode.R;
 
 /**
@@ -24,25 +35,37 @@ public class HardwareBot {
     private final int COLOR_SENSOR_ADDRESS = 0x3c;
     //Define all motors set to null
     public DcMotor FrontRight, FrontLeft, BackRight, BackLeft, MotorA, MotorB;
-    public Servo leftClaw, rightClaw, leftPusher, rightPusher;
+    public Servo leftClaw, rightClaw, leftPusher, rightPusher,secondBall,vortexPusher;
     public I2cDevice beaconSensor;
     public I2cDeviceSynch beaconSensorReader;
-    public OpticalDistanceSensor lineLeft,lineRight,wallDist;
+    public OpticalDistanceSensor lineFront,lineBack,wallDist;
     public VuforiaLocalizer vuforia;
     public VuforiaTrackables beacons;
+    public BNO055IMU imu;
+    public ModernRoboticsI2cGyro gyroSensor;
+    public ModernRoboticsI2cRangeSensor rangeSensor;
 
     //Define local hmap
     HardwareMap lhmap;
 
-    public HardwareBot() {
 
+
+
+    public HardwareBot() {
     }
 
     public void init(HardwareMap hmap){
 
         //Reference the local version of hardware map to argument
         lhmap = hmap;
-
+        //BNO055IMU
+        /*
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        parameters.loggingEnabled      = true;
+        parameters.loggingTag          = "IMU";
+        */
         //Define Motors
         FrontRight = lhmap.dcMotor.get("FrontRight");
         FrontLeft = lhmap.dcMotor.get("FrontLeft");
@@ -56,14 +79,28 @@ public class HardwareBot {
         rightPusher = lhmap.servo.get("rightPusher");
         leftClaw = lhmap.servo.get("leftClaw");
         rightClaw = lhmap.servo.get("rightClaw");
+        secondBall = lhmap.servo.get("secondBall");
+        vortexPusher = lhmap.servo.get("vortexPusher");
 
         beaconSensor = lhmap.i2cDevice.get("BeaconSensor");
         beaconSensorReader = new I2cDeviceSynchImpl(beaconSensor, I2cAddr.create8bit(COLOR_SENSOR_ADDRESS),false);
         beaconSensorReader.engage();
 
-        lineLeft = lhmap.opticalDistanceSensor.get("lineLeft");
-        lineRight = lhmap.opticalDistanceSensor.get("lineRight");
+        gyroSensor = (ModernRoboticsI2cGyro)lhmap.gyroSensor.get("gyro");
+
+        lineFront = lhmap.opticalDistanceSensor.get("lineFront");
+        lineBack = lhmap.opticalDistanceSensor.get("lineBack");
         wallDist = lhmap.opticalDistanceSensor.get("wallDist");
+
+        rangeSensor = lhmap.get(ModernRoboticsI2cRangeSensor.class, "rangeSensor");
+
+
+        // Retrieve and initialize the IMU. We expect the IMU to be attached to an I2C port
+        // on a Core Device Interface Module, configured to be a sensor of type "AdaFruit IMU",
+
+        // and named "imu".
+        //imu = lhmap.get(BNO055IMU.class, "imu");
+        //imu.initialize(parameters);
 
         //Set Direction (Might be the other side base// d on orientation)
         FrontLeft.setDirection(DcMotor.Direction.FORWARD);
@@ -91,7 +128,11 @@ public class HardwareBot {
         rightPusher.setPosition(0.0);
 
         leftClaw.setPosition(0.0);
-        rightClaw.setPosition(0.0);
+        rightClaw.setPosition(1.0);
+
+        secondBall.setPosition(1.0);
+
+        vortexPusher.setPosition(0.4);
 
         //Set Run Mode (Change for Encoder Function)
         BackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -101,13 +142,20 @@ public class HardwareBot {
         MotorA.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         MotorB.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
+        //Creates Localizer Parameters Object to set Parameters
         VuforiaLocalizer.Parameters params = new VuforiaLocalizer.Parameters();
+        // Will show the camera on screen leave parameter less if no need.
         params.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
+        //Which camera we will be using.
         params.vuforiaLicenseKey = "AYjW+kn/////AAAAGckyQkdtk0g+vMt7+v21EQwSR82nxrrI34xlR+F75StLY+q3kjvWvgZiO0rBImulRIdCD4IjzWtqgZ8lPunOWuhUUi5eERTExNybyTwhn4GpdRr2XkcN+5uFD+5ZRoMfgx+z4RL4ONOLGWVMD30/VhwSM5vvkKB9C1VyGK0DyKcidSfxW8yhL1BKR2J0B5DtRtDW91hzalAEH2BfKE2+ee/F8f0HQ67DE5nnoVqrnT+THXWFb9W6OOBLszYdHTkUMtMV5U0RQxNuTBkeYGHtgcy17ULkQLY9Lnv0pqCLKdvlz4P3gtUAHPs/kr1cfzcaCS4iRY+ZlwxxLIKSazd0u4NSBjhH/f+zKJMaL/uVG2j4";
+        //Vuforia Key taken from Dev Portal
         params.cameraMonitorFeedback = VuforiaLocalizer.Parameters.CameraMonitorFeedback.AXES;
-        this.vuforia = ClassFactory.createVuforiaLocalizer(params);
+        // AR or object that will appear on image target
+        //Object used to run Vuphoria by FTC. Pass in param
+        vuforia = ClassFactory.createVuforiaLocalizer(params);
         Vuforia.setHint(HINT.HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS,4);
-        this.beacons = vuforia.loadTrackablesFromAsset("FTC_2016-17");
+
+        beacons = vuforia.loadTrackablesFromAsset("FTC_2016-17");
         beacons.get(0).setName("Wheels");
         beacons.get(1).setName("Tools");
         beacons.get(2).setName("Lego");

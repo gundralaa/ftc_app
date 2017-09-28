@@ -1,20 +1,22 @@
 package org.firstinspires.ftc.teamcode.Libs;
 
-import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 /**
  * Created by abhin on 11/1/2016.
  */
 public class ColorSensing {
     HardwareBot bot = new HardwareBot();
+    LinearOpMode opMode;
 
     private final int COLOR_NUMBER_ADDRESS = 0x04;
     private final int LED_ENABLE = 0x00;
     private final int LED_DISABLE = 0x01;
     private final int COMMAND_ADDRESS = 0x03;
 
-    public ColorSensing (HardwareBot bot) {
+    public ColorSensing (HardwareBot bot, LinearOpMode opMode ) {
         this.bot = bot;
+        this.opMode = opMode;
     }
 
 

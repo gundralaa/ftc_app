@@ -18,10 +18,8 @@ package org.firstinspires.ftc.teamcode.Calibration;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 
-import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
+import org.firstinspires.ftc.teamcode.Libs.HardwareBot;
 import org.firstinspires.ftc.teamcode.Libs.DistanceSensing;
 
 @TeleOp(name = "DistanceCalib",group = "Calibration")
@@ -29,7 +27,7 @@ public class MRI_ODS extends LinearOpMode {
 
     //Instance of OpticalDistanceSensor
     HardwareBot bot = new HardwareBot();
-    DistanceSensing distS = new DistanceSensing(bot);
+    DistanceSensing distS = new DistanceSensing(bot,this);
 
     //rawValue reading when sensor is 2cm from object
     //this value can be set by pressing A on the Logitech controller

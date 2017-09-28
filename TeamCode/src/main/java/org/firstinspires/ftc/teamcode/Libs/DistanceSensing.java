@@ -1,23 +1,24 @@
 package org.firstinspires.ftc.teamcode.Libs;
 
-import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.OpModes.HardwareBot;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 /**
  * Created by abhin on 11/8/2016.
  */
 public class DistanceSensing {
     HardwareBot bot = new HardwareBot();
-
+    LinearOpMode opMode;
     static double mvalue = 56 ;
     static double cvalue = -0.756;
     private double rawLValue;
     private double linearLValue;
     private double distanceValue;
     private double convertedValue;
-    public DistanceSensing (HardwareBot bot) {
+    public DistanceSensing (HardwareBot bot, LinearOpMode opMode) {
         this.bot = bot;
+        this.opMode = opMode;
     }
 
     public void setMValue(double mvalue){
@@ -36,6 +37,46 @@ public class DistanceSensing {
         convertedValue = (distanceValue * 0.3973);
         return convertedValue;
 
+    }
+
+    public void driveTillDist(double power, double threshold){
+
+        bot.FrontLeft.setPower(power);
+        bot.BackLeft.setPower(power);
+        bot.FrontRight.setPower(power);
+        bot.BackRight.setPower(power);
+
+        while (opMode.opModeIsActive() && bot.rangeSensor.cmUltrasonic() > threshold){
+            opMode.telemetry.addData("Distance:",bot.rangeSensor.cmUltrasonic());
+        }
+
+        bot.FrontLeft.setPower(0);
+        bot.BackLeft.setPower(0);
+        bot.FrontRight.setPower(0);
+        bot.BackRight.setPower(0);
+
+    }
+    public void driveAwayDist(double power, double threshold){
+        bot.FrontLeft.setPower(power);
+        bot.BackLeft.setPower(power);
+        bot.FrontRight.setPower(power);
+        bot.BackRight.setPower(power);
+
+        while(true) {
+            opMode.telemetry.addData("bot.range.cmUltrasonic", bot.rangeSensor.cmUltrasonic());
+            opMode.telemetry.update();
+        }
+
+        /*
+        while (opMode.opModeIsActive() && bot.rangeSensor.cmUltrasonic() < threshold){
+            opMode.telemetry.addData("Distance", bot.rangeSensor.cmUltrasonic());
+        }
+
+        bot.FrontLeft.setPower(0);
+        bot.BackLeft.setPower(0);
+        bot.FrontRight.setPower(0);
+        bot.BackRight.setPower(0);
+    */
     }
 
 

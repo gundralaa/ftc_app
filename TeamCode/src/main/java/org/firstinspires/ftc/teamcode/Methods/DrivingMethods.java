@@ -1,31 +1,68 @@
 package org.firstinspires.ftc.teamcode.Methods;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.util.Range;
+
+import org.firstinspires.ftc.teamcode.Libs.HardwareBot;
+
 import java.util.Hashtable;
 
 /**
  * Created by naisan on 10/30/16.
  */
 public class DrivingMethods {
-    public static Hashtable<String, Float> OmniDrive(float xAxis, float yAxis, float turn) {
-        Float xAxisSquare = xAxis*xAxis;
-        Float yAxisSquare = yAxis*yAxis;
-        Float turnSquare =  turn*turn;
-        if (xAxis < 0) {
-            xAxisSquare = -xAxisSquare;
+    HardwareBot bot;
+    public DrivingMethods(HardwareBot bot){
+        this.bot =  bot;
+    }
+    //leftStick is always 0
+    //rightStick is always 1
+    public static double[] square(double leftStick, double rightStick) {
+        double [] values;
+        values = new double[2];
+        double leftStickSquare= leftStick*leftStick;
+        double rightStickSquare = rightStick*rightStick;
+        if (leftStick < 0) {
+            leftStickSquare = -leftStickSquare;
         }
-        if (yAxis < 0) {
-            yAxisSquare = -yAxisSquare;
+        if (rightStick < 0) {
+            rightStickSquare = -rightStickSquare;
         }
-        if (turn < 0)
-            turnSquare = -turnSquare;
+        values [0] = leftStickSquare;
+        values [1] = rightStickSquare;
 
-        Hashtable<String, Float> valuesTable = new Hashtable<>();
-        valuesTable.put("XValue", xAxisSquare);
-        valuesTable.put("YValue", yAxisSquare);
-        valuesTable.put("TurnValue", turnSquare);
-
-        return valuesTable;
+        return values;
     }
 
+    public static double[] sinCurve(double leftStick, double rightStick, double highValue ){
+        double [] values;
+        values = new double[2];
+        values [0] = Math.sin(((Math.PI/2)*leftStick)/highValue);
+        values [1] = Math.sin(((Math.PI/2)*rightStick)/highValue);
+        return values;
+    }
+
+    public void tankDrive(double leftY, double rightY){
+
+        bot.FrontRight.setPower(rightY);
+        bot.BackRight.setPower(rightY);
+        bot.FrontLeft.setPower(leftY);
+        bot.BackLeft.setPower(leftY);
+
+    }
+
+    public void arcadeDrive(double yStick, double xStick){
+        double leftValue = yStick - xStick;
+        double rightValue = yStick + xStick;
+
+        leftValue = Range.clip(leftValue,-1,1);
+        rightValue = Range.clip(rightValue,-1,1);
+
+        bot.FrontLeft.setPower(leftValue);
+        bot.BackLeft.setPower(leftValue);
+        bot.FrontRight.setPower(rightValue);
+        bot.BackRight.setPower(rightValue);
+    }
 
 }
